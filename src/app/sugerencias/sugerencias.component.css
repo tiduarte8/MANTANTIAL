@@ -1,0 +1,46 @@
+table {
+    width:98%;
+    background-color:rgb(206, 233, 238);
+    position: relative;
+    left: 10px;
+    font-size: 16px;
+    top: 18px;
+;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width:98%;
+    left: 10px;
+    top:15px;
+    font-size: 16px;
+    color:navy;
+    background-color: rgb(206, 233, 238);
+    border-radius: 5px;
+    
+  }
+
+.boton1{
+   position: relative;
+   left: 5px;
+   top:5px;
+   color: navy;
+}
+.boton1:hover{
+    background-color: navy;
+    font-size: 16px;
+    color: white;
+}
+.boton2{
+    position: relative;
+    left: 10px;
+    top:5px;
+    color: navy;
+   
+}
+
+.boton2:hover{
+    background-color: navy;
+    font-size: 16px;
+    color: white;
+}

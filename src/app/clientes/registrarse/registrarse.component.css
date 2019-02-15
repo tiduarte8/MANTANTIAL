@@ -1,0 +1,67 @@
+.example-form {
+  
+    min-width: 150px;
+    max-width: 500px;
+    
+    text-align:center;
+    padding:2px;
+   cursor:pointer;
+   display:block;
+   width:500px;
+   margin: 0 auto;
+   padding: 10px;
+   height: 580px;
+   
+   position:relative;
+   border-width: 3px;
+   border-color: rgb(24, 24, 138);
+   border-style: solid;
+   border-radius: 10px;
+  
+   
+    
+  }
+
+  .example-form:hover{
+    background-color: rgba(214, 233, 240, 0.781);
+    
+  }
+
+ 
+
+
+  
+  .example-full-width {
+    width: 100%;
+  }
+.mat{
+  background-color: aqua;
+  padding: 300px;
+  text-align: right;
+ 
+}
+
+.imglog{
+  width: 40%; height: 30%;
+  display:block;
+  margin:auto;
+  
+}
+
+.forgot-password{
+  text-align: center;
+  position: relative;
+}
+
+.areg{
+  text-align: center;
+  position: relative;
+}
+
+.rdiv{
+  display: flex;
+  flex-direction: column;
+}
+.rdiv > *{
+width: 80%;
+}

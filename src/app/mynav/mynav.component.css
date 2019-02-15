@@ -1,0 +1,72 @@
+.sidenav-container {
+  height: 100%;
+ 
+}
+
+
+
+.sidenav {
+  width: 200px;
+  background-color: rgb(75, 125, 182);
+  
+}
+
+
+.spanclass{
+  flex: 1 1 auto;
+}
+.mati{
+  color: white;
+  font-size: 30px;
+  
+  padding: 0 14px;
+
+  
+
+}
+
+.matc{
+  color: white;
+  font-size: 30px;
+  
+  padding: 0 14px;
+
+}
+
+
+
+
+
+.sidenav .mat-toolbar {
+  background: inherit;
+  color: white;
+  font-size: 30px;
+}
+
+
+
+.mat-toolbar.mat-primary {
+  position:sticky;
+  top: 0;
+  z-index: 1;
+  background-color: navy;
+  font-size: 30px;
+  
+}
+
+.matnavlist a{
+  color: white;
+  border-width: 2px;
+  border-color: rgba(27, 230, 8, 0.582);
+  border-style: solid;
+  
+   
+}
+
+
+.matnavlist a:hover{
+  border-color: rgb(239, 240, 214);
+  background-color: rgb(8, 8, 90);
+  font-size: 20px;
+}
+

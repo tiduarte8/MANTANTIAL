@@ -1,0 +1,60 @@
+
+<br>
+<div class="rdiv">
+<form class="example-form">
+   
+  <mat-toolbar>
+      <span style="color:navy">Registrarse</span>
+  </mat-toolbar>
+
+  <table class="example-full-width" cellspacing="0"><tr>
+
+      <td><mat-form-field class="example-full-width">
+           <input matInput placeholder="Primer Nombre" required>
+           </mat-form-field></td>
+   
+      <td><mat-form-field class="example-full-width">
+            <input matInput placeholder="Segundo Nombre">
+         </mat-form-field></td>
+    </tr></table>
+  
+    <table class="example-full-width" cellspacing="0"><tr>
+        <td><mat-form-field class="example-full-width">
+          <input matInput placeholder="Primer Apellido" required>
+        </mat-form-field></td>
+        <td><mat-form-field class="example-full-width">
+          <input matInput placeholder="Segundo Apellido">
+        </mat-form-field></td>
+      </tr></table>
+    <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Dirección" required></textarea>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+          <input class="inputlog" matInput placeholder="CorreoElectrónico" type="email" required >
+        </mat-form-field>
+  
+    <mat-form-field class="example-full-width">
+      <input class="inputlog" required matInput placeholder="Contraseña"  [type]="hide ? 'text' : 'password'">
+      <mat-icon matSuffix (click)="hide = !hide"> {{hide ? 'visibility_on' : 'visibility_off'}}</mat-icon>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input class="inputlog" required matInput placeholder="Confirmar Contraseña"  [type]="hide ? 'text' : 'password'">
+        <mat-icon matSuffix (click)="hide = !hide"> {{hide ? 'visibility_on' : 'visibility_off'}}</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+          <span matPrefix>+505 &nbsp;</span>
+          <input type="tel" matInput placeholder="N° Teléfono">
+          <mat-icon matSuffix>call</mat-icon>
+        </mat-form-field>
+    
+  
+
+  <button  mat-raised-button color="primary">Registrarse</button>
+  
+ 
+
+  
+
+</form>
+</div>

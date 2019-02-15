@@ -1,0 +1,54 @@
+<button class="boton1" mat-stroked-button color="primary" [matMenuTriggerFor]="menupro"><mat-icon>business_center</mat-icon> Producto</button>
+<mat-menu #menupro="matMenu">
+  <button mat-menu-item="primary" routerLink="/registrarproducto">Registrar nuevo ingreso de productos</button>
+
+</mat-menu>
+
+<button class="boton2" mat-stroked-button color="primary" [matMenuTriggerFor]="menupre"><mat-icon>assignment_turned_in</mat-icon> Presentación</button>
+<mat-menu #menupre="matMenu">
+  <button mat-menu-item="primary" routerLink="/registrarpresentacion" >Registrar nueva presentacion </button>
+  <button mat-menu-item="primary" routerLink="/verpresentaciones">Presentaciones</button> 
+</mat-menu>
+
+<ng-content></ng-content>
+
+<body class="fondo">
+
+<mat-form-field>
+    <input class="inputcolor" matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar Nombre">
+  </mat-form-field>
+  
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="nolote">
+      <th mat-header-cell *matHeaderCellDef> N° Lote </th>
+      <td mat-cell *matCellDef="let element"> {{element.nolote}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="cantidad">
+      <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+      <td mat-cell *matCellDef="let element"> {{element.cantidad}}  </td>
+    </ng-container>
+
+    <ng-container matColumnDef="presentacion">
+        <th mat-header-cell *matHeaderCellDef> Presentacion </th>
+        <td mat-cell *matCellDef="let element"> {{element.presentacion}}  </td>
+      </ng-container>
+  
+    <!-- Symbol Column -->
+   
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+</body>
+

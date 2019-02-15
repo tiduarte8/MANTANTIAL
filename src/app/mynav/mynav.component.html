@@ -1,0 +1,43 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="!(isHandset$ | async)">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list class="matnavlist">
+      <a mat-list-item routerLink="/inicio"><mat-icon>home</mat-icon>&nbsp;Inicio</a>
+      <a mat-list-item routerLink="/producto"><mat-icon>shopping_cart</mat-icon>&nbsp;Productos</a>
+      <a mat-list-item routerLink="/cliente"><mat-icon>account_box</mat-icon>&nbsp;Clientes</a>
+      <a mat-list-item routerLink="/pedido"><mat-icon>local_mall</mat-icon>&nbsp;Pedidos</a>
+      <a mat-list-item routerLink="/sugerencia"><mat-icon>email</mat-icon>&nbsp;Sugerencias</a>
+      <a mat-list-item routerLink="/enviarsu"><mat-icon>sms</mat-icon>&nbsp;Enviar Sugerencias</a>
+      <a mat-list-item routerLink="/reporte"><mat-icon>list</mat-icon>&nbsp;Reportes</a>
+      
+      
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span class="spanclass"  >MANANTIAL DE VIDA</span>
+      <a mat-list-item routerLink="/carrito"><mat-icon matTooltip="Mi Carrito de Compras" aria-label="Button that displays a tooltip when focused or hovered over" class="matc" >shopping_cart</mat-icon></a>
+      <a  mat-list-item routerLink="/login"><mat-icon matTooltip="Inicio de sesión" aria-label="Button that displays a tooltip when focused or hovered over" class="mati">account_circle</mat-icon></a>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <ng-content></ng-content>
+ 
+
+
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+
