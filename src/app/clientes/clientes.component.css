@@ -15,7 +15,7 @@ table {
     top:15px;
     font-size: 16px;
     color:navy;
-    background-color: rgb(206, 233, 238);
+    background-color: rgba(75, 125, 182, 0.349);
     border-radius: 5px;
     
   }
@@ -45,11 +45,16 @@ table {
     color: white;
 }
 
-.fondo{
-  
-    background-image: url(./../../assets/imagen/logomanantialt.png);
-    background-size: cover;
-}
+.matpa{
+    width:98%;
+    background-color: rgba(75, 125, 182, 0.349);
+    position: relative;
+    left: 10px;
+    font-size: 16px;
+    top: 18px;
+  }
+
+
 
 
 

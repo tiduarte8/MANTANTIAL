@@ -1,32 +1,26 @@
-.example-form {
+
+.mimat{
+  min-width: 150px;
+  max-width: 500px;
   
-    min-width: 150px;
-    max-width: 500px;
-    
-    text-align:center;
-    padding:2px;
-   cursor:pointer;
-   display:block;
-   width:400px;
-   margin: 0 auto;
-   padding: 10px;
-   height: 320px;
-   
-   position:relative;
-   border-width: 3px;
-   border-color: rgb(24, 24, 138);
-   border-style: solid;
-   border-radius: 10px;
-  
-   
-    
+  text-align:center;
+  padding:2px;
+ cursor:pointer;
+ display:block;
+ width:400px;
+ margin: 0 auto;
+ padding: 10px;
+ height: 320px;
+ 
+ position:relative;
+
   }
 
-  .example-form:hover{
-    background-color: rgba(204, 226, 233, 0.781);
-    
+  .mimat:hover{
+    -webkit-box-shadow: 0px 0px 22px 9px rgba(26,9,92,1);
+    -moz-box-shadow: 0px 0px 22px 9px rgba(26,9,92,1);
+    box-shadow: 0px 0px 22px 9px rgba(26,9,92,1);
   }
-
  
 
 

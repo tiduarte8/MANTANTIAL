@@ -1,6 +1,6 @@
 
 <br>
-<div class="rdiv">
+<mat-card class="mycard">
 <form class="example-form">
    
   <mat-toolbar>
@@ -10,29 +10,37 @@
   <table class="example-full-width" cellspacing="0"><tr>
 
       <td><mat-form-field class="example-full-width">
-           <input matInput placeholder="Primer Nombre" required>
+           <input matInput placeholder="Primer Nombre"  required pattern="[A-Za-z]{4-16}" >
            </mat-form-field></td>
    
       <td><mat-form-field class="example-full-width">
-            <input matInput placeholder="Segundo Nombre">
+            <input matInput placeholder="Segundo Nombre" maxlength="30" >
          </mat-form-field></td>
     </tr></table>
   
     <table class="example-full-width" cellspacing="0"><tr>
         <td><mat-form-field class="example-full-width">
-          <input matInput placeholder="Primer Apellido" required>
+          <input matInput placeholder="Primer Apellido" maxlength="30"  required>
         </mat-form-field></td>
         <td><mat-form-field class="example-full-width">
-          <input matInput placeholder="Segundo Apellido">
+          <input matInput placeholder="Segundo Apellido" maxlength="30" >
         </mat-form-field></td>
       </tr></table>
     <mat-form-field class="example-full-width">
-        <textarea matInput placeholder="Dirección" required></textarea>
+        <textarea matInput placeholder="Dirección" maxlength="200"  required></textarea>
       </mat-form-field>
+
       <mat-form-field class="example-full-width">
-          <input class="inputlog" matInput placeholder="CorreoElectrónico" type="email" required >
-        </mat-form-field>
-  
+     <input maxlength="50" matInput placeholder="Correo Electrónico" [formControl]="emailFormControl">
+    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+      Por favor ingrese un correo válido
+    </mat-error>
+    <mat-error *ngIf="emailFormControl.hasError('required')">
+      Correo es <strong>requerido</strong>
+    </mat-error>
+  </mat-form-field>
+
+
     <mat-form-field class="example-full-width">
       <input class="inputlog" required matInput placeholder="Contraseña"  [type]="hide ? 'text' : 'password'">
       <mat-icon matSuffix (click)="hide = !hide"> {{hide ? 'visibility_on' : 'visibility_off'}}</mat-icon>
@@ -44,7 +52,7 @@
 
       <mat-form-field class="example-full-width">
           <span matPrefix>+505 &nbsp;</span>
-          <input type="tel" matInput placeholder="N° Teléfono">
+          <input type="tel" minlength="8" maxlength="8"  matInput placeholder="N° Teléfono">
           <mat-icon matSuffix>call</mat-icon>
         </mat-form-field>
     
@@ -57,4 +65,4 @@
   
 
 </form>
-</div>
+</mat-card>

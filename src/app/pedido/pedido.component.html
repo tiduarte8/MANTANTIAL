@@ -1,5 +1,5 @@
 <mat-form-field>
-    <input class="inputcolor" matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar N Pedido">
+    <input class="inputcolor" maxlength="30" matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar N Pedido">
   </mat-form-field>
   
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -72,7 +72,7 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-
+  <mat-paginator class="matpa" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 
 
 

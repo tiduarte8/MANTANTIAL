@@ -1,15 +1,25 @@
 
 <img class="imglog" src="./../../assets/imagen/logomanantialt.png">
 <br>
+<mat-card class="mycard">
 <form class="example-form">
-   
+
+    <mat-form-field class="example-full-width">
+        <input maxlength="50" matInput placeholder="Correo Electrónico" [formControl]="emailFormControl">
+       <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+         Por favor ingrese un correo válido
+       </mat-error>
+       <mat-error *ngIf="emailFormControl.hasError('required')">
+          e-mail es <strong>requerido</strong>
+       </mat-error>
+     </mat-form-field>
+
   <mat-form-field class="example-full-width">
-    <input class="inputlog" matInput placeholder="Correo Electronico" type="email" required >
-  </mat-form-field>
-  <mat-form-field class="example-full-width">
-    <input class="inputlog" required matInput placeholder="Contraseña"  [type]="hide ? 'text' : 'password'">
+    <input class="inputlog"  required matInput placeholder="Contraseña" maxlength="50"  [type]="hide ? 'text' : 'password'">
     <mat-icon matSuffix (click)="hide = !hide"> {{hide ? 'visibility_on' : 'visibility_off'}}</mat-icon>
   </mat-form-field>
+
+
   <button  mat-raised-button color="primary">Entrar</button>
   
   <br>
@@ -25,7 +35,7 @@
 
 </form>
 
-
+</mat-card>
 
 
 

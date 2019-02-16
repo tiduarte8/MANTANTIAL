@@ -8,7 +8,7 @@ table {
   }
   
   .mat-form-field {
-    background-color: rgb(206, 233, 238);
+    background-color: rgba(75, 125, 182, 0.349);
     font-size: 14px;
     width:50%;
     left: 10px;
@@ -16,6 +16,15 @@ table {
     font-size: 16px;
     border-radius: 5px;
     
+  }
+
+  .matpa{
+    width:50%;
+    background-color: rgba(75, 125, 182, 0.349);
+    position: relative;
+    left: 10px;
+    font-size: 16px;
+    top: 18px;
   }
 
 

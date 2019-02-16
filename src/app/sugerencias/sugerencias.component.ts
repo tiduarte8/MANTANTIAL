@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import{MatTableDataSource} from '@angular/material'
+import { Component, OnInit,ViewChild } from '@angular/core';
+import{MatTableDataSource,MatPaginator} from '@angular/material';
 
 export interface sugerencia {
 
@@ -20,11 +20,17 @@ const ELEMENT_DATA: sugerencia[] = [
   templateUrl: './sugerencias.component.html',
   styleUrls: ['./sugerencias.component.css']
 })
-export class SugerenciasComponent {
+export class SugerenciasComponent implements OnInit {
 
 
   displayedColumns: string[] = ['nombre','mensaje'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<sugerencia>(ELEMENT_DATA);
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  ngOnInit(){
+this.dataSource.paginator=this.paginator;
+  }
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();

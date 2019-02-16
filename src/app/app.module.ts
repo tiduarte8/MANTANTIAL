@@ -3,14 +3,16 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSelectModule,MatButtonModule,
-        MatInputModule,
+        
         MatToolbarModule,
         MatSidenavModule,
         MatIconModule,
         MatListModule,
         MatMenuModule,
-        MatFormFieldModule} from '@angular/material';
+        MatFormFieldModule,} from '@angular/material';
         import {MatTooltipModule} from '@angular/material/tooltip';
+        import {MatPaginatorModule} from '@angular/material/paginator';
+        import {MatInputModule} from '@angular/material/input';
 import { MynavComponent } from './mynav/mynav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { LoginComponent } from './login/login.component';
@@ -29,7 +31,7 @@ import { RegistrarpresentacionComponent } from './producto/registrarpresentacion
 import { VerpresentacionesComponent } from './producto/verpresentaciones/verpresentaciones.component';
 import { CarritoComponent } from './carrito/carrito.component';
 import { EnviarsugerenciasComponent } from './sugerencias/enviarsugerencias/enviarsugerencias.component';
-
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 
@@ -66,11 +68,16 @@ import { EnviarsugerenciasComponent } from './sugerencias/enviarsugerencias/envi
       MatSidenavModule, MatIconModule,
        MatListModule,MatMenuModule,
        MatFormFieldModule,
+     
        AppRoutingModule,
        MatCardModule,
        MatSelectModule,
        MatTableModule,
-       MatTooltipModule
+       MatTooltipModule,
+       MatPaginatorModule,
+       FormsModule,
+       ReactiveFormsModule
+       
        
       
    

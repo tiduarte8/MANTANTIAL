@@ -1,3 +1,4 @@
+<mat-card>
 <button class="boton1" mat-stroked-button color="primary" [matMenuTriggerFor]="menupro"><mat-icon>business_center</mat-icon> Producto</button>
 <mat-menu #menupro="matMenu">
   <button mat-menu-item="primary" routerLink="/registrarproducto">Registrar nuevo ingreso de productos</button>
@@ -9,13 +10,13 @@
   <button mat-menu-item="primary" routerLink="/registrarpresentacion" >Registrar nueva presentacion </button>
   <button mat-menu-item="primary" routerLink="/verpresentaciones">Presentaciones</button> 
 </mat-menu>
-
+</mat-card>
 <ng-content></ng-content>
 
 <body class="fondo">
 
 <mat-form-field>
-    <input class="inputcolor" matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar Nombre">
+    <input class="inputcolor" maxlength="30" matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar Nombre">
   </mat-form-field>
   
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -48,7 +49,11 @@
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
   </table>
+  <mat-paginator class="matpa" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+ 
 
 </body>
+
 
