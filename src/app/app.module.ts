@@ -32,6 +32,7 @@ import { VerpresentacionesComponent } from './producto/verpresentaciones/verpres
 import { CarritoComponent } from './carrito/carrito.component';
 import { EnviarsugerenciasComponent } from './sugerencias/enviarsugerencias/enviarsugerencias.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 
@@ -75,8 +76,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
        MatTableModule,
        MatTooltipModule,
        MatPaginatorModule,
-       FormsModule,
-       ReactiveFormsModule
+       MatGridListModule,
+       
        
        
       

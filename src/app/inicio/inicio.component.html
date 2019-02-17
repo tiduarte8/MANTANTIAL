@@ -1,33 +1,142 @@
-<div >
+<header class="header">
+ 
+</header>
 
-    <div >
+    <div class="row" >
       <div >
-
-      <h2 >Servicios</h2>
+      <h2>Servicios</h2>
 
       <p>Facilitando el proceso de pedidos de agua purificada, al mejor precio y el mejor producto.</p>
      
-      <img src='./../../assets/imagen/imagen.PNG'>
+      <img class="img" src='./../../assets/imagen/imagen.PNG'>
         <p><a  role="button" href="#">Ver detalles &raquo;</a></p>
+        
       </div>
+      
 
       <div >
-        <h2 >Información</h2>
-        <p>AGUA Manantial de vida, agua que nace en el corazón de ASmerrisque.</p>
-         <img src='./../../assets/imagen/imagenmanan.jpg'>
-        <p><a role="button" href="#" >Ver Detalles &raquo;</a></p>
+      
+               <h2 >Información</h2>
+        <p>AGUA Manantial de vida, agua que nace en el corazón de Amerrisque.</p>
+         <img class="img" src='./../../assets/imagen/imagenmanan.jpg'>
+        <p><a role="button" href="#info" >Ver Detalles &raquo;</a></p>
       </div>
       <div>
       <h2 >Contacto</h2>
-      <p>Brindaremos la información que necesite...<br><br></p>
-      <img src='./../../assets/imagen/logomanantial.png'>
-      <p><a role="button" href="#">Ver Detalles &raquo;</a></p>      
+      <p>Brindaremos la información que necesite...</p>
+      <img class="img" src='./../../assets/imagen/logomanantial.png'>
+      <p><a role="button" href="#cont">Ver Detalles &raquo;</a></p>      
       </div>
     </div>
-    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+  
+
+
+
+<mat-card id="info" class="masinfo">
+    <div class="row2">
+
+        <div >
+  
+        <img class="img2" src="./../../assets/imagen/fotocordillera.png">
+  
+        <p><b> La cordillera de amerrisque es la espina central de Nicaragua y forma parte de la Cordillera centroamericana que se extiende a lo largo de Nicaragua, desde Honduras hasta Costa Rica. allí en la llamada cordillera de amerrisque formada por mesetas y elevaciones escarpadas y los cerros de la Cordillera chontaleña se encuentra la reserva natural Sierra de amerrisque. 
+          </b></p>
+       </div>
+  
+        <div >
+          
+          <img class="img2" src="./../../assets/imagen/fotoarboles.png" >
+          <p><b>
+               En la reserva natural sierra de amerrisque a 152 kilómetros de Managua en medio de un bosque natural y virgen tiene su origen agua Manantial de vida, agua que nace y se basa en su origen, Esta agua brota de un Manantial en medio de la reserva natural, una reserva que dentro de los límites de nuestra propiedad la empresa se encarga de mantener virgen.
+  
+               </b></p>
+         
+          
+        </div>
+        <div >
+        <img class="img2" src="./../../assets/imagen/fotoagua.png" >
+        
+        <p><b> 
+          En la parte alta de la cordillera se recibe la lluvia a medida que el aire se enfría por la altura y la humedad contenida en las nubes se condensa, esto permite a las plantas atrapar agua directamente del aire, la vegetación retiene el agua por un tiempo y luego la libera lentamente, eso permite que el agua se filtre de manera constante entre las grietas del suelo rocoso.</b></p>
+             
+        </div>
+  
+        
+        <div >
+        <img class="img2" src="./../../assets/imagen/fotocerros.png" >
+        
+        <p><b>
+          y todo esto sirve para que el interior de la montaña se convierta en una esponja de piedra caliza que almacena enormes cantidades de agua. El paso lento del agua a través de las rocas elimina todas las impurezas y los microorganismos la montaña entera se convierte en un enorme filtro natural que purifica el agua en su interior sin intervención humana alguna.
+  
+          </b></p>
+             
+        </div>
+  </div>
+</mat-card>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<mat-card class="mycard" id="cont">
+  <br>
+<form class="example-form">
+   
+  <mat-toolbar>
+      <span style="color:navy">Contactanos</span>
+  </mat-toolbar>
+
+  <mat-form-field class="example-full-width">
+      <input maxlength="50" matInput placeholder="Nombre" type="text" required>
+    
+   </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+      <input maxlength="50" matInput placeholder="Correo Electrónico" type="email" required>
+    
+   </mat-form-field>
+
+   <mat-form-field class="example-full-width">
+      <span matPrefix>+505 &nbsp;</span>
+      <input type="tel" minlength="8" maxlength="8"  matInput placeholder="N° Teléfono">
+      <mat-icon matSuffix>call</mat-icon>
+    </mat-form-field>
+  
+    <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Mensaje (Max 200 Caracteres)" maxlength="200"  required></textarea>
+      </mat-form-field>
+
+
+  <button   mat-raised-button color="primary">Enviar Mensaje</button>
+  
+ 
+
+  
+
+</form>
+</mat-card>
+<br>
+<br>
+<br>
+
+
+
+
+
     <footer>
       <div layout="row" layout-align="center center">
-          <h2>Copyright &copy; MANANTIAL DE VIDA 2019</h2>
-         
+          <h2>Copyright &copy;2019,  Manatial de Vida. Todos los Derechos Reservados</h2>
       </div>
-  </footer>
+      <div class="icon">
+        <a class="a" href="facebook.com"><img class="imgicon" src="./../../assets/imagen/logos/icons8-facebook-filled-30.png"></a>
+        <a class="a" href="https://www.youtube.com/watch?v=alEDq9VCXk4&t=634s"><img class="imgicon" src="./../../assets/imagen/logos/icons8-youtube-30.png"></a>
+        </div>
+      </footer>

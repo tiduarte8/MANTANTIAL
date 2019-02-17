@@ -5,13 +5,9 @@
 <form class="example-form">
 
     <mat-form-field class="example-full-width">
-        <input maxlength="50" matInput placeholder="Correo Electrónico" [formControl]="emailFormControl">
-       <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-         Por favor ingrese un correo válido
-       </mat-error>
-       <mat-error *ngIf="emailFormControl.hasError('required')">
-          e-mail es <strong>requerido</strong>
-       </mat-error>
+        <input maxlength="50" matInput placeholder="Correo Electrónico" required
+       
+    type="email">
      </mat-form-field>
 
   <mat-form-field class="example-full-width">

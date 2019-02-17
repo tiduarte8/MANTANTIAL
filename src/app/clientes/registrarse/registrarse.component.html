@@ -10,7 +10,8 @@
   <table class="example-full-width" cellspacing="0"><tr>
 
       <td><mat-form-field class="example-full-width">
-           <input matInput placeholder="Primer Nombre"  required pattern="[A-Za-z]{4-16}" >
+           <input  matInput placeholder="Primer Nombre" maxlength="30" required  >
+           
            </mat-form-field></td>
    
       <td><mat-form-field class="example-full-width">
@@ -31,23 +32,18 @@
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
-     <input maxlength="50" matInput placeholder="Correo Electrónico" [formControl]="emailFormControl">
-    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-      Por favor ingrese un correo válido
-    </mat-error>
-    <mat-error *ngIf="emailFormControl.hasError('required')">
-      Correo es <strong>requerido</strong>
-    </mat-error>
+     <input maxlength="50" matInput placeholder="Correo Electrónico" type="email" required>
+   
   </mat-form-field>
 
 
     <mat-form-field class="example-full-width">
-      <input class="inputlog" required matInput placeholder="Contraseña"  [type]="hide ? 'text' : 'password'">
-      <mat-icon matSuffix (click)="hide = !hide"> {{hide ? 'visibility_on' : 'visibility_off'}}</mat-icon>
+      <input  class="inputlog" required matInput placeholder="Contraseña"  [type]="hide ? 'text' : 'password'">
+      
     </mat-form-field>
     <mat-form-field class="example-full-width">
-        <input class="inputlog" required matInput placeholder="Confirmar Contraseña"  [type]="hide ? 'text' : 'password'">
-        <mat-icon matSuffix (click)="hide = !hide"> {{hide ? 'visibility_on' : 'visibility_off'}}</mat-icon>
+        <input id="pw2" class="inputlog" required matInput placeholder="Confirmar Contraseña"  type="password">
+        
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
@@ -58,7 +54,7 @@
     
   
 
-  <button  mat-raised-button color="primary">Registrarse</button>
+  <button   mat-raised-button color="primary">Registrarse</button>
   
  
 

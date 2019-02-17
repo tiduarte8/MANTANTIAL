@@ -1,22 +1,281 @@
-img{
- width: 40%; height: 30%;
+.img{
+ width: 200px; height: 200px;
  display:block;
- margin:auto;       
+ margin:auto; 
+ border-radius: 200px;      
+}
+
+.img2{
+    width: 300px; height: 200px;
+    display:block;
+    margin:auto; 
+    
+}
+
+.masinfo{
+    top: 50px;
+    height: 500px;
+   
+}
+
+
+.row{
+    -webkit-column-count:3;
+    -moz-column-count:3;
+    column-count:3;  
+}
+
+
+.row2{
+    -webkit-column-count:4;
+    -moz-column-count:4;
+    column-count:4;  
+}
+
+@media (min-width: 353px) {
+    .row {
+        -webkit-column-count:1;
+        -moz-column-count:1;
+        column-count:1;
+    }
+}
+
+
+@media (min-width: 480px) {
+    .row {
+       
+        -webkit-column-count:1;
+        -moz-column-count:1;
+        column-count:1;
+        
+    }
+}
+
+@media (min-width: 768px) {
+    .row {
+        -webkit-column-count:2;
+        -moz-column-count:2;
+        column-count:2;
+    }
+}
+
+/* Imagen utilizada en pantallas de anchura 1200 px y superior */
+@media (min-width: 1200px) {
+    .row {
+        -webkit-column-count:3;
+        -moz-column-count:3;
+        column-count:3;
+    }
+}
+
+@media (min-width: 353px) {
+    .row2 {
+        -webkit-column-count:1;
+        -moz-column-count:1;
+        column-count:1;
+    }
+}
+
+
+@media (min-width: 480px) {
+    .row2 {
+       
+        -webkit-column-count:1;
+        -moz-column-count:1;
+        column-count:1;
+        
+    }
+}
+
+@media (min-width: 768px) {
+    .row2 {
+        -webkit-column-count:2;
+        -moz-column-count:2;
+        column-count:2;
+    }
+}
+
+/* Imagen utilizada en pantallas de anchura 1200 px y superior */
+@media (min-width: 1200px) {
+    .row2 {
+        -webkit-column-count:4;
+        -moz-column-count:4;
+        column-count:4;
+    }
 }
 
 div{
     text-align: center;
     position: relative;
+   
+    
 }
 
 
+.imgicon{
+    width: 30px;
+    height: 30px;
+    padding: 2px;
+    display: inline;
+    
+}
+
 
 footer {
- 
+    border-top: 10px;
+    border-top-color: rgba(34, 78, 85, 0.747);
+    border-top-style: solid;
     padding: 20px 0;
-    text-align: center;
+    text-align:right;
     background-color: rgb(122, 120, 138);
     font-size: 10px;
     position:relative;
+    background-color: rgb(38, 39, 41);
+    color:#cccccc;
+
    
   }
+
+  .header{
+     
+    text-align: center;
+    color: white;
+    background-image: url("./../../assets/imagen/nuevap.png");
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    
+    background-size: cover;
+   
+   
+    background-repeat: no-repeat;
+    
+    
+    
+  }
+
+  @media (min-width: 353px) {
+    .header {
+        height: 180px;
+        width: 353px;
+    }
+}
+
+  @media (min-width: 480px) {
+    .header {
+       
+        height:240px;
+        width: 480px;
+        background-repeat:repeat-y;
+background-position:center;
+margin: 0px;
+        
+    }
+}
+
+/* Imagen utilizada en pantallas de anchura 768 px y superior */
+@media (min-width: 768px) {
+    .header {
+        height:350px;
+        width: 768px;
+    }
+}
+
+/* Imagen utilizada en pantallas de anchura 1200 px y superior */
+@media (min-width: 1200px) {
+    .header {
+        height: 630px;
+        width: 1318px;
+    }
+}
+
+p{
+   text-align:center;
+   
+}
+
+.masinfo{
+    height: 400px;;
+}
+
+.mycard{
+   
+    
+    text-align:center;
+    padding:2px;
+   
+   width:60%;
+   margin: 0 auto;
+   padding: 10px;
+   height: 60%;
+   
+   position:relative;
+  }
+  
+    .mycard:hover{
+      -webkit-box-shadow: 0px 0px 22px 9px rgba(26,9,92,1);
+      -moz-box-shadow: 0px 0px 22px 9px rgba(26,9,92,1);
+      box-shadow: 0px 0px 22px 9px rgba(26,9,92,1);
+      
+    }
+
+    .example-full-width {
+        width: 100%;
+      }
+    .mat{
+      background-color: aqua;
+      padding: 300px;
+      text-align: right;
+     
+    }
+    
+  
+    
+ 
+    
+    .areg{
+      text-align: center;
+      position: relative;
+    }
+    
+    .rdiv{
+      display: flex;
+      flex-direction: column;
+    }
+    .rdiv > *{
+    width: 80%;
+    }
+  
+
+
+    @media (min-width: 353px) {
+        .masinfo {
+            height: 1600px;
+        }
+    }
+    
+    
+    @media (min-width: 480px) {
+        .masinfo {
+           
+            height: 1500px;
+            
+        }
+    }
+    
+    @media (min-width: 768px) {
+        .masinfo {
+           height: 1000px;
+        }
+    }
+    
+    /* Imagen utilizada en pantallas de anchura 1200 px y superior */
+    @media (min-width: 1200px) {
+        .masinfo {
+            height: 500px;
+        }
+    }
+
+
+
+
+  

@@ -9,10 +9,7 @@ import {FormControl, Validators} from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
+
 
   constructor() { }
 

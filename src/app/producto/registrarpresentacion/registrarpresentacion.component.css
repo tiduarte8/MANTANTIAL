@@ -65,3 +65,8 @@
 .rdiv > *{
     width: 80%;
 }
+
+.btnatras{
+  left: 4px;
+  top: 4px;
+}

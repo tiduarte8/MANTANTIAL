@@ -24,7 +24,6 @@
 
 
 
-
 .matc{
   color:white;
   font-size: 30px;
@@ -68,5 +67,21 @@
   border-color: rgb(239, 240, 214);
   background-color: rgb(8, 8, 90);
   font-size: 20px;
+}
+
+
+
+@media (min-width: 200px) {
+  .spanclass {
+      font-size: 12px;
+  }
+}
+
+
+
+@media (min-width: 1200px) {
+  .spanclass {
+      font-size: 25px;
+  }
 }
 
