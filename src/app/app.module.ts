@@ -33,7 +33,10 @@ import { CarritoComponent } from './carrito/carrito.component';
 import { EnviarsugerenciasComponent } from './sugerencias/enviarsugerencias/enviarsugerencias.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatGridListModule} from '@angular/material/grid-list';
-
+import {environment} from './../environments/environment';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {AngularFireAuth} from '@angular/fire/auth'
 
 
 
@@ -77,6 +80,11 @@ import {MatGridListModule} from '@angular/material/grid-list';
        MatTooltipModule,
        MatPaginatorModule,
        MatGridListModule,
+       FormsModule,
+       AngularFireModule.initializeApp(environment.firebaseConfig),
+       AngularFireDatabaseModule
+       
+       
        
        
        
@@ -84,7 +92,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
    
        
   ],
-  providers: [],
+  providers: [AngularFireAuth],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

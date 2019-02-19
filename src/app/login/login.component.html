@@ -2,28 +2,31 @@
 <img class="imglog" src="./../../assets/imagen/logomanantialt.png">
 <br>
 <mat-card class="mycard">
-<form class="example-form">
+<form #formLogin="ngForm" name="ngFomr" (submit)="onLoginEmail()" class="example-form">
 
     <mat-form-field class="example-full-width">
-        <input maxlength="50" matInput placeholder="Correo Electrónico" required
+        <input [(ngModel)]="email" name="email" maxlength="50" matInput placeholder="Correo Electrónico" required
        
     type="email">
      </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <input class="inputlog"  required matInput placeholder="Contraseña" maxlength="50"  [type]="hide ? 'text' : 'password'">
+    <input [(ngModel)]="pass" name="pass" class="inputlog"  required matInput placeholder="Contraseña" maxlength="50"  [type]="hide ? 'text' : 'password'">
     <mat-icon matSuffix (click)="hide = !hide"> {{hide ? 'visibility_on' : 'visibility_off'}}</mat-icon>
   </mat-form-field>
 
-
-  <button  mat-raised-button color="primary">Entrar</button>
-  
-  <br>
+<div class="div1">
+  <button type="submit" class=btn  mat-raised-button color="primary">Entrar</button>
+</div>
+<div>
+  <button class="btng" (click)="onLoginGoogle()"  mat-raised-button color="primary"><img class="imgicong" src="./../../assets/imagen/logos/Google_icon-icons.com_60497.png"> Google</button>
+</div>
+ 
 
   <a href="#" class="forgot-password">
       ¿Olvidastes tu contraseña? 
   </a>
-  <br>
+  
   <br>
   <a routerLink="/registrarse" >
    Registrarse 

@@ -1,14 +1,14 @@
 <mat-card>
 <button class="boton1" mat-stroked-button color="primary" [matMenuTriggerFor]="menupro"><mat-icon>business_center</mat-icon> Producto</button>
 <mat-menu #menupro="matMenu">
-  <button mat-menu-item="primary" routerLink="/registrarproducto">Registrar nuevo ingreso de productos</button>
+  <button mat-menu-item="primary" routerLink="/producto/registrarproducto">Registrar nuevo ingreso de productos</button>
 
 </mat-menu>
 
 <button class="boton2" mat-stroked-button color="primary" [matMenuTriggerFor]="menupre"><mat-icon>assignment_turned_in</mat-icon> Presentación</button>
 <mat-menu #menupre="matMenu">
-  <button mat-menu-item="primary" routerLink="/registrarpresentacion" >Registrar nueva presentacion </button>
-  <button mat-menu-item="primary" routerLink="/verpresentaciones">Presentaciones</button> 
+  <button mat-menu-item="primary" routerLink="/producto/registrarpresentacion" >Registrar nueva presentacion </button>
+  <button mat-menu-item="primary" routerLink="/producto/verpresentaciones">Presentaciones</button> 
 </mat-menu>
 </mat-card>
 <ng-content></ng-content>
