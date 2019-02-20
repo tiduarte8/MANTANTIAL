@@ -72,7 +72,7 @@ import {AngularFireAuth} from '@angular/fire/auth'
       MatSidenavModule, MatIconModule,
        MatListModule,MatMenuModule,
        MatFormFieldModule,
-     
+       ReactiveFormsModule,
        AppRoutingModule,
        MatCardModule,
        MatSelectModule,

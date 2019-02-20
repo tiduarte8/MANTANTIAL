@@ -12,14 +12,14 @@
   </mat-toolbar>
 
   <mat-form-field class="example-full-width">
-    <input class="inputlog" type="text" matInput placeholder="N° Lote" maxlength="6" required >
+    <input [(ngModel)]="nlote" name="nlote" class="inputlog" type="text" matInput placeholder="N° Lote" maxlength="6" required >
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <input class="inputlog" type="number" matInput placeholder="Cantidad" required >
+    <input [(ngModel)]="cant" name="cant"  class="inputlog" type="number" matInput placeholder="Cantidad" required >
   </mat-form-field>
   <mat-form-field class="example-full-width">
-    <mat-select placeholder="Presentacion" class="inputlog">
+    <mat-select placeholder="Presentacion" class="inputlog" [(ngModel)]="op" name="op" required>
       <mat-option value="option">Bidon</mat-option>
       <mat-option value="option">Galon</mat-option>
       <mat-option value="option">Pack 1 Litro</mat-option>

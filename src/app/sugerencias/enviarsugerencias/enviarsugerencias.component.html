@@ -9,7 +9,9 @@
 
   
       <mat-form-field class="example-full-width">
-          <textarea maxlength="200"  class="inputlog" matInput  placeholder="Mensaje (200 Caracteres máximo)" type="text" required ></textarea>
+          <textarea [(ngModel)]="envsu" name="envsu" #message maxlength="200"  class="inputlog" matInput  placeholder="Mensaje (200 Caracteres máximo)" type="text" required ></textarea>
+          <mat-hint align="start"><strong>No ingrese información personal</strong> </mat-hint>
+          <mat-hint align="end">{{message.value.length}} / 250</mat-hint>
         </mat-form-field>
   
   <button  mat-raised-button color="primary">Enviar Mensaje</button>

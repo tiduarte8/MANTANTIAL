@@ -1,7 +1,7 @@
 
 <br>
 <mat-card class="mycard">
-<form class="example-form">
+<form (click)="onAddUser()" #formRegister="ngForm" name="ngFomr" class="example-form">
    
   <mat-toolbar>
       <span style="color:navy">Registrarse</span>
@@ -10,51 +10,57 @@
   <table class="example-full-width" cellspacing="0"><tr>
 
       <td><mat-form-field class="example-full-width">
-           <input  matInput placeholder="Primer Nombre" maxlength="30" required  >
+           <input type="text"  [(ngModel)]="name" name="pnombre"  matInput placeholder="Primer Nombre" required maxlength="30" >
            
            </mat-form-field></td>
    
       <td><mat-form-field class="example-full-width">
-            <input matInput placeholder="Segundo Nombre" maxlength="30" >
+            <input  type="text"  [(ngModel)]="name2" name="snombre" matInput placeholder="Segundo Nombre" maxlength="30" >
          </mat-form-field></td>
     </tr></table>
   
     <table class="example-full-width" cellspacing="0"><tr>
         <td><mat-form-field class="example-full-width">
-          <input matInput placeholder="Primer Apellido" maxlength="30"  required>
+          <input [(ngModel)]="papellido" name="papellido" type="text" matInput placeholder="Primer Apellido" required maxlength="30">
         </mat-form-field></td>
         <td><mat-form-field class="example-full-width">
-          <input matInput placeholder="Segundo Apellido" maxlength="30" >
+          <input [(ngModel)]="spapellido" name="spapellido" type="text" matInput placeholder="Segundo Apellido" maxlength="30" >
         </mat-form-field></td>
       </tr></table>
     <mat-form-field class="example-full-width">
-        <textarea matInput placeholder="Dirección" maxlength="200"  required></textarea>
+        <textarea [(ngModel)]="dir" name="dir" type="text" matInput placeholder="Dirección" required maxlength="200"></textarea>
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
-     <input maxlength="50" matInput placeholder="Correo Electrónico" type="email" required>
-   
-  </mat-form-field>
-
+     <input [(ngModel)]="email" name="email" [formControl]="emailFormControl"  maxlength="50" matInput placeholder="Correo Electrónico" required type="email">
+     <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+      Por favor ingrese un e-mail válido
+    </mat-error>
+    <mat-error *ngIf="emailFormControl.hasError('required')">
+      e-mail <strong>requerido</strong>
+    </mat-error>
+     </mat-form-field>
+     
 
     <mat-form-field class="example-full-width">
-      <input  class="inputlog" required matInput placeholder="Contraseña"  [type]="hide ? 'text' : 'password'">
+      <input [(ngModel)]="pass" name="pass"  id="pass" class="inputlog" required matInput placeholder="Contraseña" required  [type]="hide ? 'text' : 'password'">
       
     </mat-form-field>
     <mat-form-field class="example-full-width">
-        <input id="pw2" class="inputlog" required matInput placeholder="Confirmar Contraseña"  type="password">
+        <input [(ngModel)]="cpass" name="cpass"  id="cpass" class="inputlog" required matInput placeholder="Confirmar Contraseña" required type="password">
         
       </mat-form-field>
-
+      <label style="color:red">{{mns}}</label>
       <mat-form-field class="example-full-width">
           <span matPrefix>+505 &nbsp;</span>
-          <input type="tel" minlength="8" maxlength="8"  matInput placeholder="N° Teléfono">
+          <input [(ngModel)]="tel" name="tel" type="text" minlength="8" maxlength="8"  required  matInput placeholder="N° Teléfono">
           <mat-icon matSuffix>call</mat-icon>
         </mat-form-field>
     
-  
+  <label style="color:red">{{mensaje}}</label>
 
-  <button   mat-raised-button color="primary">Registrarse</button>
+  <button type="submit"   mat-raised-button color="primary">Registrarse</button>
+  
   
  
 
