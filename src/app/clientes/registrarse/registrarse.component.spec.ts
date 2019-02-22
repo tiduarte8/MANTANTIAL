@@ -1,6 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
+import{DebugElement} from '@angular/core';
 import { RegistrarseComponent } from './registrarse.component';
+import{async} from '@angular/core/testing';
+
 
 describe('RegistrarseComponent', () => {
   let component: RegistrarseComponent;

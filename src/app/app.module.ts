@@ -20,11 +20,11 @@ import {MatTableModule} from '@angular/material/table';
 import { ProductoComponent } from './producto/producto.component';
 import { PedidoComponent } from './pedido/pedido.component';
 import { ClientesComponent } from './clientes/clientes.component';
-import { ReporteComponent } from './reporte/reporte.component';
+import { ReporteComponent,DialogContentExampleDialog } from './reporte/reporte.component';
 import { SugerenciasComponent } from './sugerencias/sugerencias.component';
 import {AppRoutingModule} from './app-routing.module';
 import {MatCardModule} from '@angular/material/card';
-import { InicioComponent } from './inicio/inicio.component';
+import { InicioComponent,Contactanos } from './inicio/inicio.component';
 import { RegistrarseComponent } from './clientes/registrarse/registrarse.component';
 import { RegistrarproductoComponent } from './producto/registrarproducto/registrarproducto.component';
 import { RegistrarpresentacionComponent } from './producto/registrarpresentacion/registrarpresentacion.component';
@@ -36,7 +36,11 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {environment} from './../environments/environment';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
-import {AngularFireAuth} from '@angular/fire/auth'
+import {AngularFireAuth} from '@angular/fire/auth';
+import {MatDialogModule} from '@angular/material/dialog';
+
+
+
 
 
 
@@ -48,15 +52,17 @@ import {AngularFireAuth} from '@angular/fire/auth'
     ProductoComponent,
     PedidoComponent,
     ClientesComponent,
+    DialogContentExampleDialog,
     ReporteComponent,
     SugerenciasComponent,
     InicioComponent,
+    Contactanos,
     RegistrarseComponent,
     RegistrarproductoComponent,
     RegistrarpresentacionComponent,
     VerpresentacionesComponent,
     CarritoComponent,
-    EnviarsugerenciasComponent
+    EnviarsugerenciasComponent,
     
   
     
@@ -82,16 +88,15 @@ import {AngularFireAuth} from '@angular/fire/auth'
        MatGridListModule,
        FormsModule,
        AngularFireModule.initializeApp(environment.firebaseConfig),
-       AngularFireDatabaseModule
-       
-       
-       
-       
-       
+       AngularFireDatabaseModule,
+       MatDialogModule,
       
-   
        
+     
   ],
+
+  entryComponents:[ReporteComponent,DialogContentExampleDialog,InicioComponent,Contactanos],
+
   providers: [AngularFireAuth],
   bootstrap: [AppComponent]
 })
