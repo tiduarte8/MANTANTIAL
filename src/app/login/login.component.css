@@ -36,6 +36,22 @@
  
   }
 
+  .aclas{
+    color: rgba(46, 46, 85, 0.952);
+    font-size: 20px;
+    
+    
+
+  }
+
+
+  .aclas:hover{
+    color: rgb(79, 79, 230);
+    text-decoration: underline;
+    cursor: pointer;
+
+  }
+
   .mycard:hover{
     -webkit-box-shadow: 0px 0px 22px 9px rgba(26,9,92,1);
     -moz-box-shadow: 0px 0px 22px 9px rgba(26,9,92,1);

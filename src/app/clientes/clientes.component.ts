@@ -38,7 +38,7 @@ const ELEMENT_DATA: Clientes[] = [
 })
 export class ClientesComponent implements OnInit{
 
-  displayedColumns: string[] = ['position', 'nombre', 'apellidos','direccion','email','telefono'];
+  displayedColumns: string[] = ['position', 'nombre', 'apellidos','direccion','email','telefono','actions'];
   dataSource = new MatTableDataSource<Clientes>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

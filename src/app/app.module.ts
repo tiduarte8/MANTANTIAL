@@ -2,8 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatSelectModule,MatButtonModule,
-        
+import {MatSelectModule,MatButtonModule,   
         MatToolbarModule,
         MatSidenavModule,
         MatIconModule,
@@ -17,7 +16,7 @@ import { MynavComponent } from './mynav/mynav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { LoginComponent } from './login/login.component';
 import {MatTableModule} from '@angular/material/table';
-import { ProductoComponent } from './producto/producto.component';
+import { ProductoComponent,RegistrarproductoComponent } from './producto/producto.component';
 import { PedidoComponent } from './pedido/pedido.component';
 import { ClientesComponent } from './clientes/clientes.component';
 import { ReporteComponent,DialogContentExampleDialog } from './reporte/reporte.component';
@@ -26,9 +25,9 @@ import {AppRoutingModule} from './app-routing.module';
 import {MatCardModule} from '@angular/material/card';
 import { InicioComponent,Contactanos } from './inicio/inicio.component';
 import { RegistrarseComponent } from './clientes/registrarse/registrarse.component';
-import { RegistrarproductoComponent } from './producto/registrarproducto/registrarproducto.component';
-import { RegistrarpresentacionComponent } from './producto/registrarpresentacion/registrarpresentacion.component';
-import { VerpresentacionesComponent } from './producto/verpresentaciones/verpresentaciones.component';
+
+
+
 import { CarritoComponent } from './carrito/carrito.component';
 import { EnviarsugerenciasComponent } from './sugerencias/enviarsugerencias/enviarsugerencias.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -38,6 +37,8 @@ import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {MatDialogModule} from '@angular/material/dialog';
+import {InventarioComponent,NuevoingresoComponent} from './inventario/inventario.component';
+import {MatDatepickerModule,MatNativeDateModule} from '@angular/material';
 
 
 
@@ -46,6 +47,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
+    NuevoingresoComponent,
     AppComponent,
     MynavComponent,
     LoginComponent,
@@ -58,11 +60,12 @@ import {MatDialogModule} from '@angular/material/dialog';
     InicioComponent,
     Contactanos,
     RegistrarseComponent,
+   
     RegistrarproductoComponent,
-    RegistrarpresentacionComponent,
-    VerpresentacionesComponent,
+
     CarritoComponent,
     EnviarsugerenciasComponent,
+    InventarioComponent,
     
   
     
@@ -90,12 +93,24 @@ import {MatDialogModule} from '@angular/material/dialog';
        AngularFireModule.initializeApp(environment.firebaseConfig),
        AngularFireDatabaseModule,
        MatDialogModule,
-      
+       MatDatepickerModule,
+       MatNativeDateModule,
        
      
   ],
 
-  entryComponents:[ReporteComponent,DialogContentExampleDialog,InicioComponent,Contactanos],
+  entryComponents:[ReporteComponent,
+    DialogContentExampleDialog,
+    InicioComponent,
+    Contactanos,
+    InventarioComponent,
+    NuevoingresoComponent,
+    RegistrarproductoComponent,
+    ProductoComponent,
+    RegistrarseComponent,
+    LoginComponent
+  ],
+
 
   providers: [AngularFireAuth],
   bootstrap: [AppComponent]

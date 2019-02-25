@@ -4,6 +4,8 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {auth} from 'firebase/app';
 import{Router} from '@angular/router';
 import {AuthService} from './../servicios/auth.service';
+import {MatDialog,MatDialogConfig} from '@angular/material';
+import {RegistrarseComponent} from './../clientes/registrarse/registrarse.component'
 
 
 @Component({
@@ -18,7 +20,7 @@ export class LoginComponent implements OnInit {
     Validators.email,
   ]);
 
-  constructor(public afAuth: AngularFireAuth,private router: Router,private authService:AuthService) { }
+  constructor(public afAuth: AngularFireAuth,private router: Router,private authService:AuthService,public dialog:MatDialog) { }
 
   public email:string='';
   public pass:string='';
@@ -58,9 +60,17 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['inicio']);
   }
 
-  
-
-
- 
+  openDialog() {
+    const dialogConfig= new MatDialogConfig();
+    dialogConfig.disableClose=true;
+    dialogConfig.autoFocus=true;
+    dialogConfig.width="1000px";
+    dialogConfig.height="720px"
+    this.dialog.open(RegistrarseComponent,dialogConfig);
+  }
 
 }
+
+
+
+

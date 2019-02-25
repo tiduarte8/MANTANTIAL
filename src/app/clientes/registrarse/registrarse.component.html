@@ -1,7 +1,9 @@
-
-<br>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close><mat-icon>close</mat-icon></button>
+    
+  </mat-dialog-actions>
 <mat-card class="mycard">
-<form (click)="onAddUser()" #formRegister="ngForm" name="ngFomr" class="example-form">
+<form (submit)="onAddUser()" #formRegister="ngForm" name="ngFomr2" class="example-form">
    
   <mat-toolbar>
       <span style="color:navy">Registrarse</span>
@@ -57,14 +59,13 @@
           <mat-icon matSuffix>call</mat-icon>
         </mat-form-field>
     
+
+
+  <button type="submit"  mat-raised-button color="primary">Registrarse</button><br>
   <label style="color:red">{{mensaje}}</label>
-
-  <button type="submit"   mat-raised-button color="primary">Registrarse</button>
-  
-  
- 
-
-  
-
+  <label style="color:green">{{mensaje2}}</label>
 </form>
+
+
+
 </mat-card>

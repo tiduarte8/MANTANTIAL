@@ -5,6 +5,7 @@ import {FormControl, Validators} from '@angular/forms';
 import { Alert } from 'selenium-webdriver';
 import { AuthService } from 'src/app/servicios/auth.service';
 import {Router} from '@angular/router'
+import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 
 
@@ -19,6 +20,7 @@ export class RegistrarseComponent implements OnInit  {
   public email:string='';
   public pass:string='';
   public mensaje:string='';
+  public mensaje2:string='';
    
    cpass:string='';
    
@@ -35,7 +37,7 @@ onAddUser(){
 
     this.authService.registerUser(this.email,this.pass)
     .then((res)=>{
-      this.router.navigate(['productos'])
+      this.mensaje2="Registrado Correctamente";
      
       
     }).catch(err=> this.mensaje="Valide los datos");

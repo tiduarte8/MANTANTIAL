@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import {MatDialog} from '@angular/material';
+import {MatDialog,MatDialogConfig} from '@angular/material';
+import {CarritoComponent} from './../carrito/carrito.component';
 
 @Component({
   selector: 'app-reporte',
@@ -16,7 +17,7 @@ export class ReporteComponent implements OnInit {
   constructor(public dialog: MatDialog) {}
 
   openDialog() {
-    const dialogRef = this.dialog.open(DialogContentExampleDialog);
+    const dialogRef = this.dialog.open(CarritoComponent);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
@@ -25,7 +26,8 @@ export class ReporteComponent implements OnInit {
 }
 
 @Component({
-  selector: 'dialog-content-example-dialog',
-  templateUrl: 'dialog-content-example-dialog.html',
+  selector: 'app-carrito',
+  templateUrl: './../carrito/carrito.component.html',
+  styleUrls: ['./../carrito/carrito.component.css']
 })
 export class DialogContentExampleDialog {}

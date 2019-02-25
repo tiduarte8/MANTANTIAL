@@ -1,19 +1,28 @@
-<button class="btnatras" routerLink="/producto" mat-fab color="primary"><i class="material-icons">
-    arrow_back
-    </i></button>
-<br>
+
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close><mat-icon>close</mat-icon></button>
+    
+  </mat-dialog-actions>
+
 <img class="imglog" src="./../../assets/imagen/logomanantialt.png">
 <br>
+
 <mat-card class="mimat">
 <form class="example-form">
   
   <mat-toolbar>
-      <span style="color:navy">Registrar Productos</span>
+      <span style="color:navy">Registrar nuevo ingreso de productos</span>
   </mat-toolbar>
 
   <mat-form-field class="example-full-width">
-    <input [(ngModel)]="nlote" name="nlote" class="inputlog" type="text" matInput placeholder="N° Lote" maxlength="6" required >
+    <input [(ngModel)]="nlote" name="nlote" class="inputlog" type="text" matInput placeholder="N° Lote" minlength="6" maxlength="6" required >
   </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+        <input matInput [matDatepicker]="picker" disabled required placeholder="Fecha ingreso">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker disabled="false" #picker></mat-datepicker>
+      </mat-form-field>
 
   <mat-form-field class="example-full-width">
     <input [(ngModel)]="cant" name="cant"  class="inputlog" type="number" matInput placeholder="Cantidad" required >
@@ -27,13 +36,9 @@
   </mat-form-field>
   <br>
   <br>
-  <button  mat-raised-button color="primary">Guardar</button>
-  
+  <button style="left:40%"  mat-raised-button color="primary">Guardar</button>
  
-
-  
-
 </form>
 
-
 </mat-card>  
+

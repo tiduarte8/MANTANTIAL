@@ -1,0 +1,76 @@
+.butonagregar{
+   top: 16px;
+   left: 10px;
+   height: 62px;
+   background-color: rgba(75, 125, 182, 0.349);
+   color: rgb(75, 74, 74);
+   font-size: 15px;
+}
+.butonagregar:hover{
+    background-color:rgb(206, 233, 238);
+    
+
+}
+
+
+    
+    table {
+        width:98%;
+        background-color:rgb(206, 233, 238);
+        position: relative;
+        left: 10px;
+        font-size: 16px;
+        top: 18px;
+    
+      }
+    
+      .matpa{
+        width:98%;
+        background-color: rgba(75, 125, 182, 0.349);
+        position: relative;
+        left: 10px;
+        font-size: 16px;
+        top: 18px;
+      }
+      
+      .mat-form-field {
+        font-size: 14px;
+        width:90.4%;
+        left: 1%;
+        top:15px;
+        font-size: 16px;
+        color:navy;
+        background-color: rgba(75, 125, 182, 0.349);
+        border-radius: 5px;
+        
+      }
+    
+    .boton1{
+       position: relative;
+       left: 5px;
+       top:5px;
+       color: navy;
+    }
+    .boton1:hover{
+        background-color: navy;
+        font-size: 16px;
+        color: white;
+    }
+    .boton2{
+        position: relative;
+        left: 10px;
+        top:5px;
+        color: navy;
+       
+    }
+    
+    .boton2:hover{
+        background-color: navy;
+        font-size: 16px;
+        color: white;
+    }
+    
+    
+    
+    
+    

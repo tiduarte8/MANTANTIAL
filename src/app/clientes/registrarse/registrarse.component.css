@@ -1,25 +1,26 @@
 .mycard{
-  min-width: 150px;
-  max-width: 500px;
+  min-width: 350px;
+  max-width: 700px;
   
   text-align:center;
-  padding:2px;
+top:10px;
  cursor:pointer;
  display:block;
- width:60%;
+ width:80%;
  margin: 0 auto;
  padding: 10px;
- height: 83%;
+ height: 90%;
  
  position:relative;
 }
 
-  .mycard:hover{
+  /*.mycard:hover{
     -webkit-box-shadow: 0px 0px 22px 9px rgba(26,9,92,1);
     -moz-box-shadow: 0px 0px 22px 9px rgba(26,9,92,1);
     box-shadow: 0px 0px 22px 9px rgba(26,9,92,1);
     
   }
+  */
 
  
 

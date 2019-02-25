@@ -31,17 +31,18 @@
   <button class="btng" (click)="onLoginGoogle()"  mat-raised-button color="primary"><img class="imgicong" src="./../../assets/imagen/logos/Google_icon-icons.com_60497.png"> Google</button>
 </div>
 <label  style="color:red">{{mensaje}}<br></label>
+</form>
 
   <a href="#" class="forgot-password">
       ¿Olvidastes tu contraseña? 
   </a>
   
   <br>
-  <a routerLink="/registrarse" >
+  <a class="aclas"  type="button" (click)="openDialog()" >
    Registrarse 
   </a>
 
-</form>
+
 
 </mat-card>
 

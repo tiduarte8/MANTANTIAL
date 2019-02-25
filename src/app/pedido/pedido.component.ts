@@ -34,7 +34,7 @@ export class PedidoComponent implements OnInit {
 
   
 
-  displayedColumns: string[] = ['position','numerofact','fecha', 'nombre', 'apellidos','direccion','email','telefono','estado','cantidad','total'];
+  displayedColumns: string[] = ['position','numerofact','fecha', 'nombre', 'apellidos','direccion','email','telefono','estado','cantidad','total','actions'];
   dataSource = new MatTableDataSource<VerPedido>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

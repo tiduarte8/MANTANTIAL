@@ -1,0 +1,44 @@
+
+ 
+
+
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+
+.imglog{
+  width: 80%; height: 20%;
+  display:block;
+  margin:auto;
+  
+}
+
+.forgot-password{
+  text-align: center;
+  position: relative;
+}
+
+.areg{
+  text-align: center;
+  position: relative;
+}
+
+.rdiv{
+    display: flex;
+  flex-direction: column;
+  
+}
+
+.rdiv > *{
+    width: 80%;
+}
+
+.mimat{
+    height:410px;
+}
+
+
+
+
