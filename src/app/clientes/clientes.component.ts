@@ -1,5 +1,8 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import{MatTableDataSource,MatPaginator} from '@angular/material';
+import {AuthService} from './../servicios/auth.service';
+import {UsuarioInterface} from './../models/usuario';
+
 
 export interface Clientes {
   nombre: string;
@@ -38,13 +41,37 @@ const ELEMENT_DATA: Clientes[] = [
 })
 export class ClientesComponent implements OnInit{
 
+  constructor(private authService:AuthService){}
+
+  
+
+
   displayedColumns: string[] = ['position', 'nombre', 'apellidos','direccion','email','telefono','actions'];
   dataSource = new MatTableDataSource<Clientes>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
+  usuario: UsuarioInterface ={
+    
+    name:'', 
+    email:'',
+    password:'',
+    photoUrl:'',
+  };
+
+
+
   ngOnInit(){
 this.dataSource.paginator=this.paginator;
+this.authService.isAuth().subscribe(usuario=>{
+  if(usuario){
+    this.usuario.name=usuario.displayName;
+    this.usuario.email=usuario.email;
+    this.usuario.photoUrl=usuario.photoURL;
+    
+
+  }
+})
   }
 
   applyFilter(filterValue: string) {
@@ -53,3 +80,5 @@ this.dataSource.paginator=this.paginator;
 
 
 }
+
+

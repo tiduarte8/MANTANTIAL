@@ -5,14 +5,22 @@
       [opened]="!(isHandset$ | async)">
     <mat-toolbar><img class="imgc" src="./../../assets/imagen/gota.png"></mat-toolbar>
     <mat-nav-list class="matnavlist">
-      <a mat-list-item routerLink="/inicio"><mat-icon>home</mat-icon>&nbsp;Inicio</a>
-      <a *ngIf="isLogged" mat-list-item routerLink="/producto"><mat-icon>shopping_cart</mat-icon>&nbsp;Productos</a>
-      <a *ngIf="isLogged" mat-list-item routerLink="/inventario"><mat-icon>assignment</mat-icon>&nbsp;Inventario</a>
-      <a *ngIf="isLogged" mat-list-item routerLink="/cliente"><mat-icon>account_box</mat-icon>&nbsp;Clientes</a>
-      <a *ngIf="isLogged" mat-list-item routerLink="/pedido"><mat-icon>shopping_basket</mat-icon>&nbsp;Pedidos</a>
-      <a *ngIf="isLogged" mat-list-item routerLink="/sugerencia"><mat-icon>email</mat-icon>&nbsp;Sugerencias</a>
-      <a mat-list-item routerLink="/enviarsu"><mat-icon>sms</mat-icon>&nbsp;Enviar Sugerencias</a>
-      <a *ngIf="isLogged" mat-list-item routerLink="/reporte"><mat-icon>list</mat-icon>&nbsp;Reportes</a>
+      <a (click)="drawer.toggle()" *ngIf="(isHandset$ | async)" mat-list-item routerLink="/inicio"><mat-icon>home</mat-icon>&nbsp;Inicio</a>
+      <a  *ngIf=" !(isHandset$ | async)"  mat-list-item routerLink="/inicio"><mat-icon>home</mat-icon>&nbsp;Inicio</a>
+      <a  *ngIf="isLogged && !(isHandset$ | async)"  mat-list-item routerLink="/producto"><mat-icon>shopping_cart</mat-icon>&nbsp;Productos</a>
+      <a (click)="drawer.toggle()" *ngIf="isLogged && (isHandset$ | async)"  mat-list-item routerLink="/producto"><mat-icon>shopping_cart</mat-icon>&nbsp;Productos</a>
+      <a (click)="drawer.toggle()" *ngIf="isLogged && (isHandset$ | async)"  mat-list-item routerLink="/inventario"><mat-icon>assignment</mat-icon>&nbsp;Inventario</a>
+      <a  *ngIf="isLogged && !(isHandset$ | async)"  mat-list-item routerLink="/inventario"><mat-icon>assignment</mat-icon>&nbsp;Inventario</a>
+      <a (click)="drawer.toggle()" *ngIf="isLogged && (isHandset$ | async)"  mat-list-item routerLink="/cliente"><mat-icon>account_box</mat-icon>&nbsp;Clientes</a>
+      <a  *ngIf="isLogged && !(isHandset$ | async)"  mat-list-item routerLink="/cliente"><mat-icon>account_box</mat-icon>&nbsp;Clientes</a>
+      <a (click)="drawer.toggle()" *ngIf="isLogged && (isHandset$ | async)"  mat-list-item routerLink="/pedido"><mat-icon>shopping_basket</mat-icon>&nbsp;Pedidos</a>
+      <a  *ngIf="isLogged && !(isHandset$ | async)"  mat-list-item routerLink="/pedido"><mat-icon>shopping_basket</mat-icon>&nbsp;Pedidos</a>
+      <a (click)="drawer.toggle()" *ngIf="isLogged && (isHandset$ | async)"  mat-list-item routerLink="/sugerencia"><mat-icon>email</mat-icon>&nbsp;Sugerencias</a>
+      <a  *ngIf="isLogged && !(isHandset$ | async)"  mat-list-item routerLink="/sugerencia"><mat-icon>email</mat-icon>&nbsp;Sugerencias</a>
+      <a (click)="drawer.toggle()" *ngIf="(isHandset$|async)" mat-list-item routerLink="/enviarsu"><mat-icon>sms</mat-icon>&nbsp;Enviar Sugerencias</a>
+      <a  *ngIf="!(isHandset$|async)" mat-list-item routerLink="/enviarsu"><mat-icon>sms</mat-icon>&nbsp;Enviar Sugerencias</a>
+      <a (click)="drawer.toggle()" *ngIf="isLogged && (isHandset$ | async)" mat-list-item routerLink="/reporte"><mat-icon>list</mat-icon>&nbsp;Reportes</a>
+      <a  *ngIf="isLogged && !(isHandset$ | async)" mat-list-item routerLink="/reporte"><mat-icon>list</mat-icon>&nbsp;Reportes</a>
       
       
       
@@ -31,7 +39,8 @@
       <span class="spanclass"  >MANANTIAL DE VIDA</span>
       <a  mat-list-item routerLink="/carrito"><mat-icon  matTooltip="Mi Carrito de Compras" aria-label="Button that displays a tooltip when focused or hovered over" class="matc" >shopping_cart</mat-icon></a>
       <a *ngIf="islogged2" mat-list-item routerLink="/login"><mat-icon matTooltip="Inicio de sesión" aria-label="Button that displays a tooltip when focused or hovered over" class="mati">account_circle</mat-icon></a>
-      <a *ngIf="isLogged" (click)="onLogout()" mat-list-item routerLink="/login"><mat-icon matTooltip="Salir" aria-label="Button that displays a tooltip when focused or hovered over" class="mati">account_circle</mat-icon></a>
+      <a class="auser" *ngIf="isLogged" >{{usuario.email}}</a>
+      <a *ngIf="isLogged" (click)="onLogout()"  mat-list-item routerLink="/login"><mat-icon matTooltip="Salir" aria-label="Button that displays a tooltip when focused or hovered over" class="mati">account_circle</mat-icon></a>
       
     </mat-toolbar>
     <!-- Add Content Here -->

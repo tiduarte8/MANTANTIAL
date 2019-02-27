@@ -57,8 +57,22 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
   <mat-paginator class="matpa" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-  
+  <br>
+  <br>
+  <br>
 
+  <br>
+
+
+<div>
+  <img src="{{usuario.photoUrl}}">
+  <h5 *ngIf="providerId != 'password'">
+{{usuario.name}}
+<p>{{usuario.email}}</p>
+  <p>{{usuario.displayName}}</p>
+  </h5>
+  
+</div>
 
 
 

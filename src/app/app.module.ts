@@ -39,7 +39,9 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {MatDialogModule} from '@angular/material/dialog';
 import {InventarioComponent,NuevoingresoComponent} from './inventario/inventario.component';
 import {MatDatepickerModule,MatNativeDateModule} from '@angular/material';
-
+import {AngularFireStorageModule} from '@angular/fire/storage';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {AngularFirestore} from '@angular/fire/firestore';
 
 
 
@@ -95,6 +97,9 @@ import {MatDatepickerModule,MatNativeDateModule} from '@angular/material';
        MatDialogModule,
        MatDatepickerModule,
        MatNativeDateModule,
+       AngularFireStorageModule,
+       MatProgressBarModule,
+       
        
      
   ],
@@ -112,7 +117,7 @@ import {MatDatepickerModule,MatNativeDateModule} from '@angular/material';
   ],
 
 
-  providers: [AngularFireAuth],
+  providers: [AngularFireAuth,AngularFirestore],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

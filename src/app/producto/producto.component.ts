@@ -1,6 +1,7 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import{MatTableDataSource,MatPaginator} from '@angular/material';
 import {MatDialog,MatDialogConfig} from '@angular/material';
+import {DataApiService} from './../servicios/data-api.service';
 
 
 export interface VerPre {
@@ -26,7 +27,9 @@ const ELEMENT_DATA: VerPre[] = [
 })
 export class ProductoComponent implements OnInit{
 
-  constructor(public dialog: MatDialog){}
+  constructor(public dialog: MatDialog, private dataApi:DataApiService){}
+  public productos=[];
+  public producto='';
 
   displayedColumns: string[] = ['position', 'nombre', 'precio','actions'];
   dataSource = new MatTableDataSource<VerPre>(ELEMENT_DATA);
@@ -35,6 +38,9 @@ export class ProductoComponent implements OnInit{
 
   ngOnInit(){
     this.dataSource.paginator=this.paginator;
+    this.dataApi.getAllProductos().subscribe(productos=>{
+      console.log('PRODUCTOS',productos);
+    })
       }
 
   applyFilter(filterValue: string) {

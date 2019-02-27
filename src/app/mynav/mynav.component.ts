@@ -5,6 +5,8 @@ import { map } from 'rxjs/operators';
 import {AuthService} from './../servicios/auth.service';
 import {AngularFireAuth} from '@angular/fire/auth';
 
+import {UsuarioInterface} from './../models/usuario';
+
 
 @Component({
   selector: 'app-mynav',
@@ -22,11 +24,26 @@ export class MynavComponent implements OnInit{
 
   constructor(private breakpointObserver: BreakpointObserver, private authService:AuthService, private afsAuth: AngularFireAuth) {}
 
+  usuario: UsuarioInterface ={
+    
+    name:'', 
+    email:'',
+    password:'',
+    photoUrl:'',
+  };
+
   public isLogged: boolean=false;
   public islogged2: boolean=true;
 
   ngOnInit(){
    this.getCurrentUser();
+   this.authService.isAuth().subscribe(usuario=>{
+    if(usuario){
+      this.usuario=usuario;
+      console.log('USER',usuario)
+  
+    }
+  })
   }
 
   getCurrentUser(){

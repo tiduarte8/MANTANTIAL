@@ -29,6 +29,20 @@
           <input [(ngModel)]="spapellido" name="spapellido" type="text" matInput placeholder="Segundo Apellido" maxlength="30" >
         </mat-form-field></td>
       </tr></table>
+
+      <table class="example-full-width" cellspacing="0"><tr>
+
+          <td><mat-form-field class="example-full-width">
+              <input [(ngModel)]="ced" name="ced"  type="text" maxlength="16" minlength="16" matInput placeholder="Cédula" >
+             </mat-form-field></td>
+             <td><mat-form-field class="example-full-width">
+                <span matPrefix>+505 &nbsp;</span>
+                <input [(ngModel)]="tel" name="tel" type="text" minlength="8" maxlength="8"  required  matInput placeholder="N° Teléfono">
+                <mat-icon matSuffix>call</mat-icon>
+            </mat-form-field></td>
+          
+        </tr></table>
+      
     <mat-form-field class="example-full-width">
         <textarea [(ngModel)]="dir" name="dir" type="text" matInput placeholder="Dirección" required maxlength="200"></textarea>
       </mat-form-field>
@@ -42,26 +56,47 @@
       e-mail <strong>requerido</strong>
     </mat-error>
      </mat-form-field>
+
      
 
-    <mat-form-field class="example-full-width">
-      <input [(ngModel)]="pass" name="pass"  id="pass" class="inputlog" required matInput placeholder="Contraseña" required  [type]="hide ? 'text' : 'password'">
-      
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-        <input [(ngModel)]="cpass" name="cpass"  id="cpass" class="inputlog" required matInput placeholder="Confirmar Contraseña" required type="password">
+     <table class="example-full-width" cellspacing="0"><tr>
+
+        <td><mat-form-field class="example-full-width">
+            <input [(ngModel)]="pass" name="pass"  id="pass" class="inputlog" required matInput placeholder="Contraseña" required  [type]="hide ? 'text' : 'password'">
+           </mat-form-field></td>
+           <td><mat-form-field class="example-full-width">
+              <input [(ngModel)]="cpass" name="cpass"  id="cpass" class="inputlog" required matInput placeholder="Confirmar Contraseña" required type="password"> 
+          </mat-form-field></td>
         
-      </mat-form-field>
+      </tr></table>
+
       <label style="color:red">{{mns}}</label>
-      <mat-form-field class="example-full-width">
-          <span matPrefix>+505 &nbsp;</span>
-          <input [(ngModel)]="tel" name="tel" type="text" minlength="8" maxlength="8"  required  matInput placeholder="N° Teléfono">
-          <mat-icon matSuffix>call</mat-icon>
-        </mat-form-field>
+
+      <div class="example-full-width">
+        <input (change)="onUpload($event)"  type="file" accept=".png, .jpg"  placeholder="Imagen" required>
+      </div><br>
+      <div  class="progress">
+          <mat-progress-bar mode="determinate" [style.width]="(uploadPercent | async) + '%'"></mat-progress-bar>
+
+      </div>
+
     
 
+      <div class="example-full-width">
+      <input #imageUser type="hidden" [value]="urlImage | async">
+      </div>
 
-  <button type="submit"  mat-raised-button color="primary">Registrarse</button><br>
+     
+    <br>
+
+
+  <button type="submit" *ngIf="urlImage | async; else btnDisabled"  mat-raised-button color="primary">Registrarse</button> 
+  <ng-template #btnDisabled>
+  
+  <button type="submit"  disabled=true mat-raised-button color="secundary">Registrarse</button>
+
+</ng-template>
+  <br>
   <label style="color:red">{{mensaje}}</label>
   <label style="color:green">{{mensaje2}}</label>
 </form>
