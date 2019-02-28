@@ -37,10 +37,13 @@ export class MynavComponent implements OnInit{
 
   ngOnInit(){
    this.getCurrentUser();
+  
    this.authService.isAuth().subscribe(usuario=>{
-    if(usuario){
-      this.usuario=usuario;
-      console.log('USER',usuario)
+     if(usuario){
+       this.usuario.name=usuario.displayName;
+       this.usuario.email=usuario.email;
+       this.usuario.photoUrl=usuario.photoURL;
+       
   
     }
   })

@@ -25,10 +25,33 @@
       <mat-form-field class="example-full-width">
         <input [(ngModel)]="precio" name="precio" class="inputlog" max="3" type="number" matInput placeholder="Precio" required ><span matPrefix>C$&nbsp;</span>
       </mat-form-field>
+
+      <div class="example-full-width">
+          <input (submit)="onUpload($event)"  type="file" accept=".png, .jpg"  placeholder="Imagen" required>
+        </div><br>
+        <div  class="progress">
+            <mat-progress-bar mode="determinate" [style.width]="(uploadPercent | async) + '%'"></mat-progress-bar>
+  
+        </div>
+  
+      
+  
+        <div class="example-full-width">
+        <input #imageUser type="hidden" [value]="urlImage | async">
+        </div>
+  
     
       <br>
       <br>
-      <button type="submit" mat-raised-button color="primary">Guardar</button>
+      <button type="submit" *ngIf="urlImage | async; else btnDisabled"  mat-raised-button color="primary">Guardar</button> 
+      <ng-template #btnDisabled>
+      
+      <button type="submit"  disabled=true mat-raised-button color="secundary">Guardar</button>
+    
+    </ng-template>
+      <br>
+      <label style="color:red">{{mensaje}}</label>
+      <label style="color:green">{{mensaje2}}</label>
       
      
     

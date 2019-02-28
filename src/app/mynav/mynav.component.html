@@ -37,10 +37,19 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span class="spanclass"  >MANANTIAL DE VIDA</span>
-      <a  mat-list-item routerLink="/carrito"><mat-icon  matTooltip="Mi Carrito de Compras" aria-label="Button that displays a tooltip when focused or hovered over" class="matc" >shopping_cart</mat-icon></a>
+      <a  mat-list-item routerLink="/carrito/:id"><mat-icon  matTooltip="Mi Carrito de Compras" aria-label="Button that displays a tooltip when focused or hovered over" class="matc" >shopping_cart</mat-icon></a>
       <a *ngIf="islogged2" mat-list-item routerLink="/login"><mat-icon matTooltip="Inicio de sesión" aria-label="Button that displays a tooltip when focused or hovered over" class="mati">account_circle</mat-icon></a>
       <a class="auser" *ngIf="isLogged" >{{usuario.email}}</a>
-      <a *ngIf="isLogged" (click)="onLogout()"  mat-list-item routerLink="/login"><mat-icon matTooltip="Salir" aria-label="Button that displays a tooltip when focused or hovered over" class="mati">account_circle</mat-icon></a>
+
+      <a class="clasa" *ngIf="isLogged" (click)="onLogout()" 
+       mat-list-item routerLink="/login"><img class="mati"
+      *ngIf="usuario.photoUrl!==null" matTooltip="Salir"
+       aria-label="Button that displays a tooltip when focused or hovered over"
+        src="{{usuario.photoUrl}}">
+      <mat-icon *ngIf="usuario.photoUrl===null"
+       matTooltip="Salir" aria-label="Button that displays a tooltip when focused or hovered over"
+       class="mati">account_circle</mat-icon>
+      </a>
       
     </mat-toolbar>
     <!-- Add Content Here -->

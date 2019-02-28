@@ -39,9 +39,10 @@ export class ProductoComponent implements OnInit{
   ngOnInit(){
     this.dataSource.paginator=this.paginator;
     this.dataApi.getAllProductos().subscribe(productos=>{
-      console.log('PRODUCTOS',productos);
+      console.log('producto',productos);
+      this.productos=productos;
     })
-      }
+    }
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -52,7 +53,7 @@ export class ProductoComponent implements OnInit{
     dialogConfig.disableClose=true;
     dialogConfig.autoFocus=true;
     dialogConfig.width="500px";
-    dialogConfig.height="600px"
+    dialogConfig.height="650px"
     this.dialog.open(RegistrarproductoComponent,dialogConfig);
 
     

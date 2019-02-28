@@ -29,7 +29,7 @@ const routes: Routes =[
      {path:'sugerencia',component:SugerenciasComponent},
      {path:'enviarsu',component:EnviarsugerenciasComponent},
      {path:'reporte',component:ReporteComponent},
-     {path:'carrito',component:CarritoComponent},
+     {path:'carrito/:id',component:CarritoComponent},
      {path:'',component:InicioComponent,pathMatch:'full'},
      {path:'**',redirectTo:'/',pathMatch:'full'},
      

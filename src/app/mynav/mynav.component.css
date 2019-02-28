@@ -21,8 +21,18 @@
 .mati{
   color: white;
   font-size: 30px;
+ 
+  padding: 0 14px; 
+
+ 
   
-  padding: 0 14px;  
+
+  width:40px;
+    height:40px;
+    background-position: 50%;
+    border-radius: 50%;
+    background-size: 100% auto;
+   
 }
 
 

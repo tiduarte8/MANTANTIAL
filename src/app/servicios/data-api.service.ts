@@ -3,6 +3,7 @@ import{AngularFirestore,AngularFirestoreCollection,AngularFirestoreDocument} fro
 import {ProductoInterface} from './../models/producto';
 import {Observable} from 'rxjs/internal/Observable';
 import {map} from 'rxjs/operators';
+import { Action } from 'rxjs/internal/scheduler/Action';
 
 
 @Injectable({
@@ -17,6 +18,8 @@ export class DataApiService {
 
   private productoCollection: AngularFirestoreCollection<ProductoInterface>;
   private productos:Observable<ProductoInterface[]>;
+  private productoDoc:AngularFirestoreDocument<ProductoInterface>;
+  private producto:Observable<ProductoInterface>;
 
   getAllProductos(){
     return this.productos=this.productoCollection.snapshotChanges().pipe
@@ -28,6 +31,20 @@ export class DataApiService {
     });
   }));
 }
+  agregarProductoalCarrito(idProucto: string){
+    this.productoDoc= this.afs.doc<ProductoInterface>(`productos/${idProucto}`);
+     return this.producto= this.productoDoc.snapshotChanges().pipe(map(action =>{
+       if(action.payload.exists === false){
+         return null;
+       }
+       else{
+         const data = action.payload.data() as ProductoInterface;
+         data.id= action.payload.id;
+         return data;
+       }
+     }));
+  }
+
   guardarProducto(){}
   actualizarProducto(){}
   borrarProducto(){}
