@@ -10,24 +10,29 @@
     <input matInput maxlength="30" (keyup)="applyFilter($event.target.value)" placeholder="Buscar Nombre">
   </mat-form-field>
   
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-  
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
+  <tr  *ngFor="let producto of productos">
     <!-- Position Column -->
     <ng-container matColumnDef="position">
       <th mat-header-cell *matHeaderCellDef> No. </th>
-      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+      <td mat-cell *matCellDef="let element"> 1 </td>
     </ng-container>
   
     <!-- Name Column -->
-    <ng-container matColumnDef="nombre">
-      <th mat-header-cell *matHeaderCellDef> Nombre </th>
-      <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+    <ng-container matColumnDef="codigo">
+      <th mat-header-cell *matHeaderCellDef> Codigo </th>
+      <td mat-cell *matCellDef="let element"> {{producto.codigo}} </td>
     </ng-container>
+
+    <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <td mat-cell *matCellDef="let element"> {{producto.nombre}} </td>
+      </ng-container>
   
     <!-- Weight Column -->
     <ng-container matColumnDef="precio">
       <th mat-header-cell *matHeaderCellDef> Precio </th>
-      <td mat-cell *matCellDef="let element"> C$ {{element.precio}}  </td>
+      <td mat-cell *matCellDef="let element"> C$ {{producto.precio}}  </td>
     </ng-container>
   
     <!-- Symbol Column -->
@@ -39,12 +44,51 @@
         </td>
       </ng-container>
 
-
+    </tr>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr *ngFor="let producto of productos; index as i"></tr>
 
   
   </table>
   <mat-paginator class="matpa" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
  
-  
+  <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Codigo</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Precio</th>
+         
+          <th scope="col">&nbsp;</th>
+          <th scope="col">&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let producto of productos; index as i">
+          <th scope="row">{{i+1}}</th>
+          <td>{{producto.codigo}}</td>
+          <td>{{producto.nombre}}</td>
+          <td>{{producto.precio}}</td>
+          
+          <button class="btn btn-danger" (click)="onPreUpdateProducto(productos)">Actualizar</button>
+          <button class="btn btn-danger" (click)="onDeleteProducto(producto.id)" >Delete</button>
+          
+        <!-- <ng-template #noOwner>
+            <td>
+              <button class="btn btn-secondary" disabled="true">Update</button>
+            </td>
+          </ng-template>
+          <td *ngIf="isAdmin == true; else noAdmin">
+            <button class="btn btn-danger" (click)="onDeleteProducto(producto.id)">Delete</button>
+          </td>
+          <ng-template #noAdmin>
+            <td>
+              <button class="btn btn-danger" disabled="true">Delete</button>
+            </td>
+          </ng-template>
+        </tr>
+        -->
+      </tbody>
+    </table>

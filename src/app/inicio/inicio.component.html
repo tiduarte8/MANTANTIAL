@@ -35,9 +35,13 @@
     <br>
   
     <mat-card>
-        <div class="columpr" *ngFor="let producto of productos">
         
-         <mat-card class="cuadroimagen">
+      <table>
+          
+        <tr class="columpr" *ngFor="let producto of productos">
+     
+         <td >
+           <div class="cuadroimagen">
         <img style="height:200px; whidth:200px" src="{{producto.imagen}}" alt="{{producto.nombre}}" >
         
         <p class="h3t">Producto:<strong> {{producto.nombre}}</strong></p>
@@ -47,8 +51,13 @@
             </div>
             <a><button routerLink="/carrito/{{producto.id}}" mat-raised-button color="primary" >Añadir <mat-icon>add_shopping_cart</mat-icon></button></a>
           </div>
-        </mat-card> 
-      </div>
+        </div>
+        </td> 
+     
+      </tr>
+    
+    </table>
+
       </mat-card>
 
 

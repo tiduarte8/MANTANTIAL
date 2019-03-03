@@ -71,31 +71,11 @@
       </tr></table>
 
       <label style="color:red">{{mns}}</label>
-
-      <div class="example-full-width">
-        <input (change)="onUpload($event)"  type="file" accept=".png, .jpg"  placeholder="Imagen" required>
-      </div><br>
-      <div  class="progress">
-          <mat-progress-bar mode="determinate" [style.width]="(uploadPercent | async) + '%'"></mat-progress-bar>
-
-      </div>
-
-    
-
-      <div class="example-full-width">
-      <input #imageUser type="hidden" [value]="urlImage | async">
-      </div>
-
-     
-    <br>
+           <br>
 
 
-  <button type="submit" *ngIf="urlImage | async; else btnDisabled"  mat-raised-button color="primary">Registrarse</button> 
-  <ng-template #btnDisabled>
+  <button type="submit"   mat-raised-button color="primary">Registrarse</button> 
   
-  <button type="submit"  disabled=true mat-raised-button color="secundary">Registrarse</button>
-
-</ng-template>
   <br>
   <label style="color:red">{{mensaje}}</label>
   <label style="color:green">{{mensaje2}}</label>

@@ -6,22 +6,26 @@ import {map} from 'rxjs/operators';
 import { Action } from 'rxjs/internal/scheduler/Action';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class DataApiService {
 
   constructor(private afs:AngularFirestore) {
-    this.productoCollection=afs.collection<ProductoInterface>('productos');
-    this.productos=this.productoCollection.valueChanges();
+   
+    
   }
 
   private productoCollection: AngularFirestoreCollection<ProductoInterface>;
   private productos:Observable<ProductoInterface[]>;
   private productoDoc:AngularFirestoreDocument<ProductoInterface>;
   private producto:Observable<ProductoInterface>;
+  public selectedProducto:ProductoInterface={};
+ 
 
   getAllProductos(){
+    this.productoCollection=this.afs.collection<ProductoInterface>('productos');
     return this.productos=this.productoCollection.snapshotChanges().pipe
     (map(changes=>{
       return changes.map(action=>{
@@ -45,7 +49,16 @@ export class DataApiService {
      }));
   }
 
-  guardarProducto(){}
-  actualizarProducto(){}
-  borrarProducto(){}
+  addProducto(producto: ProductoInterface):void{
+    this.productoCollection.add(producto);
+  }
+  updateProducto(producto: ProductoInterface):void{
+     let idProducto=producto.id;
+     this.productoDoc=this.afs.doc<ProductoInterface>(`productos/${idProducto}`);
+     this.productoDoc.update(producto);
+  }
+  deleteProducto(idProducto:string):void{
+     this.productoDoc=this.afs.doc<ProductoInterface>(`productos/${idProducto}`);
+     this.productoDoc.delete();
+  }
 }

@@ -6,28 +6,30 @@
     <br>
     <div class="rdiv">
      <mat-card class="mimat">
-    <form (click)="registP()" #formLogin="ngForm" name="ngFomr" class="example-form">
-
+    <form (ngSubmit)="onSaveProducto(formProducto)" #formProducto="ngForm" name="ngFomr" class="example-form">
+    
         
         
       <mat-toolbar>
           <span style="color:navy">Presentación de Producto</span>
       </mat-toolbar>
 
+      <input type="text" name="id" [(ngModel)]="this.dataApi.selectedProducto.id" >
+
       <mat-form-field class="example-full-width">
-            <input [(ngModel)]="cb" name="cb" class="inputlog" type="text"  matInput placeholder="Código de Barra" required >
+            <input [(ngModel)]="this.dataApi.selectedProducto.codigo" name="codigo" class="inputlog" type="text"  matInput placeholder="Código de Barra" required >
           </mat-form-field>
     
       <mat-form-field class="example-full-width">
-        <input [(ngModel)]="np" name="np" class="inputlog" type="text" maxlength="30" matInput placeholder="Nombre de Presentación" required >
+        <input [(ngModel)]="this.dataApi.selectedProducto.nombre" name="nombre" class="inputlog" type="text" maxlength="30" matInput placeholder="Nombre de Presentación" required >
       </mat-form-field>
     
       <mat-form-field class="example-full-width">
-        <input [(ngModel)]="precio" name="precio" class="inputlog" max="3" type="number" matInput placeholder="Precio" required ><span matPrefix>C$&nbsp;</span>
+        <input [(ngModel)]="this.dataApi.selectedProducto.precio" name="precio" class="inputlog" max="3" type="number" matInput placeholder="Precio" required ><span matPrefix>C$&nbsp;</span>
       </mat-form-field>
 
       <div class="example-full-width">
-          <input (submit)="onUpload($event)"  type="file" accept=".png, .jpg"  placeholder="Imagen" required>
+          <input (change)="onUpload($event)" [(ngModel)]="this.dataApi.selectedProducto.imagen" name="imagen"  type="file" accept=".png, .jpg"  placeholder="Imagen" required>
         </div><br>
         <div  class="progress">
             <mat-progress-bar mode="determinate" [style.width]="(uploadPercent | async) + '%'"></mat-progress-bar>
@@ -37,9 +39,12 @@
       
   
         <div class="example-full-width">
-        <input #imageUser type="hidden" [value]="urlImage | async">
+        <input  type="hidden"  [value]="urlImage | async">
         </div>
-  
+
+        
+        
+       
     
       <br>
       <br>
