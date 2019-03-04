@@ -12,21 +12,20 @@ import { Action } from 'rxjs/internal/scheduler/Action';
 })
 export class DataApiService {
 
-  constructor(private afs:AngularFirestore) {
-   
-    
-  }
+  constructor(private afs:AngularFirestore) {}
 
-  private productoCollection: AngularFirestoreCollection<ProductoInterface>;
+  private productosCollection: AngularFirestoreCollection<ProductoInterface>;
   private productos:Observable<ProductoInterface[]>;
   private productoDoc:AngularFirestoreDocument<ProductoInterface>;
   private producto:Observable<ProductoInterface>;
-  public selectedProducto:ProductoInterface={};
+  public selectedProducto:ProductoInterface={
+    id:null
+  };
  
 
   getAllProductos(){
-    this.productoCollection=this.afs.collection<ProductoInterface>('productos');
-    return this.productos=this.productoCollection.snapshotChanges().pipe
+    this.productosCollection=this.afs.collection<ProductoInterface>('productos');
+    return this.productos=this.productosCollection.snapshotChanges().pipe
     (map(changes=>{
       return changes.map(action=>{
         const data = action.payload.doc.data() as ProductoInterface;
@@ -50,7 +49,7 @@ export class DataApiService {
   }
 
   addProducto(producto: ProductoInterface):void{
-    this.productoCollection.add(producto);
+    this.productosCollection.add(producto);
   }
   updateProducto(producto: ProductoInterface):void{
      let idProducto=producto.id;

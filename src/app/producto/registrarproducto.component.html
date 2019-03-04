@@ -1,4 +1,4 @@
-<mat-dialog-actions align="end">
+<mat-dialog-actions #btnClose align="end">
         <button mat-button mat-dialog-close><mat-icon>close</mat-icon></button>
         
       </mat-dialog-actions>
@@ -6,7 +6,7 @@
     <br>
     <div class="rdiv">
      <mat-card class="mimat">
-    <form (ngSubmit)="onSaveProducto(formProducto)" #formProducto="ngForm" name="ngFomr" class="example-form">
+    <form (ngSubmit)="onSaveProducto(formProducto)" #formProducto="ngForm" name="formProducto" class="example-form">
     
         
         
@@ -14,7 +14,8 @@
           <span style="color:navy">Presentación de Producto</span>
       </mat-toolbar>
 
-      <input type="text" name="id" [(ngModel)]="this.dataApi.selectedProducto.id" >
+     
+      
 
       <mat-form-field class="example-full-width">
             <input [(ngModel)]="this.dataApi.selectedProducto.codigo" name="codigo" class="inputlog" type="text"  matInput placeholder="Código de Barra" required >
@@ -27,7 +28,7 @@
       <mat-form-field class="example-full-width">
         <input [(ngModel)]="this.dataApi.selectedProducto.precio" name="precio" class="inputlog" max="3" type="number" matInput placeholder="Precio" required ><span matPrefix>C$&nbsp;</span>
       </mat-form-field>
-
+<!--
       <div class="example-full-width">
           <input (change)="onUpload($event)" [(ngModel)]="this.dataApi.selectedProducto.imagen" name="imagen"  type="file" accept=".png, .jpg"  placeholder="Imagen" required>
         </div><br>
@@ -41,19 +42,24 @@
         <div class="example-full-width">
         <input  type="hidden"  [value]="urlImage | async">
         </div>
-
-        
+    -->  
+    <mat-form-field class="example-full-width">
+        <input [(ngModel)]="this.dataApi.selectedProducto.imagen" name="imagen" class="inputlog"  type="text" matInput placeholder="imagen" required >
+      </mat-form-field> 
         
        
     
       <br>
       <br>
+      <!--
       <button type="submit" *ngIf="urlImage | async; else btnDisabled"  mat-raised-button color="primary">Guardar</button> 
       <ng-template #btnDisabled>
       
       <button type="submit"  disabled=true mat-raised-button color="secundary">Guardar</button>
     
     </ng-template>
+    -->
+    <button type="submit"  mat-raised-button color="primary">Guardar</button>
       <br>
       <label style="color:red">{{mensaje}}</label>
       <label style="color:green">{{mensaje2}}</label>

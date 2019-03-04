@@ -9,7 +9,7 @@
       <p>Facilitando el proceso de pedidos de agua purificada, al mejor precio y el mejor producto.</p>
      
       <img class="img" src='./../../assets/imagen/imagen.PNG'>
-        <p><a  role="button" routerLink="/login">Ver detalles &raquo;</a></p>
+        <p><a  role="button" href="#verdetalle">Ver detalles &raquo;</a></p>
         
       </div>
       
@@ -34,13 +34,18 @@
     <br>
     <br>
   
-    <mat-card>
+  
         
-      <table>
-          
-        <tr class="columpr" *ngFor="let producto of productos">
+     <mat-card>
+       <div>
+          <h1 id="verdetalle" style="color:navy; text-align:center; font-family:Arial, Helvetica, sans-serif" >Presentaciones de productos</h1>
+        </div>
+          <mat-grid-list cols="3" rowHeight="2:1.5">
+        <mat-grid-tile class="columpr" *ngFor="let producto of productos">
+           
+        
      
-         <td >
+        
            <div class="cuadroimagen">
         <img style="height:200px; whidth:200px" src="{{producto.imagen}}" alt="{{producto.nombre}}" >
         
@@ -51,14 +56,13 @@
             </div>
             <a><button routerLink="/carrito/{{producto.id}}" mat-raised-button color="primary" >Añadir <mat-icon>add_shopping_cart</mat-icon></button></a>
           </div>
-        </div>
-        </td> 
-     
-      </tr>
-    
-    </table>
+          </div>
+        </mat-grid-tile>
+ 
+      </mat-grid-list>
+    </mat-card>
+ 
 
-      </mat-card>
 
 
 <mat-card id="info" class="masinfo">
@@ -81,7 +85,7 @@
                </b></p>
          
           
-        </div>
+              </div>
         <div >
         <img class="img2" src="./../../assets/imagen/fotoagua.png" >
         

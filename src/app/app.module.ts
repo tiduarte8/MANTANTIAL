@@ -16,7 +16,7 @@ import { MynavComponent } from './mynav/mynav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { LoginComponent } from './login/login.component';
 import {MatTableModule} from '@angular/material/table';
-import { ProductoComponent,RegistrarproductoComponent } from './producto/producto.component';
+import { ProductoComponent } from './producto/producto.component';
 import { PedidoComponent } from './pedido/pedido.component';
 import { ClientesComponent } from './clientes/clientes.component';
 import { ReporteComponent,DialogContentExampleDialog } from './reporte/reporte.component';
@@ -41,7 +41,8 @@ import {InventarioComponent,NuevoingresoComponent} from './inventario/inventario
 import {MatDatepickerModule,MatNativeDateModule} from '@angular/material';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
-import {AngularFirestore} from '@angular/fire/firestore';
+import {AngularFirestore,FirestoreSettingsToken} from '@angular/fire/firestore';
+import { GuardarproductoComponent } from './producto/guardarproducto/guardarproducto.component';
 
 
 
@@ -63,11 +64,12 @@ import {AngularFirestore} from '@angular/fire/firestore';
     Contactanos,
     RegistrarseComponent,
    
-    RegistrarproductoComponent,
+    
 
     CarritoComponent,
     EnviarsugerenciasComponent,
     InventarioComponent,
+    GuardarproductoComponent,
     
   
     
@@ -110,14 +112,15 @@ import {AngularFirestore} from '@angular/fire/firestore';
     Contactanos,
     InventarioComponent,
     NuevoingresoComponent,
-    RegistrarproductoComponent,
+   
     ProductoComponent,
     RegistrarseComponent,
-    LoginComponent
+    LoginComponent,
+    GuardarproductoComponent
   ],
 
 
-  providers: [AngularFireAuth,AngularFirestore],
+  providers: [AngularFireAuth,AngularFirestore,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

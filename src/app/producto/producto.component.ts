@@ -1,14 +1,13 @@
 import { Component, OnInit,ViewChild,ElementRef} from '@angular/core';
 import{MatTableDataSource,MatPaginator} from '@angular/material';
 import {MatDialog,MatDialogConfig} from '@angular/material';
-
 import { AngularFireStorage } from '@angular/fire/storage';
 import {finalize} from 'rxjs/operators';
 import {Observable} from 'rxjs/internal/Observable';
 import {DataApiService} from './../servicios/data-api.service';
 import {ProductoInterface} from './../models/producto';
 import { NgForm } from '@angular/forms';
-
+import {GuardarproductoComponent} from './guardarproducto/guardarproducto.component';
 
 
 
@@ -21,10 +20,7 @@ import { NgForm } from '@angular/forms';
 }
 */
 
- const ELEMENT_DATA:ProductoInterface[]=[
-  
-   
- ];
+ //const ELEMENT_DATA:ProductoInterface[]=[];
 
 @Component({
   selector: 'app-producto',
@@ -49,56 +45,62 @@ export class ProductoComponent implements OnInit{
 
    onDeleteProducto(idProducto:string):void{
      console.log('Delete Producto',idProducto);
-     const confirmacion= confirm('Estas seguro carepicha?');
+     const confirmacion= confirm('Estas seguro?');
      if(confirmacion){
       this.dataApi.deleteProducto(idProducto);
      }
      
    }
 
-   onPreUpdateProducto(productos:ProductoInterface){
-     console.log('update',productos);
+   onPreUpdateProducto(producto:ProductoInterface){
+     console.log('update',producto);
      const dialogConfig= new MatDialogConfig();
-     dialogConfig.disableClose=false;
+     dialogConfig.disableClose=true;
      dialogConfig.autoFocus=true;
      dialogConfig.width="500px";
      dialogConfig.height="650px"
-     this.dialog.open(RegistrarproductoComponent,dialogConfig);
+     this.dialog.open(GuardarproductoComponent,dialogConfig);
+     
+    this.dataApi.selectedProducto = Object.assign({}, producto);
+     
    }
 
- displayedColumns: string[] = ['position','codigo', 'nombre', 'precio','actions'];
+ /*displayedColumns: string[] = ['position','codigo', 'nombre', 'precio','actions'];
   dataSource = new MatTableDataSource<ProductoInterface>(ELEMENT_DATA);
-
+*/
   @ViewChild(MatPaginator) paginator: MatPaginator;
   
 
   ngOnInit(){
-   this.dataSource.paginator=this.paginator;
+   //this.dataSource.paginator=this.paginator;
     this.getListProductos();
     
     }
 
    
 
-  applyFilter(filterValue: string) {
+ /* applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+  */
   
 
-  openDialog() {
+  openDialog(producto:ProductoInterface) {
+    
     const dialogConfig= new MatDialogConfig();
-    dialogConfig.disableClose=false;
+    dialogConfig.disableClose=true;
     dialogConfig.autoFocus=true;
     dialogConfig.width="500px";
     dialogConfig.height="650px"
-    this.dialog.open(RegistrarproductoComponent,dialogConfig);
+    this.dialog.open(GuardarproductoComponent,dialogConfig);
+   
   }
 
 
 
 }
 
-
+/*
 @Component({
 
   selector:'app-producto',
@@ -107,9 +109,10 @@ export class ProductoComponent implements OnInit{
 
 })
 
-export class RegistrarproductoComponent{
+ export class RegistrarproductoComponent{
 
   @ViewChild('imageUser') inputImageUser: ElementRef;
+  @ViewChild('btnClose') btnClose: ElementRef;
 
   constructor(public dialog: MatDialog, private dataApi:DataApiService,
     private storage: AngularFireStorage){}
@@ -137,10 +140,25 @@ export class RegistrarproductoComponent{
     
 
     onSaveProducto(formProducto:NgForm):void{
-      console.log('onSaveProducto',formProducto.value.id)
-     this.dataApi.addProducto(formProducto.value);  
+      console.log('formProducto.value.id',formProducto.value.id);
+     
+      
+      if (formProducto.value.id == null) {
+        // New 
+        
+        this.dataApi.addProducto(formProducto.value);
+      } else {
+        // Update
+        this.dataApi.updateProducto(formProducto.value);
+      }
+      formProducto.resetForm();
+      this.btnClose.nativeElement.click();
     }
+  
+
 
     
     
 }
+
+*/

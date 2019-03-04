@@ -1,0 +1,69 @@
+
+.mimat {
+  
+    min-width: 150px;
+    max-width: 500px;
+    
+    text-align:center;
+    padding:2px;
+   cursor:pointer;
+   display:block;
+   width:400px;
+   margin: 0 auto;
+   padding: 10px;
+   height: 380px;
+   
+   position:relative;
+
+  
+   
+    
+  }
+
+ 
+
+ 
+
+
+  
+  .example-full-width {
+    width: 100%;
+  }
+.mat{
+  background-color: aqua;
+  padding: 300px;
+  text-align: right;
+ 
+}
+
+.imglog{
+    width: 80%; height: 20%;
+    display:block;
+    margin:auto;
+  
+}
+
+.forgot-password{
+  text-align: center;
+  position: relative;
+}
+
+.areg{
+  text-align: center;
+  position: relative;
+}
+
+.rdiv{
+    display: flex;
+  flex-direction: column;
+  
+}
+
+.rdiv > *{
+    width: 80%;
+}
+
+.btnatras{
+  left: 4px;
+  top: 4px;
+}
