@@ -55,31 +55,37 @@
   </table>
   <mat-paginator class="matpa" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 -->
-  <table class="table table-hover">
+<br>
+<br>
+  <table style="padding-top:15px;border-radius:5px;border-collapse: collapse;" >
       <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Codigo</th>
-          <th scope="col">Nombre</th>
-          <th scope="col">Precio</th>
+        
+        <tr  >
+          <th class="encabezado">&nbsp;&nbsp;#</th>
+          <th class="encabezado">Codigo</th>
+          <th class="encabezado">Nombre</th>
+          <th class="encabezado">Precio</th>
          
-          <th scope="col">&nbsp;</th>
-          <th scope="col">&nbsp;</th>
+          <th class="encabezado">&nbsp;</th>
+          <th class="encabezado">&nbsp;</th>
         </tr>
       </thead>
+      
       <tbody>
-        
+      
         <tr *ngFor="let producto of productos; index as i">
-        
-          <th scope="row">{{i+1}}</th>
+            
+          <th class="lineas" scope="row">&nbsp;&nbsp;{{i+1}}</th>
           
-          <th style="font-weight: normal">{{producto.codigo}}</th>
-          <th style="font-weight: normal">{{producto.nombre}}</th>
-          <th style="font-weight: normal">{{producto.precio}}</th>
-          
+          <th class="lineas">{{producto.codigo}}</th>
+         
+          <th class="lineas" >{{producto.nombre}}</th>
+          <th class="lineas">{{producto.precio}} C$</th>
+         <th class="lineas">&nbsp;</th>
+         <th class="lineas">
           <button class="btn btn-danger" (click)="onPreUpdateProducto(producto)" mat-icon-button ><mat-icon>launch</mat-icon></button>
           <button class="btn btn-danger" color="warn" (click)="onDeleteProducto(producto.id)" mat-icon-button  ><mat-icon>delete_outline</mat-icon></button>
-         
+        </th>
         <!-- <ng-template #noOwner>
             <td>
               <button class="btn btn-secondary" disabled="true">Update</button>

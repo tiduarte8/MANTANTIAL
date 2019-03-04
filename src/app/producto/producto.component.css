@@ -45,6 +45,13 @@
          
        }
 
+.lineas{
+ font-weight: normal;border-bottom: rgba(68, 68, 68, 0.144) solid 1px
+}
+ .encabezado{
+  border-bottom: rgba(15, 11, 44, 0.61) solid 1px;
+   padding: 15px; background-color:  rgb(75, 125, 182);
+ }
  
 
 
