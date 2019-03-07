@@ -11,7 +11,7 @@
     
     
   <mat-toolbar>
-      <span style="color:navy">Presentación de Producto</span>
+      <span style="color:navy">{{ !this.dataApi.selectedProducto.id ? 'Nuevo Producto' : 'Actualizar Producto'}}</span>
   </mat-toolbar>
 
  <input name="id" [(ngModel)]="this.dataApi.selectedProducto.id" type="hidden" >
