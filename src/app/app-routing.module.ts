@@ -1,19 +1,19 @@
 import {NgModule} from '@angular/core';
 import {Routes,RouterModule} from '@angular/router';
-import {LoginComponent} from './login/login.component';
-import { ProductoComponent } from './producto/producto.component';
-import { InicioComponent } from './inicio/inicio.component';
-import { ClientesComponent } from './clientes/clientes.component';
-import { RegistrarseComponent } from './clientes/registrarse/registrarse.component';
+import {LoginComponent} from './components/login/login.component';
+import { ProductoComponent } from './components/producto/producto.component';
+import { InicioComponent } from './components/inicio/inicio.component';
+import { ClientesComponent } from './components/clientes/clientes.component';
+import { RegistrarseComponent } from './components/clientes/registrarse/registrarse.component';
 
 
 
-import { PedidoComponent } from './pedido/pedido.component';
-import { SugerenciasComponent } from './sugerencias/sugerencias.component';
-import { ReporteComponent } from './reporte/reporte.component';
-import { CarritoComponent } from './carrito/carrito.component';
-import { EnviarsugerenciasComponent } from './sugerencias/enviarsugerencias/enviarsugerencias.component';
-import {InventarioComponent}from './inventario/inventario.component';
+import { PedidoComponent } from './components/pedido/pedido.component';
+import { SugerenciasComponent } from './components/sugerencias/sugerencias.component';
+import { ReporteComponent } from './components/reporte/reporte.component';
+import { CarritoComponent } from './components/carrito/carrito.component';
+import { EnviarsugerenciasComponent } from './components/sugerencias/enviarsugerencias/enviarsugerencias.component';
+import {InventarioComponent}from './components/inventario/inventario.component';
 
 
 const routes: Routes =[

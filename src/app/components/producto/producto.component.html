@@ -1,0 +1,109 @@
+<mat-card>
+  <h1 style="color:navy; text-align:center; font-family:Arial, Helvetica, sans-serif" >Productos</h1>
+</mat-card> 
+
+<button class="butonagregar" mat-raised-button (click)="openDialog()">
+    <mat-icon>add</mat-icon>Nuevo
+    </button>
+
+
+<ng-content></ng-content>
+<mat-form-field>
+    <input matInput maxlength="30" (keyup)="applyFilter($event.target.value)" placeholder="Buscar Nombre">
+  </mat-form-field>
+  <!--
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" >
+  
+   
+    <ng-container matColumnDef="position">
+      <th mat-header-cell  *matHeaderCellDef mat-sort-header> No. </th>
+      <td mat-cell *matCellDef="let element"> 1 </td>
+    </ng-container>
+    
+  
+   
+    <ng-container matColumnDef="codigo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Codigo </th>
+      <td mat-cell *matCellDef="let element"> {{producto.codigo}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+        <td mat-cell *matCellDef="let element"> {{producto.nombre}} </td>
+      </ng-container>
+  
+  
+    <ng-container matColumnDef="precio">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Precio </th>
+      <td mat-cell *matCellDef="let element"> C$ {{producto.precio}}  </td>
+    </ng-container>
+  
+   
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Editar/Eliminar</th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button (click)="onEdit(row)"><mat-icon>launch</mat-icon></button>
+          <button mat-icon-button color="warn" (click)="onDelete(row.$key)"><mat-icon>delete_outline</mat-icon></button>
+        </td>
+      </ng-container>
+
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr *ngFor="let producto of productos; index as i"></tr>
+ 
+  
+  </table>
+  <mat-paginator class="matpa" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+ -->
+<br>
+<br>
+  <table style="padding-top:15px;border-radius:5px;border-collapse: collapse;" >
+      <thead>
+        
+        <tr  >
+          <th class="encabezado">&nbsp;&nbsp;#</th>
+          <th class="encabezado">Codigo</th>
+          <th class="encabezado">Nombre</th>
+          <th class="encabezado">Precio</th>
+         
+          <th class="encabezado">&nbsp;</th>
+          <th class="encabezado">&nbsp;</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+      
+        <tr *ngFor="let producto of productos; index as i">
+            
+          <th class="lineas" scope="row">&nbsp;&nbsp;{{i+1}}</th>
+          
+          <th class="lineas">{{producto.codigo}}</th>
+         
+          <th class="lineas" >{{producto.nombre}}</th>
+          <th class="lineas">{{producto.precio}} C$</th>
+         <th class="lineas">&nbsp;</th>
+         <th class="lineas">
+          <button class="btn btn-danger" (click)="onPreUpdateProducto(producto)" mat-icon-button ><mat-icon>launch</mat-icon></button>
+          <button class="btn btn-danger" color="warn" (click)="onDeleteProducto(producto.id)" mat-icon-button  ><mat-icon>delete_outline</mat-icon></button>
+        </th>
+        <!-- <ng-template #noOwner>
+            <td>
+              <button class="btn btn-secondary" disabled="true">Update</button>
+            </td>
+          </ng-template>
+          <td *ngIf="isAdmin == true; else noAdmin">
+            <button class="btn btn-danger" (click)="onDeleteProducto(producto.id)">Delete</button>
+          </td>
+          <ng-template #noAdmin>
+            <td>
+              <button class="btn btn-danger" disabled="true">Delete</button>
+            </td>
+          </ng-template>
+          </tr>
+        -->
+     
+    
+      </tbody>
+    </table>
+    <mat-paginator class="matpa" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

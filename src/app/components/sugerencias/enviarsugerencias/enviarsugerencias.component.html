@@ -1,0 +1,28 @@
+<mat-card>
+  <h1 style="color:navy; text-align:center; font-family:Arial, Helvetica, sans-serif" >Enviar Sugerencia</h1>
+</mat-card> 
+<br>
+<mat-card class="mimat">
+<form class="example-form">
+   
+  <mat-toolbar>
+      <span style="color:navy">Enviar Sugerencia</span>
+  </mat-toolbar>
+
+  
+      <mat-form-field class="example-full-width">
+          <textarea [(ngModel)]="envsu" name="envsu" #message maxlength="200"   class="inputlog" matInput  placeholder="Mensaje (200 Caracteres máximo)" type="text" required ></textarea>
+          <mat-hint align="start"><strong>No ingrese información personal</strong> </mat-hint>
+          <mat-hint align="end">{{message.value.length}} / 250</mat-hint>
+        </mat-form-field>
+  
+  <button (click)="onEnviar()"  mat-raised-button color="primary">Enviar Mensaje</button>
+  
+ 
+
+  
+
+</form>
+
+
+</mat-card>

@@ -12,24 +12,24 @@ import {MatSelectModule,MatButtonModule,
         import {MatTooltipModule} from '@angular/material/tooltip';
         import {MatPaginatorModule} from '@angular/material/paginator';
         import {MatInputModule} from '@angular/material/input';
-import { MynavComponent } from './mynav/mynav.component';
+import { MynavComponent } from './components/mynav/mynav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './components/login/login.component';
 import {MatTableModule} from '@angular/material/table';
-import { ProductoComponent } from './producto/producto.component';
-import { PedidoComponent } from './pedido/pedido.component';
-import { ClientesComponent } from './clientes/clientes.component';
-import { ReporteComponent,DialogContentExampleDialog } from './reporte/reporte.component';
-import { SugerenciasComponent } from './sugerencias/sugerencias.component';
+import { ProductoComponent } from './components/producto/producto.component';
+import { PedidoComponent } from './components/pedido/pedido.component';
+import { ClientesComponent } from './components/clientes/clientes.component';
+import { ReporteComponent,DialogContentExampleDialog } from './components/reporte/reporte.component';
+import { SugerenciasComponent } from './components/sugerencias/sugerencias.component';
 import {AppRoutingModule} from './app-routing.module';
 import {MatCardModule} from '@angular/material/card';
-import { InicioComponent,Contactanos } from './inicio/inicio.component';
-import { RegistrarseComponent } from './clientes/registrarse/registrarse.component';
+import { InicioComponent,Contactanos } from './components/inicio/inicio.component';
+import { RegistrarseComponent } from './components/clientes/registrarse/registrarse.component';
 
 
 
-import { CarritoComponent } from './carrito/carrito.component';
-import { EnviarsugerenciasComponent } from './sugerencias/enviarsugerencias/enviarsugerencias.component';
+import { CarritoComponent } from './components/carrito/carrito.component';
+import { EnviarsugerenciasComponent } from './components/sugerencias/enviarsugerencias/enviarsugerencias.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {environment} from './../environments/environment';
@@ -37,12 +37,12 @@ import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {MatDialogModule} from '@angular/material/dialog';
-import {InventarioComponent,NuevoingresoComponent} from './inventario/inventario.component';
+import {InventarioComponent,NuevoingresoComponent} from './components/inventario/inventario.component';
 import {MatDatepickerModule,MatNativeDateModule} from '@angular/material';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {AngularFirestore,FirestoreSettingsToken} from '@angular/fire/firestore';
-import { GuardarproductoComponent } from './producto/guardarproducto/guardarproducto.component';
+import { GuardarproductoComponent } from './components/producto/guardarproducto/guardarproducto.component';
 
 
 

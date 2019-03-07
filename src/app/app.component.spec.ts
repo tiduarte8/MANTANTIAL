@@ -6,7 +6,7 @@ import {By} from '@angular/platform-browser';
 import{DebugElement} from '@angular/core';
 
 
-
+/*
 
 
 describe('AppComponent', () => {
@@ -37,3 +37,5 @@ describe('AppComponent', () => {
     expect(compiled.querySelector('h1').textContent).toContain('Welcome to MANANTIAL!');
   });
 });
+*/
+
