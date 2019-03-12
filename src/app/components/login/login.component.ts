@@ -3,7 +3,7 @@ import {FormControl, Validators, EmailValidator} from '@angular/forms';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {auth} from 'firebase/app';
 import{Router} from '@angular/router';
-import {AuthService} from './../../servicios/auth.service';
+import {AuthService} from '../../servicios/servicioauth/auth.service';
 import {MatDialog,MatDialogConfig} from '@angular/material';
 import {RegistrarseComponent} from './../clientes/registrarse/registrarse.component'
 

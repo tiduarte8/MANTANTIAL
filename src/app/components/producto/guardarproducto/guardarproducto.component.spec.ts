@@ -6,8 +6,8 @@ import {MatDialog,MatDialogConfig} from '@angular/material';
 import { AngularFireStorage } from '@angular/fire/storage';
 import {finalize} from 'rxjs/operators';
 import {Observable} from 'rxjs/internal/Observable';
-import {DataApiService} from './../../servicios/data-api.service';
-import {ProductoInterface} from './../../models/producto';
+import {DataApiService} from './../../../servicios/servicioproducto/data-api.service';
+import {ProductoInterface} from './../../../models/producto';
 import { NgForm } from '@angular/forms';
 
 import { GuardarproductoComponent } from './guardarproducto.component';

@@ -17,33 +17,33 @@
    
     <ng-container matColumnDef="position">
       <th mat-header-cell  *matHeaderCellDef mat-sort-header> No. </th>
-      <td mat-cell *matCellDef="let element"> 1 </td>
+      <td mat-cell *matCellDef="let element"> {{1}} </td>
     </ng-container>
     
   
    
     <ng-container matColumnDef="codigo">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Codigo </th>
-      <td mat-cell *matCellDef="let element"> {{producto.codigo}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.codigo}} </td>
     </ng-container>
 
     <ng-container matColumnDef="nombre">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
-        <td mat-cell *matCellDef="let element"> {{producto.nombre}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
       </ng-container>
   
   
     <ng-container matColumnDef="precio">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Precio </th>
-      <td mat-cell *matCellDef="let element"> C$ {{producto.precio}}  </td>
+      <td mat-cell *matCellDef="let element"> C$ {{element.precio}}  </td>
     </ng-container>
   
    
     <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Editar/Eliminar</th>
         <td mat-cell *matCellDef="let row">
-          <button mat-icon-button (click)="onEdit(row)"><mat-icon>launch</mat-icon></button>
-          <button mat-icon-button color="warn" (click)="onDelete(row.$key)"><mat-icon>delete_outline</mat-icon></button>
+          <button mat-icon-button (click)="onPreUpdateProducto(producto)"><mat-icon>launch</mat-icon></button>
+          <button mat-icon-button color="warn" (click)="onDeleteProducto(element.id)"><mat-icon>delete_outline</mat-icon></button>
         </td>
       </ng-container>
 
@@ -55,7 +55,9 @@
   
   </table>
   <mat-paginator class="matpa" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
- -->
+ 
+
+-->
 <br>
 <br>
   <table style="padding-top:15px;border-radius:5px;border-collapse: collapse;" >

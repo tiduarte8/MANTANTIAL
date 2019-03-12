@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {DataApiService} from './../../servicios/data-api.service';
+import {DataApiService} from '../../servicios/servicioproducto/data-api.service';
 import {ProductoInterface} from './../../models/producto';
 import {ActivatedRoute,Params} from '@angular/router';
 @Component({

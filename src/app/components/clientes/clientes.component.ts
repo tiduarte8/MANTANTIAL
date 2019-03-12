@@ -1,6 +1,6 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import{MatTableDataSource,MatPaginator} from '@angular/material';
-import {AuthService} from './../../servicios/auth.service';
+import {AuthService} from '../../servicios/servicioauth/auth.service';
 import {UsuarioInterface} from './../../models/usuario';
 
 

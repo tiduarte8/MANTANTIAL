@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material';
-import {DataApiService} from './../../servicios/data-api.service';
+import {DataApiService} from '../../servicios/servicioproducto/data-api.service';
 
 @Component({
   selector: 'app-inicio',

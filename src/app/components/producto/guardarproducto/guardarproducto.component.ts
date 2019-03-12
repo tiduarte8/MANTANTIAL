@@ -1,12 +1,11 @@
-
-import { Component, OnInit,ViewChild,ElementRef} from '@angular/core';
-import{MatTableDataSource,MatPaginator} from '@angular/material';
-import {MatDialog,MatDialogConfig} from '@angular/material';
+import { Component, OnInit,ViewChild,ElementRef } from '@angular/core';
+import { MatTableDataSource,MatPaginator} from '@angular/material';
+import { MatDialog,MatDialogConfig} from '@angular/material';
 import { AngularFireStorage } from '@angular/fire/storage';
-import {finalize} from 'rxjs/operators';
-import {Observable} from 'rxjs/internal/Observable';
-import {DataApiService} from './../../../servicios/data-api.service';
-import {ProductoInterface} from './../../../models/producto';
+import { finalize} from 'rxjs/operators';
+import { Observable} from 'rxjs/internal/Observable';
+import { DataApiService} from '../../../servicios/servicioproducto/data-api.service';
+import { ProductoInterface} from './../../../models/producto';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -54,22 +53,23 @@ ngOnInit(){
     onSaveProducto(formProducto:NgForm):void{
      
       console.log('formProducto.value.id',formProducto.value.id);
-      
-      if (formProducto.value.id == null) {
-        // New 
-        
-        this.dataApi.addProducto(formProducto.value),
-        console.log(this.mensaje='Guardado');
 
-      } else {
-        // Update
+      if(formProducto.valid) {
+        if (formProducto.value.id == null) {
+          // New 
+          
+          this.dataApi.addProducto(formProducto.value),
+          console.log(this.mensaje='Guardado');
+
+        } else {
+          // Update
+          this.dataApi.updateProducto(formProducto.value);
+          console.log(this.mensaje='Editado');
+        }
+        formProducto.reset();
         
-        this.dataApi.updateProducto(formProducto.value);
-        console.log(this.mensaje='Editado');
+        this.dialog.closeAll();
       }
-      formProducto.resetForm();
-      
-      this.dialog.closeAll();
     }
   
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import{AngularFirestore,AngularFirestoreCollection,AngularFirestoreDocument} from '@angular/fire/firestore';
-import {ProductoInterface} from './../models/producto';
+import {ProductoInterface} from '../../models/producto';
 import {Observable} from 'rxjs/internal/Observable';
 import {map} from 'rxjs/operators';
 import { Action } from 'rxjs/internal/scheduler/Action';
@@ -60,4 +60,6 @@ export class DataApiService {
      this.productoDoc=this.afs.doc<ProductoInterface>(`productos/${idProducto}`);
      this.productoDoc.delete();
   }
+
+ 
 }

@@ -1,6 +1,6 @@
 import { Component,OnInit, } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
-import { AuthService } from 'src/app/servicios/auth.service';
+import { AuthService } from 'src/app/servicios/servicioauth/auth.service';
 import {Router} from '@angular/router'
 import { AngularFireStorage } from '@angular/fire/storage';
 

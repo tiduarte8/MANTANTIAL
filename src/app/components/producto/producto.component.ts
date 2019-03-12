@@ -4,11 +4,14 @@ import {MatDialog,MatDialogConfig} from '@angular/material';
 import { AngularFireStorage } from '@angular/fire/storage';
 import {finalize} from 'rxjs/operators';
 import {Observable} from 'rxjs/internal/Observable';
-import {DataApiService} from './../../servicios/data-api.service';
+import {DataApiService} from '../../servicios/servicioproducto/data-api.service';
 import {ProductoInterface} from './../../models/producto';
 import { NgForm } from '@angular/forms';
 import {GuardarproductoComponent} from './guardarproducto/guardarproducto.component';
 import { DataSource } from '@angular/cdk/table';
+import { connect } from 'http2';
+import { disconnect } from 'cluster';
+import { database } from 'firebase';
 
 
 
@@ -21,7 +24,9 @@ import { DataSource } from '@angular/cdk/table';
 }
 */
 
- 
+
+
+
 
 @Component({
   selector: 'app-producto',
@@ -35,7 +40,8 @@ export class ProductoComponent implements OnInit{
   
   private productos: ProductoInterface[];
 
- // dataSource:MatTableDataSource<ProductoInterface>;
+
+ 
 
   getListProductos(){
     
@@ -68,21 +74,22 @@ export class ProductoComponent implements OnInit{
 
    
 
- displayedColumns: string[] = ['codigo', 'nombre', 'precio','actions'];
+ //displayedColumns: string[] = ['position','codigo', 'nombre', 'precio','actions'];
+ //dataSource = new ProductoDataSource(this.dataApi);
+
+
+
+
+ // @ViewChild(MatPaginator) paginator: MatPaginator;
+  //@ViewChild(MatSort) sort:MatSort;
+  
   //dataSource = new MatTableDataSource<ProductoInterface>
 
-
-
-
-
-  //@ViewChild(MatPaginator) paginator: MatPaginator;
-  //@ViewChild(MatSort) sort:MatSort;
   
 
   ngOnInit(){
-   //this.dataSource.paginator=this.paginator;
+   //  this.dataSource.connect=this.paginator;
      this.getListProductos();
-   // this.dataSource=new MatTableDataSource(this.productos);
     
     //this.dataSource.sort=this.sort;
     
@@ -110,6 +117,21 @@ export class ProductoComponent implements OnInit{
 
 
 }
+
+/*export class ProductoDataSource extends DataSource<any>{
+  constructor(private dataApi:DataApiService){
+    super()
+    }
+    connect(){
+      return this.dataApi.getAllProductos();
+    }
+    disconnect(){
+
+    
+  }
+
+}
+*/
 
 /*
 @Component({
