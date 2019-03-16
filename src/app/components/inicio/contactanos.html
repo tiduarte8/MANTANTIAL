@@ -5,34 +5,39 @@
 <h2 mat-dialog-title>Contactanos</h2>
 <mat-card class="mycard" id="cont">
     <br>
-  <form class="example-form">
+  <form name="formContacto" #formContacto="ngForm" (ngSubmit)="onEnviar(formProducto)" class="example-form">
      
     <mat-toolbar>
         <span style="color:navy">Contactanos</span>
     </mat-toolbar>
   
     <mat-form-field class="example-full-width">
-        <input maxlength="50" matInput placeholder="Nombre" type="text" required>
+        <input [(ngModel)]="nombre" name="nombre" maxlength="50" matInput placeholder="Nombre" type="text" required>
       
      </mat-form-field>
   
     <mat-form-field class="example-full-width">
-        <input maxlength="50" matInput placeholder="Correo Electrónico" type="email" required>
-      
+        <input [(ngModel)]="email" name="email" maxlength="50" [formControl]="emailFormControl" matInput placeholder="Correo Electrónico" type="email" required>
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+          Por favor ingrese un e-mail válido
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+          e-mail <strong>requerido</strong>
+        </mat-error> 
      </mat-form-field>
   
      <mat-form-field class="example-full-width">
         <span matPrefix>+505 &nbsp;</span>
-        <input type="tel" minlength="8" maxlength="8"  matInput placeholder="N° Teléfono">
+        <input [(ngModel)]="telefono" name="telefono" type="tel" minlength="8" maxlength="8"  matInput placeholder="N° Teléfono" required>
         <mat-icon matSuffix>call</mat-icon>
       </mat-form-field>
     
       <mat-form-field class="example-full-width">
-          <textarea matInput placeholder="Mensaje (Max 200 Caracteres)" maxlength="200"  required></textarea>
+          <textarea [(ngModel)]="mensaje" name="mensaje" matInput placeholder="Mensaje (Max 200 Caracteres)" maxlength="200"  required></textarea>
         </mat-form-field>
   
   
-    <button   mat-raised-button color="primary">Enviar Mensaje</button>
+    <button type="submit" #btnClose   mat-raised-button color="primary">Enviar Mensaje</button>
     
    
   

@@ -8,21 +8,15 @@ import {DataApiService} from '../../servicios/servicioproducto/data-api.service'
 import {ProductoInterface} from './../../models/producto';
 import { NgForm } from '@angular/forms';
 import {GuardarproductoComponent} from './guardarproducto/guardarproducto.component';
+import {AngularFireAuth} from '@angular/fire/auth';
 import { DataSource } from '@angular/cdk/table';
-import { connect } from 'http2';
-import { disconnect } from 'cluster';
+import {AuthService} from './../../servicios/servicioauth/auth.service';
 import { database } from 'firebase';
+import Swal from 'sweetalert2';
 
 
 
-/*export interface VerPre {
-  codigo:string;
-  nombre: string;
-  id:string;
-  precio: number;
-  
-}
-*/
+
 
 
 
@@ -36,26 +30,51 @@ import { database } from 'firebase';
 export class ProductoComponent implements OnInit{
 
   constructor(public dialog: MatDialog, private dataApi:DataApiService,
-  private storage: AngularFireStorage){}
+  private storage: AngularFireStorage,private authService:AuthService){}
   
-  private productos: ProductoInterface[];
 
+public isAdmin: any= null;
+public userUid: string=null;
 
  
 
   getListProductos(){
     
     this.dataApi.getAllProductos().subscribe(productos=>{
-      this.productos=productos;
+ 
+      this.dataSource.data=productos;
     });
    }
 
    onDeleteProducto(idProducto:string):void{
      console.log('Delete Producto',idProducto);
+
+     Swal.fire({
+      title: '¿Estás Seguro?',
+      text: "Esta acción no se puede detener!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, elimnarlo!'
+    }).then((result) => {
+      if (result.value) {
+        this.dataApi.deleteProducto(idProducto);
+        Swal.fire(
+          'Eliminado!',
+          'El producto ha sido eliminado.',
+          'success'
+        )
+      }
+    })
+     
+/*
      const confirmacion= confirm('Estas seguro?');
      if(confirmacion){
       this.dataApi.deleteProducto(idProducto);
+      
      }
+     */
      
    }
 
@@ -69,38 +88,54 @@ export class ProductoComponent implements OnInit{
      this.dialog.open(GuardarproductoComponent,dialogConfig);
      
     this.dataApi.selectedProducto = Object.assign({}, producto);
-     
+
+    
+
+    
    }
 
-   
-
- //displayedColumns: string[] = ['position','codigo', 'nombre', 'precio','actions'];
- //dataSource = new ProductoDataSource(this.dataApi);
 
 
+ displayedColumns: string[] = ['position','codigo', 'nombre', 'precio','actions'];
+ dataSource = new MatTableDataSource<ProductoInterface>();
 
 
- // @ViewChild(MatPaginator) paginator: MatPaginator;
-  //@ViewChild(MatSort) sort:MatSort;
+
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort:MatSort;
   
-  //dataSource = new MatTableDataSource<ProductoInterface>
 
-  
+
+
 
   ngOnInit(){
-   //  this.dataSource.connect=this.paginator;
+    this.dataSource.paginator=this.paginator;
      this.getListProductos();
     
-    //this.dataSource.sort=this.sort;
+    this.dataSource.sort=this.sort;
+  //  this.getCurrentUser();
     
     }
+/*
+    getCurrentUser(){
+      this.authService.isAuth().subscribe(auth=>{
+        if(auth){
+          this.userUid=auth.uid;
+          this.authService.isUserAdmin(this.userUid).subscribe(userRole=>{
+            this.isAdmin=Object.assign({},userRole.roles).hasOwnProperty('admin');
+          })
+        }
+      })
+    }
+    */
 
    
 
- /* applyFilter(filterValue: string) {
+    applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  */
+  
   
 
   openDialog(producto:ProductoInterface) {
@@ -109,7 +144,7 @@ export class ProductoComponent implements OnInit{
     dialogConfig.disableClose=true;
     dialogConfig.autoFocus=true;
     dialogConfig.width="500px";
-    dialogConfig.height="650px"
+    dialogConfig.height="710px"
     this.dialog.open(GuardarproductoComponent,dialogConfig);
    
   }
@@ -118,20 +153,7 @@ export class ProductoComponent implements OnInit{
 
 }
 
-/*export class ProductoDataSource extends DataSource<any>{
-  constructor(private dataApi:DataApiService){
-    super()
-    }
-    connect(){
-      return this.dataApi.getAllProductos();
-    }
-    disconnect(){
 
-    
-  }
-
-}
-*/
 
 /*
 @Component({

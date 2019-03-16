@@ -1,5 +1,6 @@
 <mat-card>
   <h1 style="color:navy; text-align:center; font-family:Arial, Helvetica, sans-serif" >Productos</h1>
+ 
 </mat-card> 
 
 <button class="butonagregar" mat-raised-button (click)="openDialog()">
@@ -11,13 +12,13 @@
 <mat-form-field>
     <input matInput maxlength="30" (keyup)="applyFilter($event.target.value)" placeholder="Buscar Nombre">
   </mat-form-field>
-  <!--
+
   <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" >
   
-   
+     
     <ng-container matColumnDef="position">
-      <th mat-header-cell  *matHeaderCellDef mat-sort-header> No. </th>
-      <td mat-cell *matCellDef="let element"> {{1}} </td>
+      <th mat-header-cell  *matHeaderCellDef > No. </th>
+      <td mat-cell *matCellDef="let element;index as i" > {{i+1}} </td>
     </ng-container>
     
   
@@ -42,22 +43,22 @@
     <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Editar/Eliminar</th>
         <td mat-cell *matCellDef="let row">
-          <button mat-icon-button (click)="onPreUpdateProducto(producto)"><mat-icon>launch</mat-icon></button>
-          <button mat-icon-button color="warn" (click)="onDeleteProducto(element.id)"><mat-icon>delete_outline</mat-icon></button>
+          <button mat-icon-button (click)="onPreUpdateProducto(row)"><mat-icon>launch</mat-icon></button>
+          <button mat-icon-button color="warn" (click)="onDeleteProducto(row.id)"><mat-icon>delete_outline</mat-icon></button>
         </td>
       </ng-container>
 
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    <tr *ngFor="let producto of productos; index as i"></tr>
+   
  
   
   </table>
   <mat-paginator class="matpa" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
  
 
--->
+ <!--
 <br>
 <br>
   <table style="padding-top:15px;border-radius:5px;border-collapse: collapse;" >
@@ -89,7 +90,7 @@
           <button class="btn btn-danger" (click)="onPreUpdateProducto(producto)" mat-icon-button ><mat-icon>launch</mat-icon></button>
           <button class="btn btn-danger" color="warn" (click)="onDeleteProducto(producto.id)" mat-icon-button  ><mat-icon>delete_outline</mat-icon></button>
         </th>
-        <!-- <ng-template #noOwner>
+        <ng-template #noOwner>
             <td>
               <button class="btn btn-secondary" disabled="true">Update</button>
             </td>
@@ -103,9 +104,10 @@
             </td>
           </ng-template>
           </tr>
-        -->
+      
      
     
       </tbody>
     </table>
     <mat-paginator class="matpa" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      -->

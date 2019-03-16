@@ -36,31 +36,34 @@
   
   
         
-     <mat-card>
-       <div>
-          <h1 id="verdetalle" style="color:navy; text-align:center; font-family:Arial, Helvetica, sans-serif" >Presentaciones de productos</h1>
-        </div>
-          <mat-grid-list cols="3" rowHeight="2:1.5">
-        <mat-grid-tile class="columpr" *ngFor="let producto of productos">
-           
-        
-     
-        
-           <div class="cuadroimagen">
-        <img style="height:200px; whidth:200px" src="{{producto.imagen}}" alt="{{producto.nombre}}" >
-        
-        <p class="h3t">Producto:<strong> {{producto.nombre}}</strong></p>
-        <div >
-           <div style="padding-bottom:5px;">
-              Precio:<strong> {{producto.precio}} C$ </strong>
-            </div>
-            <a><button routerLink="/carrito/{{producto.id}}" mat-raised-button color="primary" >Añadir <mat-icon>add_shopping_cart</mat-icon></button></a>
-          </div>
-          </div>
-        </mat-grid-tile>
- 
-      </mat-grid-list>
-    </mat-card>
+    <mat-card class="cardmy">
+      <div>
+         <h1 id="verdetalle" style="color:navy; text-align:center; font-family:Arial, Helvetica, sans-serif" >Presentaciones de productos</h1>
+       </div>
+         <div class="galeria">
+       <mat-card class="card-picture" *ngFor="let producto of productos">
+          
+       
+    
+       
+         
+       <img mat-card-image style="width:200px; height:200px" src="{{producto.urlImage}}" alt="{{producto.nombre}}" >
+       <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
+       <span fxFlex="50%">{{producto.nombre}}:</span>
+          <br>
+          <span fxFlex="50%" style="padding-bottom:5px;">
+             <strong> {{producto.precio}} C$ </strong>
+           </span>
+          </mat-card-title>
+           <a><button routerLink="/carrito/{{producto.id}}" mat-raised-button color="primary" >Añadir <mat-icon>add_shopping_cart</mat-icon></button></a>
+         
+       
+      </mat-card>
+    
+       </div>
+
+   
+   </mat-card>
  
 
 
@@ -72,7 +75,7 @@
   
         <img class="img2" src="./../../assets/imagen/fotocordillera.png">
   
-        <p><b> La cordillera de amerrisque es la espina central de Nicaragua y forma parte de la Cordillera centroamericana que se extiende a lo largo de Nicaragua, desde Honduras hasta Costa Rica. allí en la llamada cordillera de amerrisque formada por mesetas y elevaciones escarpadas y los cerros de la Cordillera chontaleña se encuentra la reserva natural Sierra de amerrisque. 
+        <p><b> La cordillera de amerrisque es la espina central de Nicaragua y forma parte de la Cordillera centroamericana que se extiende a lo largo de Nicaragua, desde Honduras hasta Costa Rica. 
           </b></p>
        </div>
   
@@ -80,7 +83,7 @@
           
           <img class="img2" src="./../../assets/imagen/fotoarboles.png" >
           <p><b>
-               En la reserva natural sierra de amerrisque a 152 kilómetros de Managua en medio de un bosque natural y virgen tiene su origen agua Manantial de vida, agua que nace y se basa en su origen, Esta agua brota de un Manantial en medio de la reserva natural, una reserva que dentro de los límites de nuestra propiedad la empresa se encarga de mantener virgen.
+               En la reserva natural sierra de amerrisque a 152 kilómetros de Managua en medio de un bosque natural y virgen tiene su origen agua Manantial de vida, agua que nace y se basa en su origen, Esta agua brota de un Manantial en medio de la reserva natural.
   
                </b></p>
          
@@ -90,7 +93,7 @@
         <img class="img2" src="./../../assets/imagen/fotoagua.png" >
         
         <p><b> 
-          En la parte alta de la cordillera se recibe la lluvia a medida que el aire se enfría por la altura y la humedad contenida en las nubes se condensa, esto permite a las plantas atrapar agua directamente del aire, la vegetación retiene el agua por un tiempo y luego la libera lentamente, eso permite que el agua se filtre de manera constante entre las grietas del suelo rocoso.</b></p>
+          En la parte alta de la cordillera se recibe la lluvia a medida que el aire se enfría por la altura y la humedad contenida en las nubes se condensa, esto permite a las plantas atrapar agua directamente del aire, la vegetación retiene el agua por un tiempo y luego la libera lentamente.</b></p>
              
         </div>
   
@@ -99,7 +102,7 @@
         <img class="img2" src="./../../assets/imagen/fotocerros.png" >
         
         <p><b>
-          y todo esto sirve para que el interior de la montaña se convierta en una esponja de piedra caliza que almacena enormes cantidades de agua. El paso lento del agua a través de las rocas elimina todas las impurezas y los microorganismos la montaña entera se convierte en un enorme filtro natural que purifica el agua en su interior sin intervención humana alguna.
+         El paso lento del agua a través de las rocas elimina todas las impurezas y los microorganismos la montaña entera se convierte en un enorme filtro natural que purifica el agua en su interior sin intervención humana alguna...
   
           </b></p>
              

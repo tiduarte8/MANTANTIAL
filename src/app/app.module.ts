@@ -25,7 +25,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {MatCardModule} from '@angular/material/card';
 import { InicioComponent,Contactanos } from './components/inicio/inicio.component';
 import { RegistrarseComponent } from './components/clientes/registrarse/registrarse.component';
-
+import {MatSortModule} from '@angular/material/sort';
 
 
 import { CarritoComponent } from './components/carrito/carrito.component';
@@ -43,6 +43,7 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {AngularFirestore,FirestoreSettingsToken} from '@angular/fire/firestore';
 import { GuardarproductoComponent } from './components/producto/guardarproducto/guardarproducto.component';
+import { FlexLayoutModule} from '@angular/flex-layout';
 
 
 
@@ -101,7 +102,8 @@ import { GuardarproductoComponent } from './components/producto/guardarproducto/
        MatNativeDateModule,
        AngularFireStorageModule,
        MatProgressBarModule,
-       
+       MatSortModule,
+       FlexLayoutModule
        
      
   ],

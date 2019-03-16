@@ -1,7 +1,7 @@
 export interface ProductoInterface{
    
     codigo?:string;
-    imagen?:string;
+    urlImage?:string;
     nombre?:string;
     precio?:number;
     id?:string;

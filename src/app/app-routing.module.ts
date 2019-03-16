@@ -14,21 +14,22 @@ import { ReporteComponent } from './components/reporte/reporte.component';
 import { CarritoComponent } from './components/carrito/carrito.component';
 import { EnviarsugerenciasComponent } from './components/sugerencias/enviarsugerencias/enviarsugerencias.component';
 import {InventarioComponent}from './components/inventario/inventario.component';
+import {AuthGuard} from './guards/auth.guard';
 
 
 const routes: Routes =[
     
     {path:'login', component: LoginComponent},
-     {path:'producto',component: ProductoComponent},
-     {path:'inventario',component:InventarioComponent},
-     {path:'cliente',component:ClientesComponent},
+     {path:'producto',component: ProductoComponent,canActivate:[AuthGuard]},
+     {path:'inventario',component:InventarioComponent,canActivate:[AuthGuard]},
+     {path:'cliente',component:ClientesComponent,canActivate:[AuthGuard]},
      {path:'registrarse',component:RegistrarseComponent},
      
      
-     {path:'pedido',component:PedidoComponent},
-     {path:'sugerencia',component:SugerenciasComponent},
+     {path:'pedido',component:PedidoComponent,canActivate:[AuthGuard]},
+     {path:'sugerencia',component:SugerenciasComponent,canActivate:[AuthGuard]},
      {path:'enviarsu',component:EnviarsugerenciasComponent},
-     {path:'reporte',component:ReporteComponent},
+     {path:'reporte',component:ReporteComponent,canActivate:[AuthGuard]},
      {path:'carrito/:id',component:CarritoComponent},
      {path:'',component:InicioComponent,pathMatch:'full'},
      {path:'**',redirectTo:'/',pathMatch:'full'},

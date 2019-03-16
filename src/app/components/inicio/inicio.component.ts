@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {DataApiService} from '../../servicios/servicioproducto/data-api.service';
+import {FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-inicio',
@@ -10,7 +11,8 @@ import {DataApiService} from '../../servicios/servicioproducto/data-api.service'
 })
 export class InicioComponent implements OnInit {
 
-
+  
+  
 
   ngOnInit() {
     this.dataApi.getAllProductos().subscribe(productos=>{
@@ -42,5 +44,12 @@ export class InicioComponent implements OnInit {
   templateUrl: 'contactanos.html',
   styleUrls:['./inicio.component.css'],
 })
-export class Contactanos {}
+export class Contactanos {
+  emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+    
+  ]);
+
+}
 

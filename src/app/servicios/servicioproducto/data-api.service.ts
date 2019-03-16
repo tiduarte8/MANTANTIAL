@@ -19,21 +19,12 @@ export class DataApiService {
   private productoDoc:AngularFirestoreDocument<ProductoInterface>;
   private producto:Observable<ProductoInterface>;
   public selectedProducto:ProductoInterface={
-    id:null
+    id:null,
+    
   };
  
 
-  getAllProductos(){
-    this.productosCollection=this.afs.collection<ProductoInterface>('productos');
-    return this.productos=this.productosCollection.snapshotChanges().pipe
-    (map(changes=>{
-      return changes.map(action=>{
-        const data = action.payload.doc.data() as ProductoInterface;
-        data.id= action.payload.doc.id;
-        return data;
-    });
-  }));
-}
+  
   agregarProductoalCarrito(idProucto: string){
     this.productoDoc= this.afs.doc<ProductoInterface>(`productos/${idProucto}`);
      return this.producto= this.productoDoc.snapshotChanges().pipe(map(action =>{
@@ -48,8 +39,22 @@ export class DataApiService {
      }));
   }
 
+  getAllProductos(){
+    this.productosCollection=this.afs.collection<ProductoInterface>('productos');
+    return this.productos=this.productosCollection.snapshotChanges().pipe
+    (map(changes=>{
+      return changes.map(action=>{
+        const data = action.payload.doc.data() as ProductoInterface;
+        data.id= action.payload.doc.id;
+        return data;
+    });
+  }));
+}
+
   addProducto(producto: ProductoInterface):void{
     this.productosCollection.add(producto);
+   
+    
   }
   updateProducto(producto: ProductoInterface):void{
      let idProducto=producto.id;

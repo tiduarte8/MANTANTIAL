@@ -6,6 +6,7 @@
 <br>
 <div class="rdiv">
  <mat-card class="mimat">
+  
 <form name="formProducto" #formProducto="ngForm" (ngSubmit)="onSaveProducto(formProducto)"  class="example-form">
 
     
@@ -16,6 +17,12 @@
 
  <input name="id" [(ngModel)]="this.dataApi.selectedProducto.id" type="hidden" >
   
+ <div class="example-full-width">
+  <input   matInput #imgu  type="text" [value]="urlImage | async">
+</div>
+
+  
+
 
   <mat-form-field class="example-full-width">
         <input [(ngModel)]="this.dataApi.selectedProducto.codigo" name="codigo" class="inputlog" type="text"  matInput placeholder="Código de Barra" required >
@@ -28,25 +35,20 @@
   <mat-form-field class="example-full-width">
     <input [(ngModel)]="this.dataApi.selectedProducto.precio" name="precio" class="inputlog" max="3" type="number" matInput placeholder="Precio" required ><span matPrefix>C$&nbsp;</span>
   </mat-form-field>
-<!--
+
   <div class="example-full-width">
-      <input (change)="onUpload($event)" [(ngModel)]="this.dataApi.selectedProducto.imagen" name="imagen"  type="file" accept=".png, .jpg"  placeholder="Imagen" required>
+      <input (change)="onUpload($event)" style="width:100%;"    type="file" accept=".png, .jpg"  placeholder="Imagen" required>
     </div><br>
     <div  class="progress">
         <mat-progress-bar mode="determinate" [style.width]="(uploadPercent | async) + '%'"></mat-progress-bar>
 
     </div>
+ 
 
-  
-
-    <div class="example-full-width">
-    <input  type="hidden"  [value]="urlImage | async">
-    </div>
--->  
 <mat-form-field class="example-full-width">
-    <input [(ngModel)]="this.dataApi.selectedProducto.imagen" name="imagen" class="inputlog"  type="text" matInput placeholder="imagen" required >
+  <input  [(ngModel)]="this.dataApi.selectedProducto.urlImage" required [value]="urlImage | async" name="urlImage" class="inputlog"  type="text" matInput placeholder="imagen" >
   </mat-form-field> 
-    
+  
    
 
   <br>

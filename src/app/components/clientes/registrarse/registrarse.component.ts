@@ -22,20 +22,12 @@ export class RegistrarseComponent implements OnInit  {
   public pass:string='';
   public mensaje:string='';
   public mensaje2:string='';
-   
-   cpass:string='';
-   
+   cpass:string=''; 
    mns:string;
-
-  
-
- 
 
 ngOnInit(){
 
 }
-
-
 
 onAddUser(){ 
   if(this.pass===this.cpass){
@@ -64,8 +56,5 @@ onAddUser(){
     Validators.email,
     
   ]);
-
-
-
 
 }

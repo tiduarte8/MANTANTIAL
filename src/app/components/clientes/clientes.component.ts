@@ -43,14 +43,6 @@ export class ClientesComponent implements OnInit{
 
   constructor(private authService:AuthService){}
 
-  
-
-
-  displayedColumns: string[] = ['position', 'nombre', 'apellidos','direccion','email','telefono','actions'];
-  dataSource = new MatTableDataSource<Clientes>(ELEMENT_DATA);
-
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-
   usuario: UsuarioInterface ={
     
     name:'', 
@@ -58,6 +50,14 @@ export class ClientesComponent implements OnInit{
     password:'',
     photoUrl:'',
   };
+
+
+  displayedColumns: string[] = ['position', 'nombre', 'apellidos','direccion','email','telefono','actions'];
+  dataSource = new MatTableDataSource<Clientes>(ELEMENT_DATA);
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+
 
 
 
