@@ -18,7 +18,7 @@
  <input name="id" [(ngModel)]="this.dataApi.selectedProducto.id" type="hidden" >
   
  <div class="example-full-width">
-  <input   matInput #imgu  type="text" [value]="urlImage | async">
+  <input  matInput name="urlImage" type="text" [value]="urlImage | async">
 </div>
 
   
@@ -46,7 +46,7 @@
  
 
 <mat-form-field class="example-full-width">
-  <input  [(ngModel)]="this.dataApi.selectedProducto.urlImage" required [value]="urlImage | async" name="urlImage" class="inputlog"  type="text" matInput placeholder="imagen" >
+  <input  [(ngModel)]="dataApi.selectedProducto.urlImage"  required [value]="urlImage | async" name="urlImage" class="inputlog"  type="text" matInput placeholder="imagen" >
   </mat-form-field> 
   
    

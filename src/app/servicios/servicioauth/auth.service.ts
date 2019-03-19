@@ -47,6 +47,7 @@ export class AuthService {
    })
   */
   }
+  
   logoutUser(){
     return this.afsAuth.auth.signOut();
   }

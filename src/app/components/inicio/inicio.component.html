@@ -23,7 +23,7 @@
       </div>
       <div>
       <h2 >Contacto</h2>
-      <p>Brindaremos la información que necesite...</p>
+      <p>Brindaremos la información que necesite...</p><br>
       <img class="img" src='./../../assets/imagen/logomanantial.png'>
       <p><a role="button" href="#cont" >Ver Detalles &raquo;</a></p>      
       </div>
@@ -43,21 +43,19 @@
          <div class="galeria">
        <mat-card class="card-picture" *ngFor="let producto of productos">
           
-       
-    
-       
+        <div>
+        <p fxFlex="100%"><strong>{{producto.nombre}}</strong></p>
+        </div>
          
-       <img mat-card-image style="width:200px; height:200px" src="{{producto.urlImage}}" alt="{{producto.nombre}}" >
-       <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
-       <span fxFlex="50%">{{producto.nombre}}:</span>
-          <br>
-          <span fxFlex="50%" style="padding-bottom:5px;">
+       <img mat-card-image style="width:180px; height:150px; margin:0px;" src="{{producto.urlImage}}" alt="{{producto.nombre}}" >
+       <div>
+      
+        
+          <p fxFlex="100%" style="font-size: 18px; color: rgb(24, 19, 66);">
              <strong> {{producto.precio}} C$ </strong>
-           </span>
-          </mat-card-title>
-           <a><button routerLink="/carrito/{{producto.id}}" mat-raised-button color="primary" >Añadir <mat-icon>add_shopping_cart</mat-icon></button></a>
-         
-       
+           </p> 
+          </div>
+          <a><button routerLink="/carrito/{{producto.id}}" mat-raised-button color="primary" >Añadir <mat-icon>add_shopping_cart</mat-icon></button></a>
       </mat-card>
     
        </div>

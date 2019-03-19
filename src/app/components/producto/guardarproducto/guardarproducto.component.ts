@@ -6,8 +6,9 @@ import { finalize} from 'rxjs/operators';
 import { Observable} from 'rxjs/internal/Observable';
 import { DataApiService} from '../../../servicios/servicioproducto/data-api.service';
 import { ProductoInterface} from './../../../models/producto';
-import { NgForm } from '@angular/forms';
+import { NgForm,ReactiveFormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { async } from '@angular/core/testing';
 
 
 @Component({
@@ -52,6 +53,9 @@ ngOnInit(){
     task.snapshotChanges().pipe( finalize(()=>this.urlImage=ref.getDownloadURL())
     ).subscribe();
     
+  
+
+  
    
 
     }
@@ -63,8 +67,7 @@ ngOnInit(){
     onSaveProducto(formProducto:NgForm):void{
      
       console.log('formProducto.value.id',formProducto.value.id);
-        // this.urlImage= this.imgu.nativeElement.value;
-       
+ 
       if(formProducto.valid) {
         if (formProducto.value.id == null) {
           // New 
@@ -94,12 +97,11 @@ ngOnInit(){
         
         this.dialog.closeAll();
       }
-
-      
+  
     }
   
 
-
+    
     
     
 }

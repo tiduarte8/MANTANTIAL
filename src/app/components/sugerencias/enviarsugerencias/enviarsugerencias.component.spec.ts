@@ -24,7 +24,7 @@ describe('EnviarsugerenciasComponent', () => {
   });
 });
 */
-
+/*
 describe ('Test for Enviar Sugerencia', ()=>{
 
   let respuesta;
@@ -54,3 +54,4 @@ describe ('Test for Enviar Sugerencia', ()=>{
     
   });
 });
+*/

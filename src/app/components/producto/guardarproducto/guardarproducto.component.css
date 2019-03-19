@@ -1,9 +1,7 @@
 
-.mimat {
-  
+.mimat { 
     min-width: 150px;
-    max-width: 500px;
-    
+    max-width: 500px;   
     text-align:center;
     padding:2px;
    cursor:pointer;
@@ -11,24 +9,14 @@
    width:400px;
    margin: 0 auto;
    padding: 10px;
-   height: 460px;
-   
-   position:relative;
-
-  
-   
-    
+   height: 460px;  
+   position:relative;  
   }
 
- 
-
- 
-
-
-  
   .example-full-width {
     width: 100%;
   }
+  
 .mat{
   background-color: aqua;
   padding: 300px;

@@ -52,6 +52,7 @@ export class DataApiService {
 }
 
   addProducto(producto: ProductoInterface):void{
+    delete producto.id;
     this.productosCollection.add(producto);
    
     

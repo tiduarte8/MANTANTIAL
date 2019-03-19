@@ -60,11 +60,12 @@ public userUid: string=null;
     }).then((result) => {
       if (result.value) {
         this.dataApi.deleteProducto(idProducto);
-        Swal.fire(
-          'Eliminado!',
-          'El producto ha sido eliminado.',
-          'success'
-        )
+        Swal.fire({
+          type: 'success',
+      title: 'El producto se ha eliminado !!!',
+      showConfirmButton: false,
+      timer: 1500
+        })
       }
     })
      
