@@ -8,35 +8,46 @@
 <br>
 
 <mat-card class="mimat">
-<form class="example-form">
+<form class="example-form" name="formInventario" #formInventario="ngForm" (ngSubmit)="onSaveInventario(formInventario)" >
   
   <mat-toolbar>
-      <span style="color:navy">Registrar nuevo ingreso de productos</span>
-  </mat-toolbar>
+    <span style="color:navy">{{ !this.dataApi.selectedInventario.id ? 'Nuevo Registro' : 'Actualizar Regisntro'}}</span>
+   
+</mat-toolbar>
+
+<div>
+  <input [(ngModel)]="this.dataApi.selectedInventario.id" name="id" class="inputlog" type="hidden" placeholder="id" >
+</div>
 
   <mat-form-field class="example-full-width">
-    <input [(ngModel)]="nlote" name="nlote" class="inputlog" type="text" matInput placeholder="N° Lote" minlength="6" maxlength="6" required >
+    <input [(ngModel)]="this.dataApi.selectedInventario.nolote" name="nolote" class="inputlog" type="text" matInput placeholder="N° Lote" minlength="6" maxlength="6" required >
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-        <input  matInput [matDatepicker]="picker" disabled required placeholder="Fecha ingreso">
+        <input required [(ngModel)]="dataApi.selectedInventario.fechadeingreso" value="{{fechadeingreso}}"  name="fechadeingreso"  matInput [matDatepicker]="picker"  placeholder="Fecha ingreso">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker disabled="false" #picker></mat-datepicker>
       </mat-form-field>
+    
 
   <mat-form-field class="example-full-width">
-    <input [(ngModel)]="cant" name="cant"  class="inputlog" type="number" matInput placeholder="Cantidad" required >
+    <input [(ngModel)]="this.dataApi.selectedInventario.cantidad" name="cantidad"  class="inputlog" type="number" matInput placeholder="Cantidad" required >
   </mat-form-field>
+
   <mat-form-field class="example-full-width">
-    <mat-select placeholder="Presentacion" class="inputlog" [(ngModel)]="op" name="op" required>
-      <mat-option value="option">Bidon</mat-option>
-      <mat-option value="option">Galon</mat-option>
-      <mat-option value="option">Pack 1 Litro</mat-option>
-    </mat-select>
+      <mat-label>Seleccione Producto</mat-label>
+      <mat-select required  [(ngModel)]="this.dataApi.selectedInventario.producto" name="producto"  >
+          <mat-option  *ngFor="let producto of productos" [value]="producto.nombre">
+              
+              {{producto.nombre}}
+          </mat-option>
+        </mat-select>
   </mat-form-field>
+  
+
   <br>
   <br>
-  <button style="left:40%"  mat-raised-button color="primary">Guardar</button>
+  <button style="left:40%" type="submit"  mat-raised-button color="primary">Guardar</button>
  
 </form>
 

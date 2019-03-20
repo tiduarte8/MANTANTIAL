@@ -1,15 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DataApiService } from './data-api.service';
+import { InventarioService } from './inventario.service';
 
-/*
-describe('DataApiService', () => {
+describe('InventarioService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: DataApiService = TestBed.get(DataApiService);
+    const service: InventarioService = TestBed.get(InventarioService);
     expect(service).toBeTruthy();
   });
 });
-*/
-

@@ -2,7 +2,17 @@
  width: 200px; height: 200px;
  display:block;
  margin:auto; 
- border-radius: 200px;      
+ border-radius: 200px;    
+ border-style: solid;
+ border-color: rgba(22, 50, 63, 0.575);
+ border-width: 5px;
+}
+
+.img:hover{
+   
+    -webkit-box-shadow: -1px 5px 16px 12px rgba(17,30,94,0.76);
+    -moz-box-shadow: -1px 5px 16px 12px rgba(17,30,94,0.76);
+    box-shadow: -1px 5px 16px 12px rgba(17,30,94,0.76);
 }
 
 .img2{
