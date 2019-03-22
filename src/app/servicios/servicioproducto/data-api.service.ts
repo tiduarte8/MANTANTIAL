@@ -15,7 +15,7 @@ export class DataApiService {
   constructor(private afs:AngularFirestore) {}
 
   private productosCollection: AngularFirestoreCollection<ProductoInterface>;
-  private productos:Observable<ProductoInterface[]>;
+  public productos:Observable<ProductoInterface[]>;
   private productoDoc:AngularFirestoreDocument<ProductoInterface>;
   private producto:Observable<ProductoInterface>;
   public selectedProducto:ProductoInterface={
@@ -28,6 +28,17 @@ export class DataApiService {
   
   agregarProductoalCarrito(idProucto: string){
     this.productoDoc= this.afs.doc<ProductoInterface>(`productos/${idProucto}`);
+    this.afs.collection('pedidos').doc(idProucto).collection('detalles').add({
+      precio: 50,
+      cantidad: 49,
+      productoId: '121u92892',
+    })
+    .then(() => {
+      return true
+    })
+    .catch((error) => {
+      return false
+    });
      return this.producto= this.productoDoc.snapshotChanges().pipe(map(action =>{
        if(action.payload.exists === false){
          return null;

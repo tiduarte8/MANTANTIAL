@@ -39,6 +39,14 @@
       <td mat-cell *matCellDef="let element"> C$ {{element.precio}}  </td>
     </ng-container>
   
+    <ng-container matColumnDef="urlImage">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Imagen </th>
+        <td mat-cell *matCellDef="let element">
+          <img style="width:80px;height:80px; background-color: rgba(210, 221, 109, 0.13); 
+          border-radius: 200px; border-style: solid;border-spacing: 3px;
+           border-color:rgba(19, 62, 179, 0.822)" src="{{element.urlImage}}">  </td>
+      </ng-container>
+
    
     <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Editar/Eliminar</th>
@@ -48,11 +56,7 @@
         </td>
       </ng-container>
 
-      <ng-container matColumnDef="urlImage">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Imagen </th>
-        <td mat-cell *matCellDef="let element"><img style="width:80px;height:80px;" src="{{element.urlImage}}">  </td>
-      </ng-container>
-
+     
    
 
   

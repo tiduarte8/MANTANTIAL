@@ -38,6 +38,7 @@ export class GuardarproductoComponent implements OnInit{
   uploadPercent:Observable<number>;
   urlImage:Observable<string>;
   urlImag:string;
+  
  
  
 ngOnInit(){
@@ -60,7 +61,7 @@ ngOnInit(){
    task.snapshotChanges().pipe(
      finalize(()=>this.urlImage=ref.getDownloadURL())
    ).subscribe()
-/*
+
    console.log('url',task.snapshotChanges().pipe(
     finalize(()=>{this.urlImage=ref.getDownloadURL() ;
       this.urlImage.subscribe(url=>{this.urlImag = url});
@@ -70,7 +71,7 @@ ngOnInit(){
    
   
   ).subscribe());
-*/
+
 }
 
     onSaveProducto(formProducto:NgForm):void{
@@ -82,8 +83,8 @@ ngOnInit(){
       if(formProducto.valid) {
         if (formProducto.value.id == null) {
           // New 
-          
-          this.dataApi.addProducto(formProducto.value),
+          this.dataApi.selectedProducto.urlImage=this.urlImag;
+          this.dataApi.addProducto(this.dataApi.selectedProducto),
          
           console.log(this.mensaje='Guardado');
           Swal.fire({
@@ -95,7 +96,8 @@ ngOnInit(){
 
         } else {
           // Update
-          this.dataApi.updateProducto(formProducto.value);
+          this.dataApi.selectedProducto.urlImage=this.urlImag;
+          this.dataApi.updateProducto(this.dataApi.selectedProducto);
           console.log(this.mensaje='Editado');
           Swal.fire({
             type: 'success',

@@ -50,29 +50,30 @@
 
     </div>
  
-
-<mat-form-field class="example-full-width">
-  <input  [(ngModel)]="this.dataApi.selectedProducto.urlImage"   value="{{urlImage | async}}" name="urlImage"   required  class="inputlog"  type="text" matInput placeholder="imagen" >
-  </mat-form-field> 
+<!--
+  <div>
+  <input type="hidden"  value="{{urlImage | async}}" name="urlImage"     class="inputlog"  type="text">
+  </div> 
+  -->
   
    
 
   <br>
   <br>
-  <!--
+ 
   <button type="submit" *ngIf="urlImage | async; else btnDisabled"  mat-raised-button color="primary">Guardar</button> 
   <ng-template #btnDisabled>
   
   <button type="submit"  disabled=true mat-raised-button color="secundary">Guardar</button>
 
 </ng-template>
--->
 
-<button #btnClose type="submit" mat-raised-button color="primary">Guardar</button>
+
+<!--<button #btnClose type="submit" mat-raised-button color="primary">Guardar</button>
   <br>
   <label style="color:red">{{mensaje}}</label>
   <label style="color:green">{{mensaje2}}</label>
-  
+  -->
  
 
   

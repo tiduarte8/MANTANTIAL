@@ -49,6 +49,7 @@ import { FlexLayoutModule} from '@angular/flex-layout';
 
 
 
+
 @NgModule({
   declarations: [
     NuevoingresoComponent,
@@ -71,6 +72,7 @@ import { FlexLayoutModule} from '@angular/flex-layout';
     EnviarsugerenciasComponent,
     InventarioComponent,
     GuardarproductoComponent,
+   
     
   
     
