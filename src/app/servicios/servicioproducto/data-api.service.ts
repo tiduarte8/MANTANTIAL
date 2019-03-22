@@ -20,6 +20,7 @@ export class DataApiService {
   private producto:Observable<ProductoInterface>;
   public selectedProducto:ProductoInterface={
     id:null,
+   
     
   };
  

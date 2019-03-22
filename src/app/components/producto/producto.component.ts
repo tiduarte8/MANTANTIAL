@@ -97,7 +97,7 @@ public userUid: string=null;
 
 
 
- displayedColumns: string[] = ['position','codigo', 'nombre', 'precio','actions'];
+ displayedColumns: string[] = ['position','codigo', 'nombre', 'precio','actions','urlImage'];
  dataSource = new MatTableDataSource<ProductoInterface>();
 
 

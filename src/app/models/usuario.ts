@@ -6,6 +6,14 @@ export interface UsuarioInterface {
     email?:string;
     password?:string;
     photoUrl?:string;
+    snombre?:string;
+    papellido?:string;
+    sapellido?:string;
+    ntelefono?:string;
+    ncedula?:string;
+    direccion?:string;
+    tipousuario?:string;
+
 
 }
 

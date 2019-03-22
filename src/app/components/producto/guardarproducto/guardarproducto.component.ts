@@ -9,6 +9,10 @@ import { ProductoInterface} from './../../../models/producto';
 import { NgForm,ReactiveFormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { async } from '@angular/core/testing';
+import { UrlSerializer } from '@angular/router';
+
+
+
 
 
 @Component({
@@ -33,6 +37,7 @@ export class GuardarproductoComponent implements OnInit{
   
   uploadPercent:Observable<number>;
   urlImage:Observable<string>;
+  urlImag:string;
  
  
 ngOnInit(){
@@ -41,32 +46,38 @@ ngOnInit(){
 
 
 
+
   
-  onUpload(e){
+  onUpload(event){
    
     const id = Math.random().toString(36).substring(2);
-    const file = e.target.files[0];
+    const file = event.target.files[0];
     const filePath = `presentaciones/profile_${id}`;
     const ref = this.storage.ref(filePath);
     const task = this.storage.upload(filePath,file);
+
     this.uploadPercent= task.percentageChanges();
-    task.snapshotChanges().pipe( finalize(()=>this.urlImage=ref.getDownloadURL())
-    ).subscribe();
-    
-  
-
-  
+   task.snapshotChanges().pipe(
+     finalize(()=>this.urlImage=ref.getDownloadURL())
+   ).subscribe()
+/*
+   console.log('url',task.snapshotChanges().pipe(
+    finalize(()=>{this.urlImage=ref.getDownloadURL() ;
+      this.urlImage.subscribe(url=>{this.urlImag = url});
+     console.log('URL',this.urlImag);
+     
+    })
    
-
-    }
-    
-
   
-    
+  ).subscribe());
+*/
+}
 
     onSaveProducto(formProducto:NgForm):void{
      
-      console.log('formProducto.value.id',formProducto.value.id);
+      
+      console.log('formProducto.value.id',formProducto.value);
+       
  
       if(formProducto.valid) {
         if (formProducto.value.id == null) {

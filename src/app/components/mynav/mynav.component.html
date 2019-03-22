@@ -3,7 +3,7 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="!(isHandset$ | async)">
-    <mat-toolbar><img class="imgc" src="./../../assets/imagen/gota.png"></mat-toolbar>
+    <mat-toolbar><img class="imgc" src="./../../assets/imagen/cordillera.png"></mat-toolbar>
     <mat-nav-list class="matnavlist">
       <a (click)="drawer.toggle()" *ngIf="(isHandset$ | async)" mat-list-item routerLink="/inicio"><mat-icon>home</mat-icon>&nbsp;Inicio</a>
       <a  *ngIf=" !(isHandset$ | async)"  mat-list-item routerLink="/inicio"><mat-icon>home</mat-icon>&nbsp;Inicio</a>

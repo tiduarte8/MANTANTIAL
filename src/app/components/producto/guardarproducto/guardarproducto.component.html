@@ -13,13 +13,19 @@
     
   <mat-toolbar>
       <span style="color:navy">{{ !this.dataApi.selectedProducto.id ? 'Nuevo Producto' : 'Actualizar Producto'}}</span>
-  </mat-toolbar>
+      <mat-card style="margin:0;padding: 0;border: 0;">
+        
+      <img *ngIf="urlImage != null" style="width:150px;height:150px" src="{{urlImage | async}}">
+      <img *ngIf="this.dataApi.selectedProducto.id!==null" style="width:150px;height:150px" src="{{this.dataApi.selectedProducto.urlImage}}">
+    </mat-card>
+    </mat-toolbar>
 
  <input name="id" [(ngModel)]="this.dataApi.selectedProducto.id" type="hidden" >
-  
+  <!--
  <div class="example-full-width">
-  <input  matInput name="urlImage" type="text" [value]="urlImage | async">
+  <input  matInput type="text" [value]="urlImage | async">
 </div>
+-->
 
   
 
@@ -46,7 +52,7 @@
  
 
 <mat-form-field class="example-full-width">
-  <input  [(ngModel)]="dataApi.selectedProducto.urlImage"  required [value]="urlImage | async" name="urlImage" class="inputlog"  type="text" matInput placeholder="imagen" >
+  <input  [(ngModel)]="this.dataApi.selectedProducto.urlImage"   value="{{urlImage | async}}" name="urlImage"   required  class="inputlog"  type="text" matInput placeholder="imagen" >
   </mat-form-field> 
   
    
