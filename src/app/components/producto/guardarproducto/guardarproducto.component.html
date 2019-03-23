@@ -1,5 +1,5 @@
-<mat-dialog-actions #btnClose align="end">
-    <button mat-button mat-dialog-close><mat-icon>close</mat-icon></button>
+<mat-dialog-actions #btnClose  align="end">
+    <button (click)="resetForm()" mat-button mat-dialog-close><mat-icon>close</mat-icon></button>
     
   </mat-dialog-actions>
 <img class="imglog" src="./../../assets/imagen/logomanantialt.png">
@@ -43,10 +43,10 @@
   </mat-form-field>
 
   <div class="example-full-width">
-      <input (change)="onUpload($event)" style="width:100%;"    type="file" accept=".png, .jpg"  placeholder="Imagen" required>
+      <input (change)="onUpload($event)" *ngIf="this.dataApi.selectedProducto.id === null" style="width:100%;"  type="file" accept=".png, .jpg"  placeholder="Imagen" required>
     </div><br>
     <div  class="progress">
-        <mat-progress-bar mode="determinate" [style.width]="(uploadPercent | async) + '%'"></mat-progress-bar>
+        <mat-progress-bar *ngIf="this.dataApi.selectedProducto.id === null" [style.width]="(uploadPercent | async) + '%'"></mat-progress-bar>
 
     </div>
  
@@ -64,16 +64,16 @@
   <button type="submit" *ngIf="urlImage | async; else btnDisabled"  mat-raised-button color="primary">Guardar</button> 
   <ng-template #btnDisabled>
   
-  <button type="submit"  disabled=true mat-raised-button color="secundary">Guardar</button>
+  <button type="submit" #btn *ngIf="this.dataApi.selectedProducto.id === null"  disabled=true mat-raised-button color="secundary">Guardar</button>
 
 </ng-template>
 
 
-<!--<button #btnClose type="submit" mat-raised-button color="primary">Guardar</button>
+<button #btnClose type="submit" *ngIf="this.dataApi.selectedProducto.id !== null" mat-raised-button color="primary">Guardar</button>
   <br>
   <label style="color:red">{{mensaje}}</label>
   <label style="color:green">{{mensaje2}}</label>
-  -->
+ 
  
 
   

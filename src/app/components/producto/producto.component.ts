@@ -7,12 +7,13 @@ import {Observable} from 'rxjs/internal/Observable';
 import {DataApiService} from '../../servicios/servicioproducto/data-api.service';
 import {ProductoInterface} from './../../models/producto';
 import { NgForm } from '@angular/forms';
-import {GuardarproductoComponent} from './guardarproducto/guardarproducto.component';
+
 import {AngularFireAuth} from '@angular/fire/auth';
 import { DataSource } from '@angular/cdk/table';
 import {AuthService} from './../../servicios/servicioauth/auth.service';
 import { database } from 'firebase';
 import Swal from 'sweetalert2';
+import {GuardarproductoComponent,ActualizarImagenComponent} from './guardarproducto/guardarproducto.component';
 
 
 
@@ -85,19 +86,29 @@ public userUid: string=null;
      dialogConfig.disableClose=true;
      dialogConfig.autoFocus=true;
      dialogConfig.width="500px";
-     dialogConfig.height="650px"
+     dialogConfig.height="710px"
      this.dialog.open(GuardarproductoComponent,dialogConfig);
      
     this.dataApi.selectedProducto = Object.assign({}, producto);
-
-    
-
-    
+ 
    }
 
+   onPreUpdateProducto2(producto:ProductoInterface){
+    console.log('update',producto);
+    const dialogConfig= new MatDialogConfig();
+    dialogConfig.disableClose=true;
+    dialogConfig.autoFocus=true;
+    dialogConfig.width="500px";
+    dialogConfig.height="650px"
+    this.dialog.open(ActualizarImagenComponent,dialogConfig);
+    
+   this.dataApi.selectedProducto = Object.assign({}, producto);
+
+  }
 
 
- displayedColumns: string[] = ['position','codigo', 'nombre', 'precio','actions','urlImage'];
+
+ displayedColumns: string[] = ['position','codigo','nombre', 'precio','urlImage','actions'];
  dataSource = new MatTableDataSource<ProductoInterface>();
 
 
@@ -152,69 +163,11 @@ public userUid: string=null;
 
 
 
+
+
 }
 
 
 
-/*
-@Component({
-
-  selector:'app-producto',
-  templateUrl:'./registrarproducto.component.html',
-  styleUrls:['./registrarproducto.component.css']
-
-})
-
- export class RegistrarproductoComponent{
-
-  @ViewChild('imageUser') inputImageUser: ElementRef;
-  @ViewChild('btnClose') btnClose: ElementRef;
-
-  constructor(public dialog: MatDialog, private dataApi:DataApiService,
-    private storage: AngularFireStorage){}
-  
-  uploadPercent:Observable<number>;
-  urlImage:Observable<string>;
-  
-
-  
-  
-  onUpload(e){
-
-    const id = Math.random().toString(36).substring(2);
-    const file = e.target.files[0];
-    const filePath = `presentaciones/profile_${id}`;
-    const ref = this.storage.ref(filePath);
-    const task = this.storage.upload(filePath,file);
-    this.uploadPercent= task.percentageChanges();
-    task.snapshotChanges().pipe( finalize(()=>this.urlImage=ref.getDownloadURL())
-    ).subscribe();
-    
-    }
 
 
-    
-
-    onSaveProducto(formProducto:NgForm):void{
-      console.log('formProducto.value.id',formProducto.value.id);
-     
-      
-      if (formProducto.value.id == null) {
-        // New 
-        
-        this.dataApi.addProducto(formProducto.value);
-      } else {
-        // Update
-        this.dataApi.updateProducto(formProducto.value);
-      }
-      formProducto.resetForm();
-      this.btnClose.nativeElement.click();
-    }
-  
-
-
-    
-    
-}
-
-*/

@@ -32,7 +32,7 @@ export class GuardarproductoComponent implements OnInit{
 
    // @ViewChild('imageUser') inputImageUser: ElementRef;
   @ViewChild('btnClose') btnClose: ElementRef;
-  @ViewChild('imgu') imgu:ElementRef;
+  @ViewChild('btn') btn:ElementRef;
 
   
   uploadPercent:Observable<number>;
@@ -96,7 +96,8 @@ ngOnInit(){
 
         } else {
           // Update
-          this.dataApi.selectedProducto.urlImage=this.urlImag;
+         // this.dataApi.selectedProducto.urlImage=this.urlImag;
+         
           this.dataApi.updateProducto(this.dataApi.selectedProducto);
           console.log(this.mensaje='Editado');
           Swal.fire({
@@ -112,11 +113,136 @@ ngOnInit(){
       }
   
     }
-  
-
-    
+   
+    resetForm(formProducto?:NgForm){
+      if(formProducto != null)
+      formProducto.resetForm();
+      this.dataApi.selectedProducto={
+        id:null,
+        nombre:'',
+        precio:null,
+        urlImage:'',
+        codigo:'',
+      }
+    }
     
     
 }
+
+@Component({
+
+  selector:'app-guardarproducto',
+  templateUrl:'./actualizarimagen.html',
+  styleUrls:['./guardarproducto.component.css']
+
+})
+
+ export class ActualizarImagenComponent{
+
+  @ViewChild('imageUser') inputImageUser: ElementRef;
+  @ViewChild('btnClose') btnClose: ElementRef;
+
+  public mensaje:string ='';
+
+  constructor(public dialog: MatDialog, private dataApi:DataApiService,
+    private storage: AngularFireStorage){}
+  
+    uploadPercent:Observable<number>;
+    urlImage:Observable<string>;
+    urlImag:string;
+
+    onUpload(event){
+   
+      const id = Math.random().toString(36).substring(2);
+      const file = event.target.files[0];
+      const filePath = `presentaciones/profile_${id}`;
+      const ref = this.storage.ref(filePath);
+      const task = this.storage.upload(filePath,file);
+  
+      this.uploadPercent= task.percentageChanges();
+     task.snapshotChanges().pipe(
+       finalize(()=>this.urlImage=ref.getDownloadURL())
+     ).subscribe()
+  
+     console.log('url',task.snapshotChanges().pipe(
+      finalize(()=>{this.urlImage=ref.getDownloadURL() ;
+        this.urlImage.subscribe(url=>{this.urlImag = url});
+       console.log('URL',this.urlImag);
+       
+      })
+     
+    
+    ).subscribe());
+  
+  }
+  
+
+    onSaveProductoimg(formProductoimg:NgForm):void{
+     
+      
+      console.log('formProductoimg.value.id',formProductoimg.value);
+       
+ 
+      if(formProductoimg.valid) {
+        if (formProductoimg.value.id == null) {
+          // New 
+          this.dataApi.selectedProducto.urlImage=this.urlImag;
+          this.dataApi.addProducto(this.dataApi.selectedProducto),
+         
+          console.log(this.mensaje='Guardado');
+          Swal.fire({
+            type: 'success',
+        title: 'Producto guardado!!!',
+        showConfirmButton: false,
+        timer: 1500
+          })
+
+        } else {
+          // Update
+         this.dataApi.selectedProducto.urlImage=this.urlImag;
+         
+          this.dataApi.updateProducto(this.dataApi.selectedProducto);
+          console.log(this.mensaje='Editado');
+          Swal.fire({
+            type: 'success',
+        title: 'Producto actualizado!!!',
+        showConfirmButton: false,
+        timer: 1500
+          })
+        }
+        formProductoimg.reset();
+        
+        this.dialog.closeAll();
+      }
+  
+    }
+   
+    resetForm(formProductoimg?:NgForm){
+      if(formProductoimg != null)
+      formProductoimg.resetForm();
+      this.dataApi.selectedProducto={
+        id:null,
+        nombre:'',
+        precio:null,
+        urlImage:'',
+        codigo:'',
+      }
+    }
+    
+    
+  
+
+  
+  
+ 
+
+    
+
+   
+
+    
+    
+}
+
 
 

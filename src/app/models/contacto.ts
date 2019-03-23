@@ -3,7 +3,8 @@ export interface contactoInterface{
   correo?:string;
   telefono?:string;
   mensaje?:string ;
-  
+  id?:string;
+  fecha?;
 
 
 }

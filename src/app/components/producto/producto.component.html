@@ -42,8 +42,8 @@
     <ng-container matColumnDef="urlImage">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Imagen </th>
         <td mat-cell *matCellDef="let element">
-          <img style="width:80px;height:80px; background-color: rgba(210, 221, 109, 0.13); 
-          border-radius: 200px; border-style: solid;border-spacing: 3px;
+          <img (click)="onPreUpdateProducto2(element)" style="width:80px;height:80px; object-fit:cover; background-color: rgba(210, 221, 109, 0.13); 
+          border-radius: 10px; border-style: solid;border-spacing: 3px;
            border-color:rgba(19, 62, 179, 0.822)" src="{{element.urlImage}}">  </td>
       </ng-container>
 

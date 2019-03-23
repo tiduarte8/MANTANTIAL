@@ -9,7 +9,21 @@
    width:400px;
    margin: 0 auto;
    padding: 10px;
-   height: 460px;  
+   height: 430px;  
+   position:relative;  
+  }
+
+  .mimat2 { 
+    min-width: 150px;
+    max-width: 500px;   
+    text-align:center;
+    padding:2px;
+   cursor:pointer;
+   display:block;
+   width:400px;
+   margin: 0 auto;
+   padding: 10px;
+   height: 300px;  
    position:relative;  
   }
 

@@ -16,7 +16,7 @@ import { MynavComponent } from './components/mynav/mynav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { LoginComponent } from './components/login/login.component';
 import {MatTableModule} from '@angular/material/table';
-import { ProductoComponent } from './components/producto/producto.component';
+import { ProductoComponent} from './components/producto/producto.component';
 import { PedidoComponent } from './components/pedido/pedido.component';
 import { ClientesComponent } from './components/clientes/clientes.component';
 import { ReporteComponent,DialogContentExampleDialog } from './components/reporte/reporte.component';
@@ -26,6 +26,7 @@ import {MatCardModule} from '@angular/material/card';
 import { InicioComponent,Contactanos } from './components/inicio/inicio.component';
 import { RegistrarseComponent } from './components/clientes/registrarse/registrarse.component';
 import {MatSortModule} from '@angular/material/sort';
+import {ContactoComponent} from './components/contacto/contacto.component';
 
 
 import { CarritoComponent } from './components/carrito/carrito.component';
@@ -42,7 +43,7 @@ import {MatDatepickerModule,MatNativeDateModule} from '@angular/material';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {AngularFirestore,FirestoreSettingsToken} from '@angular/fire/firestore';
-import { GuardarproductoComponent } from './components/producto/guardarproducto/guardarproducto.component';
+import { GuardarproductoComponent,ActualizarImagenComponent} from './components/producto/guardarproducto/guardarproducto.component';
 import { FlexLayoutModule} from '@angular/flex-layout';
 
 
@@ -65,8 +66,8 @@ import { FlexLayoutModule} from '@angular/flex-layout';
     InicioComponent,
     Contactanos,
     RegistrarseComponent,
-   
-    
+    ContactoComponent,
+    ActualizarImagenComponent,
 
     CarritoComponent,
     EnviarsugerenciasComponent,
@@ -116,7 +117,7 @@ import { FlexLayoutModule} from '@angular/flex-layout';
     Contactanos,
     InventarioComponent,
     NuevoingresoComponent,
-   
+    ActualizarImagenComponent,
     ProductoComponent,
     RegistrarseComponent,
     LoginComponent,

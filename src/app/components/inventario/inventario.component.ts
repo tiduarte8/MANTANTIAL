@@ -172,6 +172,18 @@ export class NuevoingresoComponent implements OnInit{
       }
   
     }
+
+    resetForm(formInventario?:NgForm){
+      if(formInventario != null)
+      formInventario.resetForm();
+      this.dataApi.selectedInventario={
+        id:null,
+        cantidad:null,
+        nolote:'',
+        fechadeingreso:null,
+        producto:null,
+      }
+    }
   
 
     getListProductos(){

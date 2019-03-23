@@ -5,6 +5,7 @@ import { ProductoComponent } from './components/producto/producto.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { ClientesComponent } from './components/clientes/clientes.component';
 import { RegistrarseComponent } from './components/clientes/registrarse/registrarse.component';
+import {ContactoComponent} from './components/contacto/contacto.component';
 
 
 
@@ -14,6 +15,7 @@ import { ReporteComponent } from './components/reporte/reporte.component';
 import { CarritoComponent } from './components/carrito/carrito.component';
 import { EnviarsugerenciasComponent } from './components/sugerencias/enviarsugerencias/enviarsugerencias.component';
 import {InventarioComponent}from './components/inventario/inventario.component';
+
 import {AuthGuard} from './guards/auth.guard';
 
 
@@ -31,6 +33,7 @@ const routes: Routes =[
      {path:'enviarsu',component:EnviarsugerenciasComponent},
      {path:'reporte',component:ReporteComponent,canActivate:[AuthGuard]},
      {path:'carrito/:id',component:CarritoComponent},
+     {path:'contacto',component:ContactoComponent,canActivate:[AuthGuard]},
      {path:'',component:InicioComponent,pathMatch:'full'},
      {path:'**',redirectTo:'/',pathMatch:'full'},
      

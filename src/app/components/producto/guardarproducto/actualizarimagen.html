@@ -1,0 +1,90 @@
+<mat-dialog-actions #btnClose  align="end">
+        <button (click)="resetForm()" mat-button mat-dialog-close><mat-icon>close</mat-icon></button>
+        
+      </mat-dialog-actions>
+    <img class="imglog" src="./../../assets/imagen/logomanantialt.png">
+    <br>
+    <div class="rdiv">
+     <mat-card class="mimat2">
+      
+    <form name="formProductoimg" #formProductoimg="ngForm" (ngSubmit)="onSaveProductoimg(formProductoimg)"  class="example-form">
+    
+        
+        
+      <mat-toolbar>
+          <span style="color:navy">{{ !this.dataApi.selectedProducto.id ? 'Nuevo Producto' : 'Actualizar Producto'}}</span>
+          <mat-card style="margin:0;padding: 0;border: 0;">
+            
+          
+        </mat-card>
+        </mat-toolbar>
+    
+     <input name="id" [(ngModel)]="this.dataApi.selectedProducto.id" type="hidden" >
+      <!--
+     <div class="example-full-width">
+      <input  matInput type="text" [value]="urlImage | async">
+    </div>
+    -->
+    
+      
+    
+    
+      <div>
+            <input [(ngModel)]="this.dataApi.selectedProducto.codigo"  type="hidden" name="codigo"  placeholder="Código de Barra" required >
+      </div>
+    
+      <div>
+        <input [(ngModel)]="this.dataApi.selectedProducto.nombre" name="nombre" class="inputlog"  type="hidden" maxlength="30" placeholder="Nombre de Presentación" required >
+      </div>
+    
+      <div class="example-full-width">
+        <input [(ngModel)]="this.dataApi.selectedProducto.precio" name="precio"max="3"  type="hidden" placeholder="Precio" required >
+      </div>
+     <h3 *ngIf="urlImage != null">Nueva Imagen</h3>
+      <img *ngIf="urlImage != null" style="width:150px;height:150px" src="{{urlImage | async}}">
+      
+    
+    
+      <br>
+      <div class="example-full-width">
+          <input (change)="onUpload($event)" *ngIf="this.dataApi.selectedProducto.id !== null" style="width:100%;"  type="file" accept=".png, .jpg"  placeholder="Imagen" required>
+        </div><br>
+        <div  class="progress">
+            <mat-progress-bar *ngIf="this.dataApi.selectedProducto.id !== null" [style.width]="(uploadPercent | async) + '%'"></mat-progress-bar>
+    
+        </div>
+     
+    <!--
+      <div>
+      <input type="hidden"  value="{{urlImage | async}}" name="urlImage"     class="inputlog"  type="text">
+      </div> 
+      -->
+      
+       
+    
+      <br>
+      <br>
+   
+     
+
+      <button type="submit" *ngIf="urlImage | async; else btnDisabled"  mat-raised-button color="primary">Guardar</button> 
+      <ng-template #btnDisabled>
+      
+      <button type="submit" #btn  disabled=true mat-raised-button color="secundary">Guardar</button>
+    
+    </ng-template>
+    
+    <!--
+    <button #btnClose type="submit" *ngIf="this.dataApi.selectedProducto.id === null" mat-raised-button color="primary">Guardar</button>
+      <br>
+      <label style="color:red">{{mensaje}}</label>
+      <label style="color:green">{{mensaje2}}</label>
+    --> 
+     
+    
+      
+    
+    </form>
+    </mat-card> 
+    </div>
+    

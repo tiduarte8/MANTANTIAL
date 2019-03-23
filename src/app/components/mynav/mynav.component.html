@@ -17,6 +17,8 @@
       <a  *ngIf="isLogged && !(isHandset$ | async)"  mat-list-item routerLink="/pedido"><mat-icon>shopping_basket</mat-icon>&nbsp;Pedidos</a>
       <a (click)="drawer.toggle()" *ngIf="isLogged && (isHandset$ | async)"  mat-list-item routerLink="/sugerencia"><mat-icon>email</mat-icon>&nbsp;Sugerencias</a>
       <a  *ngIf="isLogged && !(isHandset$ | async)"  mat-list-item routerLink="/sugerencia"><mat-icon>email</mat-icon>&nbsp;Sugerencias</a>
+      <a (click)="drawer.toggle()" *ngIf="isLogged && (isHandset$ | async)"  mat-list-item routerLink="/contacto"><mat-icon>perm_phone_msg</mat-icon>&nbsp;Contacto</a>
+      <a  *ngIf="isLogged && !(isHandset$ | async)"  mat-list-item routerLink="/contacto"><mat-icon>perm_phone_msg</mat-icon>&nbsp;Contacto</a>
       <a (click)="drawer.toggle()" *ngIf="(isHandset$|async)" mat-list-item routerLink="/enviarsu"><mat-icon>sms</mat-icon>&nbsp;Enviar Sugerencias</a>
       <a  *ngIf="!(isHandset$|async)" mat-list-item routerLink="/enviarsu"><mat-icon>sms</mat-icon>&nbsp;Enviar Sugerencias</a>
       <a (click)="drawer.toggle()" *ngIf="isLogged && (isHandset$ | async)" mat-list-item routerLink="/reporte"><mat-icon>list</mat-icon>&nbsp;Reportes</a>

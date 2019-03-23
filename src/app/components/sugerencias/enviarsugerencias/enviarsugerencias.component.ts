@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
 import { async } from '@angular/core/testing';
 import {AuthService} from './../../../servicios/servicioauth/auth.service';
 import {UsuarioInterface} from './../../../models/usuario';
+import { getLocaleTimeFormat } from '@angular/common';
 
 @Component({
   selector: 'app-enviarsugerencias',
@@ -52,7 +53,7 @@ this.dataApi.formData.fecha=this.fecha;
     private storage: AngularFirestore,private authService:AuthService) { }
 
     f= new Date();
-    fecha=this.f.getDate()+"/"+(this.f.getMonth()+1)+"/"+this.f.getFullYear();
+    fecha=this.f.getDate()+"/"+(this.f.getMonth()+1)+"/"+this.f.getFullYear()+'  ('+this.f.getHours()+':'+this.f.getMinutes()+')';
     email:string;
 
    
