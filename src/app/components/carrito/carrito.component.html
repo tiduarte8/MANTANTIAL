@@ -1,28 +1,63 @@
-<div>
-  <div>
-    <div>
-      <h1>Carrito productos agregados</h1>
-    </div>
-    <div class="row">
-      <div>
-        
-            <mat-card class="cuadroimagen">
-                <img style="height:200px; whidth:200px" src="{{producto.imagen}}" alt="{{producto.nombre}}" >
-                
-                <p class="h3t">Producto:<strong> {{producto.nombre}}</strong></p>
-                <div >
-                   <div style="padding-bottom:5px;">
-                      Precio:<strong> {{producto.precio}} C$ </strong>
-                    </div>
-                    <div style="padding-bottom:5px;">
-                        Id del producto:<strong> {{producto.id}}</strong>
-                      </div>
-                   
-                  </div>
-                </mat-card> 
-        
-      </div>
+<body class="volver-arriba">
+<div class="container" >
+  <div class="div1">
+  <table>
+    <thead>
+       <tr>
+          <td>
+              <strong>N°</strong> 
+             </td>
+         <td>
+          <strong>Nombre</strong> 
+         </td>
+         <td>
+            <strong>Imagen</strong> 
+           </td>
+         <td>
+          <strong>Precio</strong>
+        </td>
+        <td>
+            <strong>Cantidad</strong>
+        </td>
+        <td>
+            <strong>Sub Total</strong>
+        </td>
+        <td>
+            <strong>Borrar</strong>
+        </td>
+         
+       </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="producto!==null">
+            <td>{{1}}</td>
+        <td>{{producto.nombre}}</td>
+        <td><img matTooltip="Imagen"
+          aria-label="Button that displays a tooltip when focused or hovered over"
+           style="width:80px;height:80px; object-fit:cover; background-color: rgba(210, 221, 109, 0.13); 
+         border-radius: 10px; border-style: solid;border-spacing: 3px;
+          border-color:rgba(19, 62, 179, 0.822)" src="{{producto.urlImage}}"></td>
+        <td>{{producto.precio}} C$</td>
+        <td><input (change)="ActCant()" type="number" style="text-align:right;width:50px;" name="cantidad" #cantidad  required value=1></td>
+        <td>{{SubTotal}} C$</td>
+        <td> <button class="btn btn-danger" color="warn" (click)="onDeleteProductoCarrito(producto)" mat-icon-button  ><mat-icon>delete_outline</mat-icon></button></td>
 
-    </div>
+      </tr>
+    </tbody>
+  </table>
+  <table style="border:none;">
+  <h3 class="h3" style="float:right">Total: {{Total}} C$</h3>
+</table>
+
   </div>
+  <div class="div2">
+  <mat-card class="card">
+    <h2><mat-icon>shopping_cart</mat-icon> Carrito de Compras</h2>
+    <h3>Total:{{Total}} C$</h3>
+    <button mat-raised-button color="primary">Finalizar Compra</button>
+  </mat-card>
+  </div>
+ 
 </div>
+
+</body>

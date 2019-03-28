@@ -1,0 +1,122 @@
+body{
+ 
+  margin: 0;
+  padding: 0;
+}
+.container{
+width: 90%;
+max-width: 1000px;
+margin: 0;
+padding: 0;
+display: grid;
+grid-gap: 10px;
+grid-template-columns: repeat(3,1fr);
+grid-template-rows: repeat(1,auto);
+margin-top: 20px;
+
+}
+
+.div1{
+   
+  width: 950px;
+     
+}
+
+.div2{
+ width: 300px; 
+ border-radius: 5px;
+  
+}
+
+.card{
+    background-color: rgb(197, 211, 233);
+}
+
+@media screen and (max-width:768px){
+  .container  .div1{
+        grid-column: 1/-1;
+    }
+  .container  .div1{
+        grid-column: 1/-1;
+    }
+}
+
+table{
+  margin-left: 30px;
+  width: 80%;
+  border: 1px;
+  border-color: navy;
+  border-spacing: 1px;
+  border-style: solid;
+}
+
+
+
+table thead{
+   
+    background-color: rgb(171, 192, 201);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+@media (max-width:1200px){
+    .container{
+      grid-template-columns: repeat(2,1fr);
+    }
+    .div1{
+        width: 900px;
+    }
+    .div2{
+        width: 400px;
+    }
+}
+
+
+@media (max-width:780px){
+  .container{
+    grid-template-columns: repeat(1,1fr);
+  }
+  .div1{
+    width: 780px;
+}
+  .div2{
+    width: 780px;
+}
+}
+
+@media (max-width:420px){
+  .container{
+    grid-template-columns: repeat(1,1fr);
+  }
+  .div1{
+    width:420px;
+}
+  .div2{
+    width: 420px;
+}
+}
+*/

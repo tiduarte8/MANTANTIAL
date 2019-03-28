@@ -1,7 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild,ElementRef } from '@angular/core';
 import {DataApiService} from '../../servicios/servicioproducto/data-api.service';
 import {ProductoInterface} from './../../models/producto';
 import {ActivatedRoute,Params} from '@angular/router';
+import { ProductoComponent } from '../producto/producto.component';
+import { Element } from '@angular/compiler/src/render3/r3_ast';
+import { ElementData } from '@angular/core/src/view';
+import Swal from 'sweetalert2';
+
+
 @Component({
   selector: 'app-carrito',
   templateUrl: './carrito.component.html',
@@ -9,22 +15,71 @@ import {ActivatedRoute,Params} from '@angular/router';
 })
 export class CarritoComponent implements OnInit {
 
-  constructor(private dataApi:DataApiService, private route: ActivatedRoute) { }
-   public producto:ProductoInterface;
+  @ViewChild('cantidad') cantidad:ElementRef;
+
+  constructor() { 
+  
+  }
+ 
+ public producto;
+ public SubTotal:number;
+ public Total:number=0;
+ public cant:number;
+
 
   ngOnInit() {
-    const idProducto=this.route.snapshot.params['id'];
-    this.getProductos(idProducto);
+   
+    this.producto=JSON.parse(localStorage.getItem('producto'));
+    console.log("PRODUCTO",this.producto);
     
+     console.log(this.cantidad)
+  // this.Total+=this.producto.precio;
+    //this.obtener_LocalStorage();
+   this.Total;
+   
   }
+
+  ActCant(){
+   this.cant=this.cantidad.nativeElement.value;
+   console.log('Cant',this.cant);
+   this.SubTotal=this.producto.precio*this.cant;
+   this.Total=this.Total+this.SubTotal;
+  }
+
+  onDeleteProductoCarrito(idProducto:string):void{
+    console.log('Delete Producto',idProducto);
+
+    Swal.fire({
+     title: '¿Estás Seguro?',
+     text: "Esta acción no se puede detener!",
+     type: 'warning',
+     showCancelButton: true,
+     confirmButtonColor: '#3085d6',
+     cancelButtonColor: '#d33',
+     confirmButtonText: 'Si, elimnarlo!'
+   }).then((result) => {
+     if (result.value) {
+      localStorage.removeItem('producto');
+      this.producto=JSON.parse(localStorage.getItem('producto'));
+
+       Swal.fire({
+         type: 'success',
+     title: 'El producto se ha eliminado del carrito!!!',
+     showConfirmButton: false,
+     timer: 1500
+       })
+     }
+   })
+  }
+
 
   
-  getProductos(idProducto:string):void{
-    this.dataApi.agregarProductoalCarrito(idProducto).subscribe(producto=>{
-      this.producto=producto;
 
-
-    }); 
+  /*
+  ngAfterViewInit(): void {
+    this.cant=this.cantidad.nativeElement.value;
+    this.SubTotal=this.producto.precio*this.cant;
+    console.log("SUB",this.SubTotal);
   }
-
+  */
 }

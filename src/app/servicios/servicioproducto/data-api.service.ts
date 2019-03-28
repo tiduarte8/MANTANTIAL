@@ -25,7 +25,18 @@ export class DataApiService {
     
   };
  
-
+  getOneProducto(idProducto: string) {
+    this.productoDoc = this.afs.doc<ProductoInterface>(`productos/${idProducto}`);
+    return this.producto = this.productoDoc.snapshotChanges().pipe(map(action => {
+      if (action.payload.exists === false) {
+        return null;
+      } else {
+        const data = action.payload.data() as ProductoInterface;
+        data.id = action.payload.id;
+        return data;
+      }
+    }));
+  }
   
   agregarProductoalCarrito(idProucto: string){
     this.productoDoc= this.afs.doc<ProductoInterface>(`productos/${idProucto}`);

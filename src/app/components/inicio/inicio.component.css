@@ -389,8 +389,7 @@ p{
       }
 
       .galeria .card-picture:hover{
-        width:90%;
-        height:100%;
+        
         display: block;
 
           background: rgba(0, 225, 255, 0.068);

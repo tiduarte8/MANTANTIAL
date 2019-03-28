@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild,ElementRef} from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import {DataApiService} from './../../servicios/servicioproducto/data-api.service';
 import {ContactoService} from './../../servicios/serviciocontacto/contacto.service';
@@ -13,6 +13,8 @@ import Swal from 'sweetalert2';
 import { async } from '@angular/core/testing';
 import { UrlSerializer } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
+import {ProductoInterface} from './../../models/producto';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-inicio',
@@ -22,20 +24,71 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class InicioComponent implements OnInit {
 
+  constructor(public dialog: MatDialog, private dataApi:DataApiService, private route: ActivatedRoute) {}
+  public productos=[];
+  public producto='';
+  public productol: ProductoInterface = {};
+
+  getDetalle(idProducto: string): void {
+    this.dataApi.getOneProducto(idProducto).subscribe(producto => {
+      this.productol = producto;
+
+    
+     localStorage.setItem("producto",JSON.stringify(this.productol) );
+     console.log("PRODUCTO",this.productol);
+   //  this.obtener_LocalStorage();
+
+    });
+
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000
+    });
+    
+    Toast.fire({
+      type: 'success',
+      title: 'Producto Agregado'
+    })
+  }
+/*
+  Comprar(){
+    
+  
+    
+    const idProducto = this.route.snapshot.params['id'];
+    this.getDetalle(idProducto);
+
+    localStorage.setItem("nombre",JSON.stringify(idProducto) );
+
+    
+    this.obtener_LocalStorage();
+   
+  }
+
+  obtener_LocalStorage(){
+    let productos=JSON.parse(localStorage.getItem('producto'));
+    console.log("PRODUCTO",productos);
+  }
+  */
+
  
 
   ngOnInit() {
     this.dataApi.getAllProductos().subscribe(productos=>{
       console.log('producto',productos);
       this.productos=productos;
+      /*
+      const idProducto = this.route.snapshot.params['id'];
+      this.getDetalle(idProducto);
+      */
+     
     })
     
   }
 
-  constructor(public dialog: MatDialog, private dataApi:DataApiService,) {}
-  public productos=[];
-  public producto='';
-
+  
   openDialog() {
     const dialogRef = this.dialog.open(Contactanos,);
 

@@ -32,7 +32,7 @@ const routes: Routes =[
      {path:'sugerencia',component:SugerenciasComponent,canActivate:[AuthGuard]},
      {path:'enviarsu',component:EnviarsugerenciasComponent},
      {path:'reporte',component:ReporteComponent,canActivate:[AuthGuard]},
-     {path:'carrito/:id',component:CarritoComponent},
+     {path:'carrito',component:CarritoComponent},
      {path:'contacto',component:ContactoComponent,canActivate:[AuthGuard]},
      {path:'',component:InicioComponent,pathMatch:'full'},
      {path:'**',redirectTo:'/',pathMatch:'full'},
