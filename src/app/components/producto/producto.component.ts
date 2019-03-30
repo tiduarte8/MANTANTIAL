@@ -30,8 +30,8 @@ import {GuardarproductoComponent,ActualizarImagenComponent} from './guardarprodu
 })
 export class ProductoComponent implements OnInit{
 
-  constructor(public dialog: MatDialog, private dataApi:DataApiService,
-  private storage: AngularFireStorage,private authService:AuthService){}
+  constructor(public dialog: MatDialog, public dataApi:DataApiService,
+  public storage: AngularFireStorage,public authService:AuthService){}
   
 
 public isAdmin: any= null;
@@ -150,7 +150,7 @@ public userUid: string=null;
   
   
 
-  openDialog(producto:ProductoInterface) {
+  openDialog() {
     
     const dialogConfig= new MatDialogConfig();
     dialogConfig.disableClose=true;

@@ -49,8 +49,8 @@ this.dataApi.formData.fecha=this.fecha;
    })
   }
 
-  constructor(public dialog: MatDialog, private dataApi:SugerenciaserviceService,
-    private storage: AngularFirestore,private authService:AuthService) { }
+  constructor(public dialog: MatDialog, public dataApi:SugerenciaserviceService,
+    public storage: AngularFirestore,public authService:AuthService) { }
 
     f= new Date();
     fecha=this.f.getDate()+"/"+(this.f.getMonth()+1)+"/"+this.f.getFullYear()+'  ('+this.f.getHours()+':'+this.f.getMinutes()+')';

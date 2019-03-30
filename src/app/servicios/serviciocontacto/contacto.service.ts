@@ -21,7 +21,7 @@ export class ContactoService {
 
 
 
-  constructor(private afs:AngularFirestore) { }
+  constructor(public afs:AngularFirestore) { }
 
   getAllContacto(){
     this.contactoCollection=this.afs.collection<contactoInterface>('contacto');

@@ -26,8 +26,8 @@ import Swal from 'sweetalert2';
 })
 export class SugerenciasComponent implements OnInit {
 
-  constructor(public dialog: MatDialog, private dataApi:SugerenciaserviceService,
-    private storage: AngularFireStorage,private authService:AuthService){}
+  constructor(public dialog: MatDialog, public dataApi:SugerenciaserviceService,
+    public storage: AngularFireStorage,public authService:AuthService){}
 
 
   displayedColumns: string[] = ['email','fecha','mensaje','actions'];

@@ -41,7 +41,7 @@ const ELEMENT_DATA: Clientes[] = [
 })
 export class ClientesComponent implements OnInit{
 
-  constructor(private authService:AuthService){}
+  constructor(public authService:AuthService){}
 
   usuario: UsuarioInterface ={
     

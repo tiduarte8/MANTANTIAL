@@ -14,20 +14,9 @@ export class ReporteComponent implements OnInit {
 
   ngOnInit() {
   }
-  constructor(public dialog: MatDialog) {}
+  constructor() {}
 
-  openDialog() {
-    const dialogRef = this.dialog.open(CarritoComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
+  
+  
 }
 
-@Component({
-  selector: 'app-carrito',
-  templateUrl: './../carrito/carrito.component.html',
-  styleUrls: ['./../carrito/carrito.component.css']
-})
-export class DialogContentExampleDialog {}

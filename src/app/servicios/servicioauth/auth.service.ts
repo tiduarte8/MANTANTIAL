@@ -12,7 +12,7 @@ import { UsuarioInterface } from './../../models/usuario';
 })
 export class AuthService {
 
-  constructor(public afsAuth: AngularFireAuth,private afs:AngularFirestore) { }
+  constructor(public afsAuth: AngularFireAuth,public afs:AngularFirestore) { }
 
   registerUser(email:string,pass:string){
      return new Promise((resolve,reject)=>{

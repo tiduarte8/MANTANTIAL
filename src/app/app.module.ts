@@ -19,7 +19,7 @@ import {MatTableModule} from '@angular/material/table';
 import { ProductoComponent} from './components/producto/producto.component';
 import { PedidoComponent } from './components/pedido/pedido.component';
 import { ClientesComponent } from './components/clientes/clientes.component';
-import { ReporteComponent,DialogContentExampleDialog } from './components/reporte/reporte.component';
+import { ReporteComponent} from './components/reporte/reporte.component';
 import { SugerenciasComponent } from './components/sugerencias/sugerencias.component';
 import {AppRoutingModule} from './app-routing.module';
 import {MatCardModule} from '@angular/material/card';
@@ -60,7 +60,6 @@ import { FlexLayoutModule} from '@angular/flex-layout';
     ProductoComponent,
     PedidoComponent,
     ClientesComponent,
-    DialogContentExampleDialog,
     ReporteComponent,
     SugerenciasComponent,
     InicioComponent,
@@ -112,7 +111,7 @@ import { FlexLayoutModule} from '@angular/flex-layout';
   ],
 
   entryComponents:[ReporteComponent,
-    DialogContentExampleDialog,
+    
     InicioComponent,
     Contactanos,
     InventarioComponent,

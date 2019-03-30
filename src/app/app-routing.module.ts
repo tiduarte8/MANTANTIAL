@@ -6,9 +6,6 @@ import { InicioComponent } from './components/inicio/inicio.component';
 import { ClientesComponent } from './components/clientes/clientes.component';
 import { RegistrarseComponent } from './components/clientes/registrarse/registrarse.component';
 import {ContactoComponent} from './components/contacto/contacto.component';
-
-
-
 import { PedidoComponent } from './components/pedido/pedido.component';
 import { SugerenciasComponent } from './components/sugerencias/sugerencias.component';
 import { ReporteComponent } from './components/reporte/reporte.component';

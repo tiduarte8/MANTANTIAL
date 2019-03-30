@@ -15,6 +15,10 @@ import { UrlSerializer } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
 import {ProductoInterface} from './../../models/producto';
 import { ActivatedRoute, Params } from '@angular/router';
+import {AuthService} from './../../servicios/servicioauth/auth.service';
+import { defineBase, disableBindings } from '@angular/core/src/render3';
+import { storage } from 'firebase';
+import { DISABLED } from '@angular/forms/src/model';
 
 @Component({
   selector: 'app-inicio',
@@ -24,21 +28,36 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class InicioComponent implements OnInit {
 
-  constructor(public dialog: MatDialog, private dataApi:DataApiService, private route: ActivatedRoute) {}
+  constructor(public dialog: MatDialog, public dataApi:DataApiService,public storage: AngularFirestore,public authService:AuthService, public route: ActivatedRoute) {}
   public productos=[];
   public producto='';
   public productol: ProductoInterface = {};
 
+  public btn=true;
+  
+
+
+  @ViewChild('click') click:ElementRef;
+
   getDetalle(idProducto: string): void {
     this.dataApi.getOneProducto(idProducto).subscribe(producto => {
       this.productol = producto;
-
+      delete this.productol.id; 
+       
+   this.storage.collection('carrito').add(this.productol);
     
-     localStorage.setItem("producto",JSON.stringify(this.productol) );
-     console.log("PRODUCTO",this.productol);
+   //localStorage.setItem("producto",JSON.stringify(this.productol));
+   //  console.log("PRODUCTO",this.productol);
+
    //  this.obtener_LocalStorage();
 
+  
+    
+    
+
     });
+
+   
 
     const Toast = Swal.mixin({
       toast: true,
@@ -52,6 +71,11 @@ export class InicioComponent implements OnInit {
       title: 'Producto Agregado'
     })
   }
+
+
+ 
+
+
 /*
   Comprar(){
     

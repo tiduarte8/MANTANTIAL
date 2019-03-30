@@ -26,7 +26,7 @@ import { contactoInterface } from 'src/app/models/contacto';
 })
 export class ContactoComponent implements OnInit {
 
-  constructor(public dialog: MatDialog, private contS:ContactoService){}
+  constructor(public dialog: MatDialog, public contS:ContactoService){}
 
   displayedColumns: string[] = ['nombre','correo','telefono','mensaje','fecha','actions'];
   dataSource = new MatTableDataSource<contactoInterface>();

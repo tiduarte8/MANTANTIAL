@@ -17,6 +17,13 @@ export class RegistrarseComponent implements OnInit  {
   private authService:AuthService,
   private storage: AngularFireStorage){}
 
+  public name:string='';
+  public name2:string='';
+  public papellido:string='';
+  public sapellido:string='';
+  public ced:string='';
+  public tel:string='';
+  public dir:string='';
  
   public email:string='';
   public pass:string='';

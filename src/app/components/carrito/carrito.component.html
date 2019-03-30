@@ -29,30 +29,30 @@
        </tr>
     </thead>
     <tbody>
-      <tr *ngIf="producto!==null">
-            <td>{{1}}</td>
-        <td>{{producto.nombre}}</td>
+      <tr  *ngFor="let carrit of carrito;index as i">
+        <td>{{i+1}}</td>
+        <td>{{carrit.nombre}}</td>
         <td><img matTooltip="Imagen"
           aria-label="Button that displays a tooltip when focused or hovered over"
            style="width:80px;height:80px; object-fit:cover; background-color: rgba(210, 221, 109, 0.13); 
          border-radius: 10px; border-style: solid;border-spacing: 3px;
-          border-color:rgba(19, 62, 179, 0.822)" src="{{producto.urlImage}}"></td>
-        <td>{{producto.precio}} C$</td>
-        <td><input (change)="ActCant()" type="number" style="text-align:right;width:50px;" name="cantidad" #cantidad  required value=1></td>
-        <td>{{SubTotal}} C$</td>
-        <td> <button class="btn btn-danger" color="warn" (click)="onDeleteProductoCarrito(producto)" mat-icon-button  ><mat-icon>delete_outline</mat-icon></button></td>
+          border-color:rgba(19, 62, 179, 0.822)" src="{{carrit.urlImage}}"></td>
+        <td #preciop>{{carrit.precio}} C$</td>
+        <td><input (change)="ActCant()" type="number" min="1" pattern="^[0-9]+" style="text-align:right;width:50px;" name="cantidad" #cantidad  required [value]=1></td>
+        <td #subtotal>{{carrit.precio*cantidad.value}} C$</td>
+        <td> <button class="btn btn-danger" color="warn" (click)="onDeleteProductoCarrito(carrit.id)" mat-icon-button  ><mat-icon>delete_outline</mat-icon></button></td>
 
       </tr>
     </tbody>
   </table>
   <table style="border:none;">
-  <h3 class="h3" style="float:right">Total: {{Total}} C$</h3>
+  <h3 class="h3" style="float:right">Total: {{SubTotal}} C$</h3>
 </table>
 
   </div>
   <div class="div2">
   <mat-card class="card">
-    <h2><mat-icon>shopping_cart</mat-icon> Carrito de Compras</h2>
+    <h2><mat-icon>shopping_cart</mat-icon> Cesta de Pedidos</h2>
     <h3>Total:{{Total}} C$</h3>
     <button mat-raised-button color="primary">Finalizar Compra</button>
   </mat-card>

@@ -4,6 +4,8 @@ import {ProductoInterface} from '../../models/producto';
 import {Observable} from 'rxjs/internal/Observable';
 import {map} from 'rxjs/operators';
 import { Action } from 'rxjs/internal/scheduler/Action';
+import { identity } from 'rxjs';
+import { identifierModuleUrl } from '@angular/compiler';
 
 
 
@@ -13,7 +15,7 @@ import { Action } from 'rxjs/internal/scheduler/Action';
 })
 export class DataApiService {
 
-  constructor(private afs:AngularFirestore) {}
+  constructor(public afs:AngularFirestore) {}
 
   private productosCollection: AngularFirestoreCollection<ProductoInterface>;
   public productos:Observable<ProductoInterface[]>;
@@ -21,9 +23,19 @@ export class DataApiService {
   private producto:Observable<ProductoInterface>;
   public selectedProducto:ProductoInterface={
     id:null,
-   
-    
+ 
   };
+/*
+  guardarenCarrito(){
+    this.afs.collection('carrito').add({})
+    .then(()=>{
+      console.log('correcto');
+    })
+    .catch((err)=>{
+      console.log('error',err);
+    })
+  }
+  */
  
   getOneProducto(idProducto: string) {
     this.productoDoc = this.afs.doc<ProductoInterface>(`productos/${idProducto}`);

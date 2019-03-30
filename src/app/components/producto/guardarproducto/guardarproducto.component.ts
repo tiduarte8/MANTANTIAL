@@ -27,8 +27,8 @@ export class GuardarproductoComponent implements OnInit{
   public mensaje:string ='';
   
   
-  constructor(public dialog: MatDialog, private dataApi:DataApiService,
-    private storage: AngularFireStorage){}
+  constructor(public dialog: MatDialog, public dataApi:DataApiService,
+    public storage: AngularFireStorage){}
 
    // @ViewChild('imageUser') inputImageUser: ElementRef;
   @ViewChild('btnClose') btnClose: ElementRef;
@@ -144,8 +144,8 @@ ngOnInit(){
 
   public mensaje:string ='';
 
-  constructor(public dialog: MatDialog, private dataApi:DataApiService,
-    private storage: AngularFireStorage){}
+  constructor(public dialog: MatDialog, public dataApi:DataApiService,
+    public storage: AngularFireStorage){}
   
     uploadPercent:Observable<number>;
     urlImage:Observable<string>;

@@ -12,7 +12,7 @@ import { SugerenciaInterface } from 'src/app/models/sugerencia';
 })
 export class SugerenciaserviceService {
 
-  constructor(private afs:AngularFirestore) { }
+  constructor(public afs:AngularFirestore) { }
 
   private sugerenciasCollellection: AngularFirestoreCollection<SugerenciaInterface>;
   private sugerencias:Observable<SugerenciaInterface[]>;

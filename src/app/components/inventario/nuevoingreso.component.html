@@ -24,14 +24,14 @@
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-        <input required [(ngModel)]="dataApi.selectedInventario.fechadeingreso" value="{{fechadeingreso}}"  name="fechadeingreso"  matInput [matDatepicker]="picker"  placeholder="Fecha ingreso">
+        <input required [(ngModel)]="dataApi.selectedInventario.fechadeingreso"   name="fechadeingreso"  matInput [matDatepicker]="picker"  placeholder="Fecha ingreso">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker disabled="false" #picker></mat-datepicker>
       </mat-form-field>
     
 
   <mat-form-field class="example-full-width">
-    <input [(ngModel)]="this.dataApi.selectedInventario.cantidad" name="cantidad"  class="inputlog" type="number" matInput placeholder="Cantidad" required >
+    <input [(ngModel)]="this.dataApi.selectedInventario.cantidad" name="cantidad" min="1" pattern="^[0-9]+"  class="inputlog" type="number" matInput placeholder="Cantidad" required >
   </mat-form-field>
 
   <mat-form-field class="example-full-width">

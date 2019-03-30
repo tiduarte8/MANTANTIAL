@@ -27,6 +27,8 @@
          top: 18px;
      
        }
+
+      
      
        .matpa{
          width:98%;
@@ -39,7 +41,7 @@
        
        .mat-form-field {
          font-size: 14px;
-         width:90.4%;
+         width:100%;
          left: 1%;
          top:15px;
          font-size: 16px;
@@ -48,6 +50,23 @@
          border-radius: 5px;
          
        }
+
+       @media screen and (min-width:1200px){
+        
+        .mat-form-field {
+          font-size: 14px;
+          width:90.4%;
+          left: 1%;
+          top:15px;
+          font-size: 16px;
+          color:navy;
+          background-color: rgba(75, 125, 182, 0.349);
+          border-radius: 5px;
+          
+        }
+      }
+
+
 
 .lineas{
  font-weight: normal;border-bottom: rgba(68, 68, 68, 0.144) solid 1px

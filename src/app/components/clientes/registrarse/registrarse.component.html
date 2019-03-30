@@ -11,31 +11,32 @@
 
   <table class="example-full-width" cellspacing="0"><tr>
 
-      <td><mat-form-field class="example-full-width">
+      <td><mat-form-field class="classtd">
            <input type="text"  [(ngModel)]="name" name="pnombre"  matInput placeholder="Primer Nombre" required maxlength="30" >
            
            </mat-form-field></td>
    
-      <td><mat-form-field class="example-full-width">
+      <td><mat-form-field class="classtd">
             <input  type="text"  [(ngModel)]="name2" name="snombre" matInput placeholder="Segundo Nombre" maxlength="30" >
          </mat-form-field></td>
-    </tr></table>
+    </tr>
+ </table>
   
     <table class="example-full-width" cellspacing="0"><tr>
-        <td><mat-form-field class="example-full-width">
+        <td><mat-form-field class="classtd">
           <input [(ngModel)]="papellido" name="papellido" type="text" matInput placeholder="Primer Apellido" required maxlength="30">
         </mat-form-field></td>
-        <td><mat-form-field class="example-full-width">
-          <input [(ngModel)]="spapellido" name="spapellido" type="text" matInput placeholder="Segundo Apellido" maxlength="30" >
+        <td><mat-form-field class="classtd">
+          <input [(ngModel)]="sapellido" name="sapellido" type="text" matInput placeholder="Segundo Apellido" maxlength="30" >
         </mat-form-field></td>
       </tr></table>
 
       <table class="example-full-width" cellspacing="0"><tr>
 
-          <td><mat-form-field class="example-full-width">
+          <td><mat-form-field class="classtd">
               <input [(ngModel)]="ced" name="ced"  type="text" maxlength="16" minlength="16" required matInput placeholder="Cédula" >
              </mat-form-field></td>
-             <td><mat-form-field class="example-full-width">
+             <td><mat-form-field class="classtd">
                 <span matPrefix>+505 &nbsp;</span>
                 <input [(ngModel)]="tel" name="tel" type="text" minlength="8" maxlength="8"  required  matInput placeholder="N° Teléfono">
                 <mat-icon matSuffix>call</mat-icon>
@@ -48,7 +49,7 @@
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
-     <input [(ngModel)]="email" name="email" [formControl]="emailFormControl"  maxlength="50" matInput placeholder="Correo Electrónico" required type="email">
+     <input  [(ngModel)]="email" name="email" [formControl]="emailFormControl"  maxlength="50" matInput placeholder="Correo Electrónico" required type="email">
      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
       Por favor ingrese un e-mail válido
     </mat-error>
@@ -61,10 +62,10 @@
 
      <table class="example-full-width" cellspacing="0"><tr>
 
-        <td><mat-form-field class="example-full-width">
-            <input [(ngModel)]="pass" name="pass"  id="pass" class="inputlog" required matInput placeholder="Contraseña" required  [type]="hide ? 'text' : 'password'">
+        <td><mat-form-field class="classtd">
+            <input [(ngModel)]="pass" name="pass"  id="pass" class="inputlog" required matInput placeholder="Contraseña" required  type="password">
            </mat-form-field></td>
-           <td><mat-form-field class="example-full-width">
+           <td><mat-form-field class="classtd">
               <input [(ngModel)]="cpass" name="cpass"  id="cpass" class="inputlog" required matInput placeholder="Confirmar Contraseña" required type="password"> 
           </mat-form-field></td>
         

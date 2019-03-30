@@ -20,8 +20,8 @@ export class LoginComponent implements OnInit {
     Validators.email,
   ]);
 
-  constructor(public afAuth: AngularFireAuth,private router: Router,private authService:AuthService,public dialog:MatDialog) { }
-
+  constructor(public afAuth: AngularFireAuth,public router: Router,public authService:AuthService,public dialog:MatDialog) { }
+  public hide:boolean;
   public email:string='';
   public pass:string='';
   public mensaje:string='';

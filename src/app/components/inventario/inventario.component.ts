@@ -132,10 +132,10 @@ export class NuevoingresoComponent implements OnInit{
 
   mensaje:string;
 
-  constructor(public dialog: MatDialog, private dataApi:InventarioService,private data:DataApiService,
-    private storage: AngularFireStorage){}
+  constructor(public dialog: MatDialog, public dataApi:InventarioService,public data:DataApiService,
+    public storage: AngularFireStorage){}
 
-    private productos:ProductoInterface[];
+    public productos:ProductoInterface[];
 
     onSaveInventario(formInventario:NgForm):void{
      

@@ -22,7 +22,7 @@ export class MynavComponent implements OnInit{
 
    
 
-  constructor(private breakpointObserver: BreakpointObserver, private authService:AuthService, private afsAuth: AngularFireAuth) {}
+  constructor(public breakpointObserver: BreakpointObserver, public authService:AuthService, public afsAuth: AngularFireAuth) {}
 
   usuario: UsuarioInterface ={
     

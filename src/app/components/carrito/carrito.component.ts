@@ -1,11 +1,15 @@
 import { Component, OnInit,ViewChild,ElementRef } from '@angular/core';
 import {DataApiService} from '../../servicios/servicioproducto/data-api.service';
-import {ProductoInterface} from './../../models/producto';
+
 import {ActivatedRoute,Params} from '@angular/router';
 import { ProductoComponent } from '../producto/producto.component';
 import { Element } from '@angular/compiler/src/render3/r3_ast';
 import { ElementData } from '@angular/core/src/view';
 import Swal from 'sweetalert2';
+import {AngularFirestore,AngularFirestoreCollection,AngularFirestoreDocument} from '@angular/fire/firestore';
+import { CarritoInterface } from 'src/app/models/carrito';
+import {Observable} from 'rxjs/internal/Observable';
+import {map} from 'rxjs/operators';
 
 
 @Component({
@@ -16,8 +20,10 @@ import Swal from 'sweetalert2';
 export class CarritoComponent implements OnInit {
 
   @ViewChild('cantidad') cantidad:ElementRef;
+  @ViewChild('preciop') preciop: ElementRef;
+  @ViewChild('subtotal') subtotal: ElementRef;
 
-  constructor() { 
+  constructor(public store:AngularFirestore) { 
   
   }
  
@@ -25,26 +31,70 @@ export class CarritoComponent implements OnInit {
  public SubTotal:number;
  public Total:number=0;
  public cant:number;
+ public preciopro:number;
+ public carrito:CarritoInterface[];
+ public productosCollection: AngularFirestoreCollection<CarritoInterface>;
+ public productos:Observable<CarritoInterface[]>;
+public carritoDoc:AngularFirestoreDocument<CarritoInterface>;
+public selectedCarrito:CarritoInterface={
+  id:null,
+  
+}
 
 
   ngOnInit() {
    
-    this.producto=JSON.parse(localStorage.getItem('producto'));
+   /* this.producto=JSON.parse(localStorage.getItem('producto'));
     console.log("PRODUCTO",this.producto);
-    
-     console.log(this.cantidad)
-  // this.Total+=this.producto.precio;
+   
+   console.log(this.cantidad)  */  
+   // this.Total+=this.producto.precio;
     //this.obtener_LocalStorage();
-   this.Total;
+   this.SubTotal;
+
+ this.getCarrito();
    
   }
 
   ActCant(){
    this.cant=this.cantidad.nativeElement.value;
    console.log('Cant',this.cant);
-   this.SubTotal=this.producto.precio*this.cant;
-   this.Total=this.Total+this.SubTotal;
+  
+   this.preciopro=this.preciop.nativeElement.value;
+   console.log('Precio',this.preciopro);
+   this.Total=this.subtotal.nativeElement.value;
+   console.log('total',this.Total);
+   this.SubTotal+=this.Total;
+   
+  
   }
+
+  ActualizarT(){
+   
+    
+  }
+
+  getAllCarrito(){
+   this.productosCollection= this.store.collection<CarritoInterface>('carrito');
+    return this.productos=this.productosCollection.snapshotChanges().pipe
+    (map(changes=>{
+      return changes.map(action=>{
+        const data = action.payload.doc.data() as CarritoInterface;
+        data.id= action.payload.doc.id;
+        return data;
+        
+    });
+    
+  }));
+}
+
+getCarrito(){
+  this.getAllCarrito().subscribe(carrito=>
+    this.carrito=carrito);
+
+
+  
+}
 
   onDeleteProductoCarrito(idProducto:string):void{
     console.log('Delete Producto',idProducto);
@@ -59,8 +109,12 @@ export class CarritoComponent implements OnInit {
      confirmButtonText: 'Si, elimnarlo!'
    }).then((result) => {
      if (result.value) {
-      localStorage.removeItem('producto');
-      this.producto=JSON.parse(localStorage.getItem('producto'));
+
+     this.carritoDoc= this.store.doc(`carrito/${idProducto}`);
+      this.carritoDoc.delete();
+
+    //  localStorage.removeItem('producto');
+     // this.producto=JSON.parse(localStorage.getItem('producto'));
 
        Swal.fire({
          type: 'success',

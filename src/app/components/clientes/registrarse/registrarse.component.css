@@ -28,7 +28,30 @@ top:10px;
   
   .example-full-width {
     width: 100%;
+   
+    vertical-align: middle;
   }
+
+  .classtd{  
+    width:100%;
+   
+
+  }
+
+  
+@media screen and (max-width:420px){
+  .example-full-width{
+    
+  
+   
+  }
+  
+  .classtd{
+    display:block;
+    }
+}
+
+
 .mat{
   background-color: aqua;
   padding: 300px;

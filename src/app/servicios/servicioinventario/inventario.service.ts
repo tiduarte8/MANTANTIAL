@@ -11,7 +11,7 @@ import { Action } from 'rxjs/internal/scheduler/Action';
 })
 export class InventarioService {
 
-  constructor(private afs:AngularFirestore) { }
+  constructor(public afs:AngularFirestore) { }
 
   private inventarioCollection: AngularFirestoreCollection<inventarioInterface>;
   private listainventario:Observable<inventarioInterface[]>;
