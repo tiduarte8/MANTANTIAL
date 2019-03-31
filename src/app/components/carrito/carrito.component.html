@@ -1,4 +1,14 @@
+
+<!--
+  
+  <input type="number" [(ngModel)]="finalAmount" style="padding-bottom: 10px;">
+<h2 *ngIf="paypalLoad">Paypal button is loading</h2>
+<div id="paypal-button-container"></div>
+
+-->
+
 <body class="volver-arriba">
+   
 <div class="container" >
   <div class="div1">
   <table>
@@ -54,7 +64,9 @@
   <mat-card class="card">
     <h2><mat-icon>shopping_cart</mat-icon> Cesta de Pedidos</h2>
     <h3>Total:{{Total}} C$</h3>
-    <button mat-raised-button color="primary">Finalizar Compra</button>
+    <input type="number"  [(ngModel)]="finalAmount" style="padding-bottom: 10px;">
+    <h2 *ngIf="paypalLoad">Paypal button is loading</h2>
+    <button style="padding-top:10px;" id="paypal-button-container"  mat-raised-button color="primary"></button>
   </mat-card>
   </div>
  

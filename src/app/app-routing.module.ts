@@ -12,6 +12,7 @@ import { ReporteComponent } from './components/reporte/reporte.component';
 import { CarritoComponent } from './components/carrito/carrito.component';
 import { EnviarsugerenciasComponent } from './components/sugerencias/enviarsugerencias/enviarsugerencias.component';
 import {InventarioComponent}from './components/inventario/inventario.component';
+import {MetodopagoComponent} from './components/metodopago/metodopago.component';
 
 import {AuthGuard} from './guards/auth.guard';
 
@@ -31,8 +32,10 @@ const routes: Routes =[
      {path:'reporte',component:ReporteComponent,canActivate:[AuthGuard]},
      {path:'carrito',component:CarritoComponent},
      {path:'contacto',component:ContactoComponent,canActivate:[AuthGuard]},
+     {path:'pago',component:MetodopagoComponent,canActivate:[AuthGuard]},
      {path:'',component:InicioComponent,pathMatch:'full'},
      {path:'**',redirectTo:'/',pathMatch:'full'},
+
      
      
 ];

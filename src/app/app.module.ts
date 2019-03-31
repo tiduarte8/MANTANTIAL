@@ -45,6 +45,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {AngularFirestore,FirestoreSettingsToken} from '@angular/fire/firestore';
 import { GuardarproductoComponent,ActualizarImagenComponent} from './components/producto/guardarproducto/guardarproducto.component';
 import { FlexLayoutModule} from '@angular/flex-layout';
+import { MetodopagoComponent } from './components/metodopago/metodopago.component';
 
 
 
@@ -72,6 +73,7 @@ import { FlexLayoutModule} from '@angular/flex-layout';
     EnviarsugerenciasComponent,
     InventarioComponent,
     GuardarproductoComponent,
+    MetodopagoComponent,
    
     
   
