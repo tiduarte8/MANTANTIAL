@@ -11,14 +11,9 @@ import {AngularFirestore,AngularFirestoreCollection,AngularFirestoreDocument} fr
 import { CarritoInterface } from 'src/app/models/carrito';
 import {Observable} from 'rxjs/internal/Observable';
 import {CarritoService} from './../../servicios/serviciocarrito/carrito.service';
-
-
-
-
-
-
-
-
+import { auth } from 'firebase/app';
+import { UsuarioInterface } from './../../models/usuario';
+import {AuthService} from '../../servicios/servicioauth/auth.service';
 
 declare let paypal: any;
 
@@ -36,25 +31,29 @@ export class CarritoComponent implements OnInit,AfterViewChecked {
   @ViewChild('preciop') preciop: ElementRef;
 
 
-  constructor(public store:AngularFirestore,public service:CarritoService) { 
-  
+  constructor(public store:AngularFirestore,public service:CarritoService, public authService:AuthService) { 
   }
 
  
  
- public producto;
- public SubTotal:number;
- public Total:number=0;
- public cant:number;
- public preciopro:number;
- public carrito:CarritoInterface[];
- public carritoCollection: AngularFirestoreCollection<CarritoInterface>;
- public productos:Observable<CarritoInterface[]>;
-public carritoDoc:AngularFirestoreDocument<CarritoInterface>;
-public selectedCarrito:CarritoInterface={
-  id:null,
-  
-}
+  public producto;
+  public SubTotal:number;
+  public Total:number=0;
+  public cant:number;
+  public preciopro:number;
+  public carrito:CarritoInterface[];
+  public carritoCollection: AngularFirestoreCollection<CarritoInterface>;
+  public productos:Observable<CarritoInterface[]>;
+  public carritoDoc:AngularFirestoreDocument<CarritoInterface>;
+  public selectedCarrito:CarritoInterface={
+    id:null,
+  }
+  usuario: UsuarioInterface ={
+    name:'', 
+    email:'',
+    password:'',
+    photoUrl:'',
+  };
 
 
   ngOnInit() {
@@ -66,8 +65,12 @@ public selectedCarrito:CarritoInterface={
    // this.Total+=this.producto.precio;
     //this.obtener_LocalStorage();
 
+    this.authService.isAuth().subscribe(usuario=>{
+      if(usuario){
+        this.getCarrito(usuario.email);
 
- this.getCarrito();
+     }
+   })
  //this.ActTotal(this.selectedCarrito);
  
  
@@ -87,9 +90,14 @@ map:number;
   }
 
   ActTotal() {
-    this.finalAmount= this.carrito.map(carrito => carrito.subtotal).reduce((acc, value) => acc + value,0);
 
-   return this.finalAmount;
+    if(this.carrito) {
+      this.finalAmount= this.carrito.map(carrito => carrito.subtotal).reduce((acc, value) => acc + value,0);
+      return this.finalAmount;
+    }
+    else {
+      return 0;
+    }
   }
 
 
@@ -101,8 +109,9 @@ map:number;
 
  
 
-getCarrito(){
-  this.service.getAllCarrito().subscribe(carrito=>{
+getCarrito(email:string){
+  console.log('getCarrito', email)
+  this.service.getAllCarrito(email).subscribe(carrito=>{
     console.log('CARRITO',carrito);
     this.carrito=carrito});
 

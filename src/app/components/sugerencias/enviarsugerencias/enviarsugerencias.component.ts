@@ -124,6 +124,3 @@ this.dataApi.formData.fecha=this.fecha;
     }
 
 }
-
-      
-      

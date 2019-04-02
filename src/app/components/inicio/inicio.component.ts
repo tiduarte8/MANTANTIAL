@@ -13,6 +13,7 @@ import Swal from 'sweetalert2';
 import { async } from '@angular/core/testing';
 import { UrlSerializer } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { auth } from 'firebase/app';
 import {ProductoInterface} from './../../models/producto';
 import {CarritoInterface} from './../../models/carrito';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -27,11 +28,17 @@ import { DISABLED } from '@angular/forms/src/model';
   styleUrls: ['./inicio.component.css']
   
 })
+
 export class InicioComponent implements OnInit {
 
-  constructor(public dialog: MatDialog, public dataApi:DataApiService,
-  public storage: AngularFirestore,public authService:AuthService,
-   public route: ActivatedRoute) {}
+  constructor(
+    public dialog: MatDialog,
+    public dataApi:DataApiService,
+    public storage: AngularFirestore,
+    public authService:AuthService,
+    public route: ActivatedRoute,
+  ) {}
+
   public productos=[];
   public producto='';
   public productol: ProductoInterface = {};
@@ -50,24 +57,16 @@ export class InicioComponent implements OnInit {
    
 
     this.dataApi.getOneProducto(idProducto).subscribe(producto => {
+
       this.carrito = producto;
-      delete this.carrito.id; 
-
+      delete this.carrito.id;
       this.cantidad= this.carrito.cant=1;
-   
-     this.subtotal=this.carrito.subtotal=(this.carrito.precio*this.cantidad);
-     
-   this.storage.collection('carrito').add(this.carrito);
-
-    
-   //localStorage.setItem("producto",JSON.stringify(this.productol));
-   //  console.log("PRODUCTO",this.productol);
-
-   //  this.obtener_LocalStorage();
-
-  
-    
-    
+      this.subtotal=this.carrito.subtotal=(this.carrito.precio*this.cantidad);
+      this.carrito.email = auth().currentUser.email;
+      this.storage.collection('carrito').add(this.carrito);
+      //localStorage.setItem("producto",JSON.stringify(this.productol));
+      //console.log("PRODUCTO",this.productol);
+      //this.obtener_LocalStorage();
 
     });
 

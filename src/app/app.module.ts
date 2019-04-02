@@ -42,7 +42,7 @@ import {InventarioComponent,NuevoingresoComponent} from './components/inventario
 import {MatDatepickerModule,MatNativeDateModule} from '@angular/material';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
-import {AngularFirestore,FirestoreSettingsToken} from '@angular/fire/firestore';
+import {AngularFirestore, AngularFirestoreModule,FirestoreSettingsToken} from '@angular/fire/firestore';
 import { GuardarproductoComponent,ActualizarImagenComponent} from './components/producto/guardarproducto/guardarproducto.component';
 import { FlexLayoutModule} from '@angular/flex-layout';
 import { MetodopagoComponent } from './components/metodopago/metodopago.component';
@@ -101,6 +101,7 @@ import { MetodopagoComponent } from './components/metodopago/metodopago.componen
        FormsModule,
        AngularFireModule.initializeApp(environment.firebaseConfig),
        AngularFireDatabaseModule,
+       AngularFirestoreModule,
        MatDialogModule,
        MatDatepickerModule,
        MatNativeDateModule,
@@ -126,7 +127,7 @@ import { MetodopagoComponent } from './components/metodopago/metodopago.componen
   ],
 
 
-  providers: [AngularFireAuth,AngularFirestore,],
+  providers: [AngularFireAuth,AngularFirestore, {provide: FirestoreSettingsToken, useValue: {}}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
