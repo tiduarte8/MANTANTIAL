@@ -10,7 +10,15 @@ import Swal from 'sweetalert2';
 import {AngularFirestore,AngularFirestoreCollection,AngularFirestoreDocument} from '@angular/fire/firestore';
 import { CarritoInterface } from 'src/app/models/carrito';
 import {Observable} from 'rxjs/internal/Observable';
-import {map} from 'rxjs/operators';
+import {CarritoService} from './../../servicios/serviciocarrito/carrito.service';
+
+
+
+
+
+
+
+
 
 declare let paypal: any;
 
@@ -26,9 +34,9 @@ export class CarritoComponent implements OnInit,AfterViewChecked {
 
   @ViewChild('cantidad') cantidad:ElementRef;
   @ViewChild('preciop') preciop: ElementRef;
-  @ViewChild('subtotal') subtotal: ElementRef;
 
-  constructor(public store:AngularFirestore) { 
+
+  constructor(public store:AngularFirestore,public service:CarritoService) { 
   
   }
 
@@ -40,7 +48,7 @@ export class CarritoComponent implements OnInit,AfterViewChecked {
  public cant:number;
  public preciopro:number;
  public carrito:CarritoInterface[];
- public productosCollection: AngularFirestoreCollection<CarritoInterface>;
+ public carritoCollection: AngularFirestoreCollection<CarritoInterface>;
  public productos:Observable<CarritoInterface[]>;
 public carritoDoc:AngularFirestoreDocument<CarritoInterface>;
 public selectedCarrito:CarritoInterface={
@@ -57,50 +65,47 @@ public selectedCarrito:CarritoInterface={
    console.log(this.cantidad)  */  
    // this.Total+=this.producto.precio;
     //this.obtener_LocalStorage();
-   this.SubTotal;
+
 
  this.getCarrito();
-   
+ //this.ActTotal(this.selectedCarrito);
+ 
+ 
+ 
   }
 
-  ActCant(){
-   this.cant=this.cantidad.nativeElement.value;
-   console.log('Cant',this.cant);
+map:number;
   
-   this.preciopro=this.preciop.nativeElement.value;
-   console.log('Precio',this.preciopro);
-   this.Total=this.subtotal.nativeElement.value;
-   console.log('total',this.Total);
-   this.SubTotal+=this.Total;
-   
+
+  ActCant(carrito:CarritoInterface){
+   this.selectedCarrito=Object.assign({},carrito);
+  carrito.subtotal=carrito.precio*carrito.cant;
   
+  this.updatecantidad(carrito);
+  console.log('update',carrito);
+
   }
 
-  ActualizarT(){
-   
-    
+  ActTotal() {
+    this.finalAmount= this.carrito.map(carrito => carrito.subtotal).reduce((acc, value) => acc + value,0);
+
+   return this.finalAmount;
   }
 
-  getAllCarrito(){
-   this.productosCollection= this.store.collection<CarritoInterface>('carrito');
-    return this.productos=this.productosCollection.snapshotChanges().pipe
-    (map(changes=>{
-      return changes.map(action=>{
-        const data = action.payload.doc.data() as CarritoInterface;
-        data.id= action.payload.doc.id;
-        return data;
-        
-    });
-    
-  }));
-}
+
+  updatecantidad(carrito: CarritoInterface):void{
+    let idcarrito=carrito.id;
+    this.carritoDoc=this.store.doc<CarritoInterface>(`carrito/${idcarrito}`);
+    this.carritoDoc.update(carrito);
+ }
+
+ 
 
 getCarrito(){
-  this.getAllCarrito().subscribe(carrito=>
-    this.carrito=carrito);
+  this.service.getAllCarrito().subscribe(carrito=>{
+    console.log('CARRITO',carrito);
+    this.carrito=carrito});
 
-
-  
 }
 
   onDeleteProductoCarrito(idProducto:string):void{
@@ -153,7 +158,7 @@ getCarrito(){
  
  
 
- finalAmount: number=1;
+ finalAmount: number=0;
 
 
  

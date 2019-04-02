@@ -7,7 +7,7 @@
 
 -->
 
-<body class="volver-arriba">
+<body>
    
 <div class="container" >
   <div class="div1">
@@ -39,7 +39,7 @@
        </tr>
     </thead>
     <tbody>
-      <tr  *ngFor="let carrit of carrito;index as i">
+      <tr  *ngFor="let carrit of carrito; index as i">
         <td>{{i+1}}</td>
         <td>{{carrit.nombre}}</td>
         <td><img matTooltip="Imagen"
@@ -48,28 +48,35 @@
          border-radius: 10px; border-style: solid;border-spacing: 3px;
           border-color:rgba(19, 62, 179, 0.822)" src="{{carrit.urlImage}}"></td>
         <td #preciop>{{carrit.precio}} C$</td>
-        <td><input (change)="ActCant()" type="number" min="1" pattern="^[0-9]+" style="text-align:right;width:50px;" name="cantidad" #cantidad  required [value]=1></td>
-        <td #subtotal>{{carrit.precio*cantidad.value}} C$</td>
+        <td><input (change)="ActCant(carrit)" type="number" [(ngModel)]="carrit.cant"  pattern="^[0-9]+" style="text-align:right;width:50px;" name="cant" #cantidad  required></td>
+      
+       
+     <td #subtotal>{{carrit.subtotal}} C$</td>
+    
         <td> <button class="btn btn-danger" color="warn" (click)="onDeleteProductoCarrito(carrit.id)" mat-icon-button  ><mat-icon>delete_outline</mat-icon></button></td>
-
+        
       </tr>
     </tbody>
+  
   </table>
+ 
   <table style="border:none;">
-  <h3 class="h3" style="float:right">Total: {{SubTotal}} C$</h3>
+   
+  <h3 *ngIf="ActTotal()!==0" class="h3" style="float:right">Total:{{ActTotal()}} C$</h3>
+
 </table>
 
-  </div>
+</div>
   <div class="div2">
   <mat-card class="card">
     <h2><mat-icon>shopping_cart</mat-icon> Carrito</h2>
-    <h3>Total:{{Total}} C$</h3>
-    <input type="number"  [(ngModel)]="finalAmount" style="padding-bottom: 10px;">
+    <h3 *ngIf="ActTotal()!==0">Total:{{ActTotal()}} C$</h3>
+ 
     <h2 *ngIf="paypalLoad">Paypal button is loading</h2>
-    <button style="padding-top:10px;" id="paypal-button-container"  mat-raised-button color="primary"></button>
+    <button *ngIf="ActTotal()!==0" style="padding-top:10px;" id="paypal-button-container"  mat-raised-button color="primary"></button>
+    <h2 *ngIf="ActTotal()==0">Carrito Vacío</h2>
   </mat-card>
   </div>
- 
+  
 </div>
-
 </body>

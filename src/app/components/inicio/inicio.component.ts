@@ -14,6 +14,7 @@ import { async } from '@angular/core/testing';
 import { UrlSerializer } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
 import {ProductoInterface} from './../../models/producto';
+import {CarritoInterface} from './../../models/carrito';
 import { ActivatedRoute, Params } from '@angular/router';
 import {AuthService} from './../../servicios/servicioauth/auth.service';
 import { defineBase, disableBindings } from '@angular/core/src/render3';
@@ -28,23 +29,36 @@ import { DISABLED } from '@angular/forms/src/model';
 })
 export class InicioComponent implements OnInit {
 
-  constructor(public dialog: MatDialog, public dataApi:DataApiService,public storage: AngularFirestore,public authService:AuthService, public route: ActivatedRoute) {}
+  constructor(public dialog: MatDialog, public dataApi:DataApiService,
+  public storage: AngularFirestore,public authService:AuthService,
+   public route: ActivatedRoute) {}
   public productos=[];
   public producto='';
   public productol: ProductoInterface = {};
+  public carrito: CarritoInterface={};
 
   public btn=true;
   
+  cantidad:number;
+  subtotal:number; 
 
 
   @ViewChild('click') click:ElementRef;
 
   getDetalle(idProducto: string): void {
+   
+   
+
     this.dataApi.getOneProducto(idProducto).subscribe(producto => {
-      this.productol = producto;
-      delete this.productol.id; 
-       
-   this.storage.collection('carrito').add(this.productol);
+      this.carrito = producto;
+      delete this.carrito.id; 
+
+      this.cantidad= this.carrito.cant=1;
+   
+     this.subtotal=this.carrito.subtotal=(this.carrito.precio*this.cantidad);
+     
+   this.storage.collection('carrito').add(this.carrito);
+
     
    //localStorage.setItem("producto",JSON.stringify(this.productol));
    //  console.log("PRODUCTO",this.productol);
