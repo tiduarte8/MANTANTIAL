@@ -14,6 +14,7 @@ import {CarritoService} from './../../servicios/serviciocarrito/carrito.service'
 import { auth } from 'firebase/app';
 import { UsuarioInterface } from './../../models/usuario';
 import {AuthService} from '../../servicios/servicioauth/auth.service';
+import {PedidoInterface} from './../../models/pedido'
 
 declare let paypal: any;
 
@@ -54,6 +55,12 @@ export class CarritoComponent implements OnInit,AfterViewChecked {
     password:'',
     photoUrl:'',
   };
+
+  public pedido:PedidoInterface={
+    id:null,
+  }
+  f= new Date();
+  fecha=this.f.getDate()+"/"+(this.f.getMonth()+1)+"/"+this.f.getFullYear()+'  ('+this.f.getHours()+':'+this.f.getMinutes()+')';
 
 
   ngOnInit() {
@@ -191,6 +198,19 @@ getCarrito(email:string){
    onAuthorize: (data, actions) => {
      return actions.payment.execute().then((payment) => {
        //Do something when payment is successful.
+       this.pedido.Total=this.ActTotal();
+       this.pedido.email=auth().currentUser.email;
+       this.pedido.fecha=new Date;
+       this.pedido.estado="pendiente";
+       this.store.collection('pedido').add(this.pedido);
+       
+
+       Swal.fire({
+        type: 'success',
+    title: 'Su pedido se ha realizado exitosamente!!!',
+    showConfirmButton: false,
+    timer: 1500
+      })
      })
    }
  };
@@ -201,6 +221,8 @@ getCarrito(email:string){
      paypal.Button.render(this.paypalConfig, '#paypal-button-container');
      this.paypalLoad = false;
      })
+
+    
    }
  }
  
@@ -211,7 +233,10 @@ getCarrito(email:string){
      scripttagElement.src = 'https://www.paypalobjects.com/api/checkout.js';
      scripttagElement.onload = resolve;
      document.body.appendChild(scripttagElement);
+    
    })
+
+  
  }
 
 

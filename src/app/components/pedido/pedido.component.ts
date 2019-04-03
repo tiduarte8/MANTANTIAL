@@ -1,33 +1,21 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
-import{MatTableDataSource,MatPaginator} from '@angular/material';
-import { style } from '@angular/animations';
-import { COMPILER_PROVIDERS } from '@angular/platform-browser-dynamic/testing/src/compiler_factory';
-import { element } from '@angular/core/src/render3';
+import { Component, OnInit,ViewChild, ElementRef } from '@angular/core';
+import{MatTableDataSource,MatPaginator,MatSort} from '@angular/material';
 
-export interface VerPedido {
+import {PedidoService} from './../../servicios/serviciopedido/pedido.service';
 
-  position: number;
-  numerofact:number;
-  fecha: string;
-  nombre:string;
-  apellidos:string;
-  direccion:string;
-  email:string;
-  telefono:string;
-  estado:string;
-  cantidad:number;
-  total:number;
-  
-  
-}
 
-const ELEMENT_DATA: VerPedido[] = [
-  {position: 1, numerofact:123, fecha: '14/02/2019',nombre:'Pedro', apellidos:'Reyes Uburto',direccion:'De la puma 2 c al este',email:'pedrojr@gmil.com',telefono:'58988787',estado:'Pendiente',cantidad:5,total:100},
-  {position: 2, numerofact:124, fecha: '14/02/2019',nombre:'Juan', apellidos:'Reyes Uburto',direccion:'De la puma 2 c al este',email:'pedrojr@gmil.com',telefono:'58988787',estado:'Pendiente',cantidad:5,total:100},
-  {position: 3, numerofact:125, fecha: '14/02/2019',nombre:'Pedro', apellidos:'Reyes Uburto',direccion:'De la puma 2 c al este',email:'pedrojr@gmil.com',telefono:'58988787',estado:'Pendiente',cantidad:5,total:100},
-  {position: 4, numerofact:126, fecha: '14/02/2019',nombre:'Reyes', apellidos:'Fernandez Uburto',direccion:'De la puma 2 c al este',email:'pedrojr@gmil.com',telefono:'58988787',estado:'Pendiente',cantidad:5,total:100},
-  {position: 5, numerofact:127, fecha: '14/02/2019',nombre:'Pedro', apellidos:'Reyes Uburto',direccion:'De la puma 2 c al este',email:'pedrojr@gmil.com',telefono:'58988787',estado:'Pendiente',cantidad:5,total:100},
-];
+import { AngularFireStorage } from '@angular/fire/storage';
+
+
+import {PedidoInterface} from './../../models/pedido';
+
+import Swal from 'sweetalert2';
+import { viewAttached } from '@angular/core/src/render3/instructions';
+import { ElementFinder } from 'protractor';
+
+
+
+
 @Component({
   selector: 'app-pedido',
   templateUrl: './pedido.component.html',
@@ -35,22 +23,79 @@ const ELEMENT_DATA: VerPedido[] = [
 })
 export class PedidoComponent implements OnInit {
 
-  onFacturar(){
+  color:string;
+
+  constructor( private dataApi:PedidoService,
+    public storage: AngularFireStorage){};
+
+
+  onFact(pedido:PedidoInterface){
+  this.dataApi.selectedpedido=Object.assign({},pedido)
+ 
   
+  
+  if( this.dataApi.selectedpedido.estado === 'pendiente')
+{
+  Swal.fire({
+    title: '¿Estás Seguro?',
+    text: "Esta acción no se puede detener!",
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Si, facturarlo!'
+  }).then((result) => {
+    if (result.value) {
+      this.dataApi.selectedpedido.estado='entregado';
+      this.dataApi.updatePedido(this.dataApi.selectedpedido);
+      Swal.fire({
+        type: 'success',
+    title: 'El Pedido se ha entregado !!!',
+    showConfirmButton: false,
+    timer: 1500
+      })
+    }
+  })
+}
+
+else{
+  Swal.fire({
+    type: 'error',
+title: 'Este pedido ya se ha entegado !!!',
+showConfirmButton: false,
+timer: 1500
+  })
+}
+
   }
 
-  displayedColumns: string[] = ['position','numerofact','fecha', 'nombre', 'apellidos','direccion','email','telefono','estado','cantidad','total','actions'];
-  dataSource = new MatTableDataSource<VerPedido>(ELEMENT_DATA);
+  displayedColumns: string[] = ['position','correo', 'fecha','total', 'estado','actions'];
+  dataSource = new MatTableDataSource<PedidoInterface>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort:MatSort;
+  @ViewChild('tdclass') tdclass: ElementRef;
+
+  
 
   ngOnInit(){
     this.dataSource.paginator=this.paginator;
+    this.getListPedido();
+    this.dataSource.sort=this.sort;
+   
 
   }
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
+  getListPedido(){
+    
+    this.dataApi.getAllPedido().subscribe(ListaPedido=>{
+ 
+      this.dataSource.data=ListaPedido;
+    });
+   }
 
 
 

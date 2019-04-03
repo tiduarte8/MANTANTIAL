@@ -11,16 +11,14 @@ import {contactoInterface} from '../../models/contacto';
 import { NgForm,ReactiveFormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { async } from '@angular/core/testing';
-import { UrlSerializer } from '@angular/router';
+import { UrlSerializer, RouterLink } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { auth } from 'firebase/app';
 import {ProductoInterface} from './../../models/producto';
 import {CarritoInterface} from './../../models/carrito';
 import { ActivatedRoute, Params } from '@angular/router';
 import {AuthService} from './../../servicios/servicioauth/auth.service';
-import { defineBase, disableBindings } from '@angular/core/src/render3';
-import { storage } from 'firebase';
-import { DISABLED } from '@angular/forms/src/model';
+import{Router} from '@angular/router';
 
 @Component({
   selector: 'app-inicio',
@@ -37,25 +35,39 @@ export class InicioComponent implements OnInit {
     public storage: AngularFirestore,
     public authService:AuthService,
     public route: ActivatedRoute,
+    public router:Router,
   ) {}
 
   public productos=[];
   public producto='';
   public productol: ProductoInterface = {};
-  public carrito: CarritoInterface={};
+  public carrito: CarritoInterface={
+   email:null
+  };
+
+
+
+  
 
   public btn=true;
   
   cantidad:number;
   subtotal:number; 
+ 
 
 
   @ViewChild('click') click:ElementRef;
 
-  getDetalle(idProducto: string): void {
-   
-   
+  
+  
 
+  getDetalle(idProducto: string) {
+     
+   
+  
+   if(auth().currentUser)
+      {
+ 
     this.dataApi.getOneProducto(idProducto).subscribe(producto => {
 
       this.carrito = producto;
@@ -63,31 +75,36 @@ export class InicioComponent implements OnInit {
       this.cantidad= this.carrito.cant=1;
       this.subtotal=this.carrito.subtotal=(this.carrito.precio*this.cantidad);
       this.carrito.email = auth().currentUser.email;
+     
       this.storage.collection('carrito').add(this.carrito);
       //localStorage.setItem("producto",JSON.stringify(this.productol));
       //console.log("PRODUCTO",this.productol);
       //this.obtener_LocalStorage();
+      
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+      });
+      
+      Toast.fire({
+        type: 'success',
+        title: 'Producto Agregado'
+      })
 
-    });
+
+      
 
    
-
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 3000
-    });
     
-    Toast.fire({
-      type: 'success',
-      title: 'Producto Agregado'
-    })
+    });
   }
-
-
+  else{
+    this.router.navigate(['login']);
+  }
  
-
+    }
 
 /*
   Comprar(){
