@@ -2,13 +2,13 @@
 
 export interface UsuarioInterface {
     id?:string;
-    name?:string;
-    email?:string;
-    password?:string;
-    photoUrl?:string;
+    pnombre?:string;
     snombre?:string;
     papellido?:string;
     sapellido?:string;
+    email?:string;
+    password?:string;
+    photoUrl?:string;
     ntelefono?:string;
     ncedula?:string;
     direccion?:string;
@@ -17,11 +17,3 @@ export interface UsuarioInterface {
 
 }
 
-/*
-sNombre?:string;
-    pApellido?:string;
-    sApellido?:string;
-    nCedula?:string;
-    nTelefono?:string;
-    direaccion?:string;
-*/

@@ -89,15 +89,7 @@ this.dataSource.sort=this.sort;
         })
       }
     })
-     
-/*
-     const confirmacion= confirm('Estas seguro?');
-     if(confirmacion){
-      this.dataApi.deleteProducto(idProducto);
-      
-     }
-     */
-     
+   
    }
 
    

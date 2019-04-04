@@ -1,38 +1,15 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
-import{MatTableDataSource,MatPaginator} from '@angular/material';
+import{MatTableDataSource,MatPaginator,MatSort} from '@angular/material';
 import {AuthService} from '../../servicios/servicioauth/auth.service';
 import {UsuarioInterface} from './../../models/usuario';
+import { AngularFirestore } from '@angular/fire/firestore';
+import {MatDialog,MatDialogConfig} from '@angular/material';
+import Swal from 'sweetalert2';
 
 
-export interface Clientes {
-  nombre: string;
-  position: number;
-  apellidos:string;
-  direccion:string;
-  email:string;
-  telefono:string;
-  
-  
-}
 
-const ELEMENT_DATA: Clientes[] = [
-  {position: 1, nombre: 'Pedro', apellidos:'Reyes Uburto',direccion:'De la puma 2 c al este',email:'pedrojr@gmil.com',telefono:'58988787'},
-  {position: 2, nombre: 'Manuel', apellidos:'Fernandez',direccion:'De la puma 800 vs al norte',email:'manu454@gmil.com',telefono:'58967897'},
-  {position: 3, nombre: 'Jose', apellidos:'Martines Galeano',direccion:'Casa comunal 1 c sur, Boaco',email:'joseesteban@gmil.com',telefono:'58956787'},
-  {position: 4, nombre: 'Miguel', apellidos:'Duarte Perez',direccion:'Del parque 1 c al oeste',email:'micajose54@gmil.com',telefono:'58765787'},
-  {position: 5, nombre: 'Eduard', apellidos:'Aragon',direccion:'Acoyapa ch',email:'josefito54@gmil.com',telefono:'57888787'},
-  {position: 6, nombre: 'Juaquin', apellidos:'Reyes Uburto',direccion:'De la puma 2 c al este',email:'pedrojr@gmil.com',telefono:'58988787'},
-  {position: 7, nombre: 'Melquil', apellidos:'Fernandez',direccion:'De la puma 800 vs al norte',email:'manu454@gmil.com',telefono:'58967897'},
-  {position: 8, nombre: 'Roberto', apellidos:'Martines Galeano',direccion:'Acoyapa Ch',email:'joseesteban@gmil.com',telefono:'58956787'},
-  {position: 9, nombre: 'Mascor', apellidos:'Duarte Perez',direccion:'Del parque una cuadra al este',email:'micajose54@gmil.com',telefono:'58765787'},
-  {position: 10, nombre: 'Joefina', apellidos:'Aragon',direccion:'Acoyapa ch',email:'josefito54@gmil.com',telefono:'57888787'},
-  {position: 11, nombre: 'Pedro', apellidos:'Reyes Uburto',direccion:'De la puma 2 c al este',email:'pedrojr@gmil.com',telefono:'58988787'},
-  {position: 12, nombre: 'Jos Esteban', apellidos:'Fernandez',direccion:'De la puma 800 vs al norte',email:'manu454@gmil.com',telefono:'58967897'},
-  {position: 13, nombre: 'Matias', apellidos:'Martines Galeano',direccion:'Casa comunal 1 c sur, Boaco',email:'joseesteban@gmil.com',telefono:'58956787'},
-  {position: 14, nombre: 'Evaristo', apellidos:'Duarte Perez',direccion:'Del parque 1 c al oeste',email:'micajose54@gmil.com',telefono:'58765787'},
-  {position: 15, nombre: 'Daniel', apellidos:'Aragon',direccion:'Acoyapa ch',email:'josefito54@gmil.com',telefono:'57888787'},
- 
-];
+
+
 
 @Component({
   selector: 'app-clientes',
@@ -41,21 +18,16 @@ const ELEMENT_DATA: Clientes[] = [
 })
 export class ClientesComponent implements OnInit{
 
-  constructor(public authService:AuthService){}
-
-  usuario: UsuarioInterface ={
-    
-    name:'', 
-    email:'',
-    password:'',
-    photoUrl:'',
-  };
+  constructor(public authService:AuthService,public data:AngularFirestore,public dialog: MatDialog){}
 
 
-  displayedColumns: string[] = ['position', 'nombre', 'apellidos','direccion','email','telefono','actions'];
-  dataSource = new MatTableDataSource<Clientes>(ELEMENT_DATA);
+
+
+  displayedColumns: string[] = ['position', 'pnombre', 'papellido','direccion','email','ntelefono','ncedula','actions'];
+  dataSource = new MatTableDataSource<UsuarioInterface>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort:MatSort;
 
 
 
@@ -63,19 +35,46 @@ export class ClientesComponent implements OnInit{
 
   ngOnInit(){
 this.dataSource.paginator=this.paginator;
-this.authService.isAuth().subscribe(usuario=>{
-  if(usuario){
-    this.usuario.name=usuario.displayName;
-    this.usuario.email=usuario.email;
-    this.usuario.photoUrl=usuario.photoURL;
-    
+this.getListProductos();
+this.dataSource.sort=this.sort;
 
-  }
-})
   }
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  getListProductos(){
+    
+    this.authService.getAllUsuario().subscribe(usuarios=>{
+    
+      this.dataSource.data=usuarios;
+    });
+   }
+
+   onDeleteUsuario(idUsuario:string):void{
+    console.log('Delete Registro',idUsuario);
+
+    Swal.fire({
+     title: '¿Estás Seguro?',
+     text: "Esta acción no se puede detener!",
+     type: 'warning',
+     showCancelButton: true,
+     confirmButtonColor: '#3085d6',
+     cancelButtonColor: '#d33',
+     confirmButtonText: 'Si, elimnarlo!'
+   }).then((result) => {
+     if (result.value) {
+       this.authService.deleteUsuario(idUsuario);
+       Swal.fire({
+         type: 'success',
+     title: 'El registro se ha eliminado !!!',
+     showConfirmButton: false,
+     timer: 1500
+       })
+     }
+   })
+  
   }
 
 

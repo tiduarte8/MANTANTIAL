@@ -1,9 +1,9 @@
 <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close><mat-icon>close</mat-icon></button>
+    <button (click)="resetForm()" mat-button mat-dialog-close><mat-icon>close</mat-icon></button>
     
   </mat-dialog-actions>
 <mat-card class="mycard">
-<form (submit)="onAddUser()" #formRegister="ngForm" name="ngFomr2" class="example-form">
+<form (ngSubmit)="onAddUser(formRegister)" #formRegister="ngForm" name="formRegister" class="example-form">
    
   <mat-toolbar>
       <span style="color:navy">Registrarse</span>
@@ -12,40 +12,40 @@
   <table class="example-full-width" cellspacing="0"><tr>
 
       <td><mat-form-field class="classtd">
-           <input type="text"  [(ngModel)]="name" name="pnombre"  matInput placeholder="Primer Nombre" required maxlength="30" >
+           <input type="text"  [(ngModel)]="this.authService.data.pnombre" name="pnombre"  matInput placeholder="Primer Nombre" required maxlength="30" >
            
            </mat-form-field></td>
    
       <td><mat-form-field class="classtd">
-            <input  type="text"  [(ngModel)]="name2" name="snombre" matInput placeholder="Segundo Nombre" maxlength="30" >
+            <input  type="text"  [(ngModel)]="this.authService.data.snombre" name="snombre" matInput placeholder="Segundo Nombre" maxlength="30" >
          </mat-form-field></td>
     </tr>
  </table>
   
     <table class="example-full-width" cellspacing="0"><tr>
         <td><mat-form-field class="classtd">
-          <input [(ngModel)]="papellido" name="papellido" type="text" matInput placeholder="Primer Apellido" required maxlength="30">
+          <input [(ngModel)]="this.authService.data.papellido" name="papellido" type="text" matInput placeholder="Primer Apellido" required maxlength="30">
         </mat-form-field></td>
         <td><mat-form-field class="classtd">
-          <input [(ngModel)]="sapellido" name="sapellido" type="text" matInput placeholder="Segundo Apellido" maxlength="30" >
+          <input [(ngModel)]="this.authService.data.sapellido" name="sapellido" type="text" matInput placeholder="Segundo Apellido" maxlength="30" >
         </mat-form-field></td>
       </tr></table>
 
       <table class="example-full-width" cellspacing="0"><tr>
 
           <td><mat-form-field class="classtd">
-              <input [(ngModel)]="ced" name="ced"  type="text" maxlength="16" minlength="16" required matInput placeholder="Cédula" >
+              <input [(ngModel)]="this.authService.data.ncedula" name="ncedula"  type="text" maxlength="16" minlength="16" required matInput placeholder="Cédula" >
              </mat-form-field></td>
              <td><mat-form-field class="classtd">
                 <span matPrefix>+505 &nbsp;</span>
-                <input [(ngModel)]="tel" name="tel" type="text" minlength="8" maxlength="8"  required  matInput placeholder="N° Teléfono">
+                <input [(ngModel)]="this.authService.data.ntelefono" name="ntelefono" type="text" minlength="8" maxlength="8"  required  matInput placeholder="N° Teléfono">
                 <mat-icon matSuffix>call</mat-icon>
             </mat-form-field></td>
           
         </tr></table>
       
     <mat-form-field class="example-full-width">
-        <textarea [(ngModel)]="dir" name="dir" type="text" matInput placeholder="Dirección" required maxlength="200"></textarea>
+        <textarea [(ngModel)]="this.authService.data.direccion" name="direccion" type="text" matInput placeholder="Dirección" required maxlength="200"></textarea>
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
@@ -76,6 +76,7 @@
 
 
   <button type="submit"   mat-raised-button color="primary">Registrarse</button> 
+  
   
   <br>
   <label style="color:red">{{mensaje}}</label>

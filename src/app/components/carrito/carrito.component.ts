@@ -50,7 +50,7 @@ export class CarritoComponent implements OnInit,AfterViewChecked {
     id:null,
   }
   usuario: UsuarioInterface ={
-    name:'', 
+    pnombre:'', 
     email:'',
     password:'',
     photoUrl:'',

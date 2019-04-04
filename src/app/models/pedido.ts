@@ -4,5 +4,6 @@ export interface PedidoInterface{
     fecha?:Date;
     Total?:number;
     estado?:string;
+    direccion?:string;
 
 }

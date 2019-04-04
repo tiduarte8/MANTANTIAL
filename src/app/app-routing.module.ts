@@ -18,8 +18,9 @@ import {AuthGuard} from './guards/auth.guard';
 
 
 const routes: Routes =[
-    
-    {path:'login', component: LoginComponent},
+
+    {path:'',component:InicioComponent,pathMatch:'full'},
+     {path:'login', component: LoginComponent},
      {path:'producto',component: ProductoComponent,canActivate:[AuthGuard]},
      {path:'inventario',component:InventarioComponent,canActivate:[AuthGuard]},
      {path:'cliente',component:ClientesComponent,canActivate:[AuthGuard]},
@@ -33,7 +34,7 @@ const routes: Routes =[
      {path:'carrito',component:CarritoComponent,canActivate:[AuthGuard]},
      {path:'contacto',component:ContactoComponent,canActivate:[AuthGuard]},
      {path:'pago',component:MetodopagoComponent,canActivate:[AuthGuard]},
-     {path:'',component:InicioComponent,pathMatch:'full'},
+     
      {path:'**',redirectTo:'/',pathMatch:'full'},
 
      

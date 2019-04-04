@@ -26,7 +26,7 @@ export class MynavComponent implements OnInit{
 
   usuario: UsuarioInterface ={
     
-    name:'', 
+    pnombre:'', 
     email:'',
     password:'',
     photoUrl:'',
@@ -34,13 +34,15 @@ export class MynavComponent implements OnInit{
 
   public isLogged: boolean=false;
   public islogged2: boolean=true;
+  public isCliente:any=null;
+  public userUid:string=null;
 
   ngOnInit(){
    this.getCurrentUser();
   
    this.authService.isAuth().subscribe(usuario=>{
      if(usuario){
-       this.usuario.name=usuario.displayName;
+       this.usuario.pnombre=usuario.displayName;
        this.usuario.email=usuario.email;
        this.usuario.photoUrl=usuario.photoURL;
        
@@ -64,6 +66,8 @@ export class MynavComponent implements OnInit{
       }
     });
   }
+
+ 
 
   onLogout(){
     this.authService.logoutUser();

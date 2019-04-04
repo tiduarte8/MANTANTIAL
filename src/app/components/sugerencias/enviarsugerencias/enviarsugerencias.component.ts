@@ -35,7 +35,7 @@ export class EnviarsugerenciasComponent implements OnInit {
 this.dataApi.formData.fecha=this.fecha;
     this.authService.isAuth().subscribe(usuario=>{
       if(usuario){
-        this.usuario.name=usuario.displayName;
+        this.usuario.pnombre=usuario.displayName;
       this.usuario.email=usuario.email;
         this.usuario.photoUrl=usuario.photoURL;
         
@@ -64,7 +64,7 @@ this.dataApi.formData.fecha=this.fecha;
 
     usuario: UsuarioInterface ={
     
-      name:'', 
+      pnombre:'', 
       email:this.email,
       password:'',
       photoUrl:'',
