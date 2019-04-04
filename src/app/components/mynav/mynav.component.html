@@ -39,14 +39,14 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span class="spanclass"  >MANANTIAL DE VIDA</span>
-      <a *ngIf="isLogged" mat-list-item routerLink="/carrito"><mat-icon  matTooltip="Mi Carrito de Pedidos"
+      <a *ngIf="isLogged" mat-list-item routerLink="/carrito"><mat-icon  matTooltip="Mi Carrito"
          aria-label="Button that displays a tooltip when focused or hovered over"
           class="matc" >shopping_cart</mat-icon></a>
       <a *ngIf="islogged2" mat-list-item routerLink="/login"><mat-icon matTooltip="Inicio de sesión" aria-label="Button that displays a tooltip when focused or hovered over" class="mati">account_circle</mat-icon></a>
       <a class="auser" *ngIf="isLogged" >{{usuario.email}}</a>
 
       <a class="clasa" *ngIf="isLogged" [matMenuTriggerFor]="menu"  
-       mat-list-item routerLink="/login"><img class="mati"
+       mat-list-item ><img class="mati"
       *ngIf="usuario.photoUrl!==null" matTooltip="Salir"
        aria-label="Button that displays a tooltip when focused or hovered over"
         src="{{usuario.photoUrl}}">
@@ -55,7 +55,7 @@
        class="mati">account_circle</mat-icon>
        <mat-menu #menu="matMenu">
         <button mat-menu-item >Mi Perfil</button>
-        <button mat-menu-item (click)="onLogout()">Salir</button>
+        <button mat-menu-item routerLink="/login" (click)="onLogout()">Salir</button>
       </mat-menu>
       </a>
       

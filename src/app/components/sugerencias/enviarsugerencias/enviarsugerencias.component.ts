@@ -13,6 +13,7 @@ import { async } from '@angular/core/testing';
 import {AuthService} from './../../../servicios/servicioauth/auth.service';
 import {UsuarioInterface} from './../../../models/usuario';
 import { getLocaleTimeFormat } from '@angular/common';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-enviarsugerencias',
@@ -49,8 +50,11 @@ this.dataApi.formData.fecha=this.fecha;
    })
   }
 
-  constructor(public dialog: MatDialog, public dataApi:SugerenciaserviceService,
-    public storage: AngularFirestore,public authService:AuthService) { }
+  constructor(public dialog: MatDialog,
+    public dataApi:SugerenciaserviceService,
+    public storage: AngularFirestore,
+    public authService:AuthService,
+    public router:Router) { }
 
     f= new Date();
     fecha=this.f.getDate()+"/"+(this.f.getMonth()+1)+"/"+this.f.getFullYear()+'  ('+this.f.getHours()+':'+this.f.getMinutes()+')';
@@ -71,7 +75,7 @@ this.dataApi.formData.fecha=this.fecha;
 
     onSaveSugerencia(formSugerencia:NgForm){
  
-    if(formSugerencia.valid) {
+    if(formSugerencia.valid && this.usuario.email!==null) {
      
         // New 
         this.email;
@@ -103,6 +107,10 @@ this.dataApi.formData.fecha=this.fecha;
           }
         })
     
+      }
+
+      else{
+        this.router.navigate(['login']);
       }
 
     }

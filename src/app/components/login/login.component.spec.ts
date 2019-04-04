@@ -7,6 +7,8 @@ import { LoginComponent } from './login.component';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
+import { DebugElement } from '@angular/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 /*

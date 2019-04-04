@@ -19,6 +19,7 @@ import {CarritoInterface} from './../../models/carrito';
 import { ActivatedRoute, Params } from '@angular/router';
 import {AuthService} from './../../servicios/servicioauth/auth.service';
 import{Router} from '@angular/router';
+import { DISABLED } from '@angular/forms/src/model';
 
 @Component({
   selector: 'app-inicio',
@@ -47,9 +48,11 @@ export class InicioComponent implements OnInit {
 
 
 
+
+
   
 
-  public btn=true;
+
   
   cantidad:number;
   subtotal:number; 
@@ -57,6 +60,8 @@ export class InicioComponent implements OnInit {
 
 
   @ViewChild('click') click:ElementRef;
+
+
 
   
   
@@ -80,7 +85,9 @@ export class InicioComponent implements OnInit {
       //localStorage.setItem("producto",JSON.stringify(this.productol));
       //console.log("PRODUCTO",this.productol);
       //this.obtener_LocalStorage();
-      
+     
+    
+    
       const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -92,11 +99,9 @@ export class InicioComponent implements OnInit {
         type: 'success',
         title: 'Producto Agregado'
       })
-
+   
 
       
-
-   
     
     });
   }
@@ -137,6 +142,8 @@ export class InicioComponent implements OnInit {
       const idProducto = this.route.snapshot.params['id'];
       this.getDetalle(idProducto);
       */
+
+
      
     })
     

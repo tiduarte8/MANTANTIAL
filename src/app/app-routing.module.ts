@@ -30,7 +30,7 @@ const routes: Routes =[
      {path:'sugerencia',component:SugerenciasComponent,canActivate:[AuthGuard]},
      {path:'enviarsu',component:EnviarsugerenciasComponent},
      {path:'reporte',component:ReporteComponent,canActivate:[AuthGuard]},
-     {path:'carrito',component:CarritoComponent},
+     {path:'carrito',component:CarritoComponent,canActivate:[AuthGuard]},
      {path:'contacto',component:ContactoComponent,canActivate:[AuthGuard]},
      {path:'pago',component:MetodopagoComponent,canActivate:[AuthGuard]},
      {path:'',component:InicioComponent,pathMatch:'full'},
