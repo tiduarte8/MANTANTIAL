@@ -46,6 +46,8 @@ import {AngularFirestore, AngularFirestoreModule,FirestoreSettingsToken} from '@
 import { GuardarproductoComponent,ActualizarImagenComponent} from './components/producto/guardarproducto/guardarproducto.component';
 import { FlexLayoutModule} from '@angular/flex-layout';
 import { MetodopagoComponent } from './components/metodopago/metodopago.component';
+import { DetallepedidoComponent } from './components/pedido/detallepedido/detallepedido.component';
+import { MispedidosComponent } from './components/mispedidos/mispedidos.component';
 
 
 
@@ -74,6 +76,8 @@ import { MetodopagoComponent } from './components/metodopago/metodopago.componen
     InventarioComponent,
     GuardarproductoComponent,
     MetodopagoComponent,
+    DetallepedidoComponent,
+    MispedidosComponent,
    
     
   
@@ -123,7 +127,9 @@ import { MetodopagoComponent } from './components/metodopago/metodopago.componen
     ProductoComponent,
     RegistrarseComponent,
     LoginComponent,
-    GuardarproductoComponent
+    GuardarproductoComponent,
+    PedidoComponent,
+    DetallepedidoComponent,
   ],
 
 

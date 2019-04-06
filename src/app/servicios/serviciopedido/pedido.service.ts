@@ -5,6 +5,7 @@ import{PedidoInterface} from './../../models/pedido';
 import {Observable} from 'rxjs/internal/Observable';
 import {map} from 'rxjs/operators';
 import { Action } from 'rxjs/internal/scheduler/Action';
+import {InterfazDetallePedido} from './../../models/detallepedido';
 
 
 @Injectable({
@@ -22,6 +23,10 @@ export class PedidoService {
     id:null,
   };
 
+  public selectedDetallePedido:InterfazDetallePedido={
+    id:null,
+  }
+
   getAllPedido(){
     this.pedidoCollection=this.afs.collection<PedidoInterface>('pedido');
     return this.listapedido=this.pedidoCollection.snapshotChanges().pipe
@@ -34,10 +39,34 @@ export class PedidoService {
   }));
 }
 
+getAllPedidoEmail(email:string){
+  this.pedidoCollection=this.afs.collection<PedidoInterface>('pedido', email ? ref => ref.where("email", "==", email) : undefined);
+  return this.listapedido=this.pedidoCollection.snapshotChanges().pipe
+  (map(changes=>{
+    return changes.map(action=>{
+      const data = action.payload.doc.data() as PedidoInterface;
+      data.id= action.payload.doc.id;
+      return data;
+  });
+}));
+}
+
 updatePedido(pedido: PedidoInterface):void{
   let idPedido=pedido.id;
   this.pedidoDoc=this.afs.doc<PedidoInterface>(`pedido/${idPedido}`);
   this.pedidoDoc.update(pedido);
+}
+
+getOnePedido(idPedido: string) {
+  this.pedidoCollection = this.afs.collection<PedidoInterface>(`pedido/${idPedido}`);
+  return this.listapedido = this.pedidoCollection.snapshotChanges()
+    .pipe(map(changes => { 
+      return changes.map(action => {
+        const data = action.payload.doc.data() as PedidoInterface;
+        data.id = action.payload.doc.id;
+        return data;
+      });
+    }));
 }
 
 }

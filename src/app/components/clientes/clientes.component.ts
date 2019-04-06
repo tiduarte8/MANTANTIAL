@@ -23,7 +23,7 @@ export class ClientesComponent implements OnInit{
 
 
 
-  displayedColumns: string[] = ['position', 'pnombre', 'papellido','direccion','email','ntelefono','ncedula','actions'];
+  displayedColumns: string[] = ['position', 'pnombre', 'papellido','direccion','email','ntelefono','ncedula'];
   dataSource = new MatTableDataSource<UsuarioInterface>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -35,7 +35,12 @@ export class ClientesComponent implements OnInit{
 
   ngOnInit(){
 this.dataSource.paginator=this.paginator;
-this.getListProductos();
+this.authService.isAuth().subscribe(usuario=>{
+  if(usuario){
+    this.getListUsuarios(usuario.email);
+
+ }
+})
 this.dataSource.sort=this.sort;
 
   }
@@ -44,14 +49,15 @@ this.dataSource.sort=this.sort;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  getListProductos(){
+  getListUsuarios(email:string){
     
-    this.authService.getAllUsuario().subscribe(usuarios=>{
+    this.authService.getAllUsuario(email).subscribe(usuarios=>{
     
       this.dataSource.data=usuarios;
     });
    }
 
+   /*
    onDeleteUsuario(idUsuario:string):void{
     console.log('Delete Registro',idUsuario);
 
@@ -75,7 +81,7 @@ this.dataSource.sort=this.sort;
      }
    })
   
-  }
+  }*/
 
 
 }

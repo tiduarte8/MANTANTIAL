@@ -6,6 +6,8 @@ import {AuthService} from '../../servicios/servicioauth/auth.service';
 import {AngularFireAuth} from '@angular/fire/auth';
 
 import {UsuarioInterface} from './../../models/usuario';
+import {AngularFirestore} from '@angular/fire/firestore'
+import { auth } from 'firebase';
 
 
 @Component({
@@ -22,7 +24,8 @@ export class MynavComponent implements OnInit{
 
    
 
-  constructor(public breakpointObserver: BreakpointObserver, public authService:AuthService, public afsAuth: AngularFireAuth) {}
+  constructor(public breakpointObserver: BreakpointObserver, public authService:AuthService, public afsAuth: AngularFireAuth,
+    public storage:AngularFirestore) {}
 
   usuario: UsuarioInterface ={
     
@@ -36,15 +39,19 @@ export class MynavComponent implements OnInit{
   public islogged2: boolean=true;
   public isCliente:any=null;
   public userUid:string=null;
+  
 
   ngOnInit(){
    this.getCurrentUser();
+   this.getCurrentUser2();
+  
   
    this.authService.isAuth().subscribe(usuario=>{
      if(usuario){
        this.usuario.pnombre=usuario.displayName;
        this.usuario.email=usuario.email;
        this.usuario.photoUrl=usuario.photoURL;
+       
        
   
     }
@@ -54,6 +61,7 @@ export class MynavComponent implements OnInit{
   getCurrentUser(){
     this.authService.isAuth().subscribe( auth=>{
       if(auth){
+       
         console.log('user logged');
         this.isLogged=true;
         this.islogged2=false;
@@ -65,6 +73,21 @@ export class MynavComponent implements OnInit{
         this.islogged2=true;
       }
     });
+  }
+  getCurrentUser2(){
+  this.authService.isAuth().subscribe(auth=>{
+    if(auth){
+         this.userUid=auth.uid;
+
+         this.authService.isUserCliente(auth.uid).subscribe(user => {
+          this.isCliente=user['tipousuario'];
+          console.log('tipo',this.isCliente);
+           console.log(user)
+         })
+         
+          console.log('uduario loged:',auth.uid)
+    }
+  })
   }
 
  

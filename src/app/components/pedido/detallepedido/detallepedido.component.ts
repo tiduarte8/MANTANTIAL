@@ -1,39 +1,32 @@
 import { Component, OnInit,ViewChild, ElementRef } from '@angular/core';
 import{MatTableDataSource,MatPaginator,MatSort} from '@angular/material';
-import {PedidoService} from './../../servicios/serviciopedido/pedido.service';
-import {MatDialog,MatDialogConfig} from '@angular/material';
 import { AngularFireStorage } from '@angular/fire/storage';
-import {PedidoInterface} from './../../models/pedido';
 import Swal from 'sweetalert2';
-import {DetallepedidoComponent} from './detallepedido/detallepedido.component';
-
+import { viewAttached } from '@angular/core/src/render3/instructions';
+import { ElementFinder } from 'protractor';
+import {InterfazDetallePedido} from './../../../models/detallepedido';
+import {PedidoService} from './../../../servicios/serviciopedido/pedido.service';
 
 
 
 @Component({
-  selector: 'app-pedido',
-  templateUrl: './pedido.component.html',
-  styleUrls: ['./pedido.component.css']
+  selector: 'app-detallepedido',
+  templateUrl: './detallepedido.component.html',
+  styleUrls: ['./detallepedido.component.css']
 })
-export class PedidoComponent implements OnInit {
+export class DetallepedidoComponent implements OnInit {
 
   color:string;
 
-  constructor( private dataApi:PedidoService,
-    public storage: AngularFireStorage,public dialog:MatDialog){};
+  constructor(public dataApi:PedidoService,
+    public store: AngularFireStorage){};
 
-    openDialog(){
-      const dialogConfig= new MatDialogConfig();
-      dialogConfig.disableClose=true;
-      dialogConfig.autoFocus=true;
-      dialogConfig.width="1200px";
-      dialogConfig.height="700px";
-      this.dialog.open(DetallepedidoComponent,dialogConfig);
-    }
 
-  onFact(pedido:PedidoInterface){
-  this.dataApi.selectedpedido=Object.assign({},pedido)
-
+  onFact(pedido:InterfazDetallePedido){
+  this.dataApi.selectedDetallePedido=Object.assign({},pedido)
+ 
+ 
+  
   if( this.dataApi.selectedpedido.estado === 'pendiente')
 {
   Swal.fire({
@@ -70,8 +63,8 @@ timer: 1500
 
   }
 
-  displayedColumns: string[] = ['position','correo', 'fecha','total', 'estado','actions'];
-  dataSource = new MatTableDataSource<PedidoInterface>();
+  displayedColumns: string[] = ['position','nombre', 'imagen','precio','cantidad','subtotal'];
+  dataSource = new MatTableDataSource();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort:MatSort;
@@ -94,8 +87,6 @@ timer: 1500
   }
 
   getListPedido(){
-
-    
     
     this.dataApi.getAllPedido().subscribe(ListaPedido=>{
  

@@ -9,12 +9,15 @@ import { ElementData } from '@angular/core/src/view';
 import Swal from 'sweetalert2';
 import {AngularFirestore,AngularFirestoreCollection,AngularFirestoreDocument} from '@angular/fire/firestore';
 import { CarritoInterface } from 'src/app/models/carrito';
+import {InterfazDetallePedido} from './../../models/detallepedido';
 import {Observable} from 'rxjs/internal/Observable';
 import {CarritoService} from './../../servicios/serviciocarrito/carrito.service';
 import { auth } from 'firebase/app';
 import { UsuarioInterface } from './../../models/usuario';
 import {AuthService} from '../../servicios/servicioauth/auth.service';
-import {PedidoInterface} from './../../models/pedido'
+import {PedidoInterface} from './../../models/pedido';
+import {PedidoService} from './../../servicios/serviciopedido/pedido.service';
+import { forEach } from '@angular/router/src/utils/collection';
 
 declare let paypal: any;
 
@@ -32,7 +35,7 @@ export class CarritoComponent implements OnInit,AfterViewChecked {
   @ViewChild('preciop') preciop: ElementRef;
 
 
-  constructor(public store:AngularFirestore,public service:CarritoService, public authService:AuthService) { 
+  constructor(public store:AngularFirestore,public service:CarritoService,public sp:PedidoService, public authService:AuthService) { 
   }
 
  
@@ -57,8 +60,15 @@ export class CarritoComponent implements OnInit,AfterViewChecked {
   };
 
   public pedido:PedidoInterface={
-    id:null,
+   
+    
   }
+  public apedido:PedidoInterface[];
+
+  public detallepedido={
+   id:null,
+  }
+
   f= new Date();
   fecha=this.f.getDate()+"/"+(this.f.getMonth()+1)+"/"+this.f.getFullYear()+'  ('+this.f.getHours()+':'+this.f.getMinutes()+')';
 
@@ -121,6 +131,7 @@ getCarrito(email:string){
   this.service.getAllCarrito(email).subscribe(carrito=>{
     console.log('CARRITO',carrito);
     this.carrito=carrito});
+   
 
 }
 
@@ -202,8 +213,11 @@ getCarrito(email:string){
        this.pedido.email=auth().currentUser.email;
        this.pedido.fecha=new Date;
        this.pedido.estado="pendiente";
-       this.store.collection('pedido').add(this.pedido);
-       
+       this.store.collection('pedido').add(this.pedido)
+      
+
+   //this.store.collection('pedido').doc('KcCmZ6kyHvKN0n84uOf7').collection('detallepedido').add((this.carrito) );
+   
 
        Swal.fire({
         type: 'success',

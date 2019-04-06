@@ -64,7 +64,7 @@ export class AuthService {
   }
 
   isUserCliente(userUid){
-    return this.afs.collection<UsuarioInterface>(`usuarios/${userUid}`).valueChanges();
+    return this.afs.collection<UsuarioInterface>(`usuarios`).doc(userUid).valueChanges();
  }
 
 
@@ -88,8 +88,8 @@ export class AuthService {
 
  
 
-  getAllUsuario(){
-    this.usuarioCollection=this.afs.collection<UsuarioInterface>('usuarios');
+  getAllUsuario(email:string){
+    this.usuarioCollection=this.afs.collection<UsuarioInterface>('usuarios', email ? ref => ref.where("tipousuario", "==", 'cliente') : undefined);
     return this.usuarios=this.usuarioCollection.snapshotChanges().pipe
     (map(changes=>{
       return changes.map(action=>{

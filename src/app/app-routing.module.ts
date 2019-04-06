@@ -15,6 +15,7 @@ import {InventarioComponent}from './components/inventario/inventario.component';
 import {MetodopagoComponent} from './components/metodopago/metodopago.component';
 
 import {AuthGuard} from './guards/auth.guard';
+import { MispedidosComponent } from './components/mispedidos/mispedidos.component';
 
 
 const routes: Routes =[
@@ -28,6 +29,7 @@ const routes: Routes =[
      
      
      {path:'pedido',component:PedidoComponent,canActivate:[AuthGuard]},
+     {path:'mispedidos',component:MispedidosComponent,canActivate:[AuthGuard]},
      {path:'sugerencia',component:SugerenciasComponent,canActivate:[AuthGuard]},
      {path:'enviarsu',component:EnviarsugerenciasComponent},
      {path:'reporte',component:ReporteComponent,canActivate:[AuthGuard]},
