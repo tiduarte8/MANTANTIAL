@@ -39,11 +39,12 @@ export class MynavComponent implements OnInit{
   public islogged2: boolean=true;
   public isCliente:any=null;
   public userUid:string=null;
+  public isadmin:boolean = false;
   
 
   ngOnInit(){
    this.getCurrentUser();
-   this.getCurrentUser2();
+ // this.getCurrentUser2();
   
   
    this.authService.isAuth().subscribe(usuario=>{
@@ -57,7 +58,7 @@ export class MynavComponent implements OnInit{
     }
   })
   }
-
+/*
   getCurrentUser(){
     this.authService.isAuth().subscribe( auth=>{
       if(auth){
@@ -74,6 +75,32 @@ export class MynavComponent implements OnInit{
       }
     });
   }
+  */
+
+   getCurrentUser(){
+    this.authService.isAuth().subscribe( auth=>{
+      if(auth){
+        if (auth.email == "tiduarte1993@gmail.com"){
+          localStorage.setItem("rol",'admin');
+          this.isadmin = true;
+         
+        }else{
+          this.isadmin = false;
+          localStorage.setItem("rol",'admin');
+         
+        }
+        this.isLogged = true;
+        
+      }else{
+        console.log("NOT user logged");
+        this.isLogged = false;
+        this.isadmin=false;
+        
+      }
+    });
+  }
+
+  /*
   getCurrentUser2(){
   this.authService.isAuth().subscribe(auth=>{
     if(auth){
@@ -88,12 +115,13 @@ export class MynavComponent implements OnInit{
           console.log('uduario loged:',auth.uid)
     }
   })
-  }
+  }*/
 
  
 
   onLogout(){
     this.authService.logoutUser();
+    localStorage.removeItem('rol');
   }
 
 }

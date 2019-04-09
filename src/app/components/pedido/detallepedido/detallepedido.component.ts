@@ -9,6 +9,8 @@ import {PedidoService} from './../../../servicios/serviciopedido/pedido.service'
 
 
 
+
+
 @Component({
   selector: 'app-detallepedido',
   templateUrl: './detallepedido.component.html',
@@ -63,8 +65,8 @@ timer: 1500
 
   }
 
-  displayedColumns: string[] = ['position','nombre', 'imagen','precio','cantidad','subtotal'];
-  dataSource = new MatTableDataSource();
+  displayedColumns: string[] = ['position','nombre', 'imagen','precio','cant','subtotal'];
+  dataSource = new MatTableDataSource<InterfazDetallePedido>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort:MatSort;
@@ -75,7 +77,7 @@ timer: 1500
 
   ngOnInit(){
     this.dataSource.paginator=this.paginator;
-    this.getListPedido();
+   this.getListarDetallePedido();
     this.dataSource.sort=this.sort;
   //  let estado= document.getElementById('estado')
   //   estado.style.color='green';
@@ -86,13 +88,14 @@ timer: 1500
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  getListPedido(){
-    
-    this.dataApi.getAllPedido().subscribe(ListaPedido=>{
- 
-      this.dataSource.data=ListaPedido;
-    });
-   }
+  getListarDetallePedido(){
+    const pedidoId = this.dataApi.selectedpedido.id;
+    this.dataApi.obtenerDetallePedido(pedidoId)
+    .subscribe(pedidos => {
+      console.log(pedidos);
+      this.dataSource.data = pedidos;
+    })
+  }
 
 
 

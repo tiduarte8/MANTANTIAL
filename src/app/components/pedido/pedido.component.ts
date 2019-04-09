@@ -22,7 +22,9 @@ export class PedidoComponent implements OnInit {
   constructor( private dataApi:PedidoService,
     public storage: AngularFireStorage,public dialog:MatDialog){};
 
-    openDialog(){
+    openDialog(pedido){
+      this.dataApi.selectedpedido = pedido;
+      console.log(pedido);
       const dialogConfig= new MatDialogConfig();
       dialogConfig.disableClose=true;
       dialogConfig.autoFocus=true;

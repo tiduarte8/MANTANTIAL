@@ -6,6 +6,7 @@ import {Observable} from 'rxjs/internal/Observable';
 import {map} from 'rxjs/operators';
 import { Action } from 'rxjs/internal/scheduler/Action';
 import {InterfazDetallePedido} from './../../models/detallepedido';
+import { DetallepedidoComponent } from 'src/app/components/pedido/detallepedido/detallepedido.component';
 
 
 @Injectable({
@@ -67,6 +68,18 @@ getOnePedido(idPedido: string) {
         return data;
       });
     }));
+}
+
+obtenerDetallePedido(pedidoId){
+  this.pedidoCollection = this.afs.collection<InterfazDetallePedido>('pedido').doc(pedidoId).collection('detallepedido');
+  return this.listapedido = this.pedidoCollection.snapshotChanges()
+  .pipe(map(changes => { 
+    return changes.map(action => {
+      const data = action.payload.doc.data() as InterfazDetallePedido;
+      data.id = action.payload.doc.id;
+      return data;
+    });
+  }));
 }
 
 }

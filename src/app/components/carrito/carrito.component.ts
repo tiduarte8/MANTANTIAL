@@ -18,6 +18,7 @@ import {AuthService} from '../../servicios/servicioauth/auth.service';
 import {PedidoInterface} from './../../models/pedido';
 import {PedidoService} from './../../servicios/serviciopedido/pedido.service';
 import { forEach } from '@angular/router/src/utils/collection';
+import { map } from 'rxjs/operators';
 
 declare let paypal: any;
 
@@ -48,6 +49,7 @@ export class CarritoComponent implements OnInit,AfterViewChecked {
   public carrito:CarritoInterface[];
   public carritoCollection: AngularFirestoreCollection<CarritoInterface>;
   public productos:Observable<CarritoInterface[]>;
+  private carritoob:Observable<CarritoInterface>;
   public carritoDoc:AngularFirestoreDocument<CarritoInterface>;
   public selectedCarrito:CarritoInterface={
     id:null,
@@ -206,15 +208,15 @@ getCarrito(email:string){
        }
      });
    },
-   onAuthorize: (data, actions) => {
+   onAuthorize: (data, actions,idpedido) => {
      return actions.payment.execute().then((payment) => {
        //Do something when payment is successful.
        this.pedido.Total=this.ActTotal();
        this.pedido.email=auth().currentUser.email;
        this.pedido.fecha=new Date;
        this.pedido.estado="pendiente";
-       this.store.collection('pedido').add(this.pedido)
-      
+       this.store.collection<CarritoInterface>('pedido').add(this.pedido)
+
 
    //this.store.collection('pedido').doc('KcCmZ6kyHvKN0n84uOf7').collection('detallepedido').add((this.carrito) );
    

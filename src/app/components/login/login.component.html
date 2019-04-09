@@ -4,9 +4,12 @@
 
 <img class="imglog" src="./../../assets/imagen/logomanantialt.png">
 <br>
+
 <mat-card class="mycard">
 <form #formLogin="ngForm" name="ngFomr" (submit)="onLoginEmail()" class="example-form">
-
+  <br>
+  <br>
+  
     <mat-form-field class="example-full-width">
         <input  [(ngModel)]="email" name="email" [formControl]="emailFormControl" maxlength="50" type="email" matInput placeholder="Correo Electrónico" required
        

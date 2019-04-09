@@ -8,7 +8,7 @@ import {contactoInterface}from './../../models/contacto';
 
 import {Contactanos } from './inicio.component';
 
-
+/*
 fdescribe('ContactComponent', () => {
   let comp:Contactanos;
   let fixture: ComponentFixture<Contactanos>;
@@ -26,17 +26,17 @@ fdescribe('ContactComponent', () => {
       ]
     }).compileComponents().then(()=>{fixture=TestBed.createComponent(Contactanos);
     comp=fixture.componentInstance;
-    de=fixture.debugElement.query(By.css('form'));
+    de=fixture.debugElement.query(By.css('formContacto'));
     el=de.nativeElement;
     });
   }));
   
-/*
+
   it(`should set submteed to true`,async( () => {
    comp.onEnviar(FormContacto)
     expect(comp.onEnviar).toBeTruthy();
   }));
-  */
+  
 
   it(`should call d Submit method`,async( () => {
     fixture.detectChanges();
@@ -46,6 +46,7 @@ fdescribe('ContactComponent', () => {
 
     expect(comp.onEnviar).toHaveBeenCalledTimes(0);
   }));
+  */
 /*
   it(`form should be invalid`,async( () => {
     comp.contApi.selectedContacto.nombre['nombre'].setValue('');
@@ -64,6 +65,7 @@ fdescribe('ContactComponent', () => {
     expect(comp.contApi.selectedContacto).toBeTruthy();
   }));
 
-*/
+
 
 });
+*/
