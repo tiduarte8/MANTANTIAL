@@ -151,15 +151,20 @@ export class InicioComponent implements OnInit {
 
   
   openDialog() {
-    const dialogRef = this.dialog.open(Contactanos,);
+    const dialogConfig= new MatDialogConfig();
+    dialogConfig.disableClose=true;
+    dialogConfig.autoFocus=true;
+    dialogConfig.width="1000px";
+     dialogConfig.height="570px"
+     this.dialog.open(Contactanos,dialogConfig);
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+  /*  dialogRef.afterClosed().subscribe(result => {
+     console.log(`Dialog result: ${result}`);
 
    
 
-    });
-  }
+    })
+  */ }
 
 }
 

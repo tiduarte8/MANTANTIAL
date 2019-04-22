@@ -216,7 +216,7 @@ getCarrito(email:string){
        this.pedido.fecha=new Date;
        this.pedido.estado="pendiente";
        this.store.collection<CarritoInterface>('pedido').add(this.pedido)
-
+     
 
    //this.store.collection('pedido').doc('KcCmZ6kyHvKN0n84uOf7').collection('detallepedido').add((this.carrito) );
    

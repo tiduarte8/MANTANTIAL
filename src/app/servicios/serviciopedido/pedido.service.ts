@@ -16,9 +16,9 @@ export class PedidoService {
 
   constructor(public afs:AngularFirestore) { }
 
-  private pedidoCollection: AngularFirestoreCollection<PedidoInterface>;
-  private listapedido:Observable<PedidoInterface[]>;
-  private pedidoDoc:AngularFirestoreDocument<PedidoInterface>;
+  public pedidoCollection: AngularFirestoreCollection<PedidoInterface>;
+  public listapedido:Observable<PedidoInterface[]>;
+  public pedidoDoc:AngularFirestoreDocument<PedidoInterface>;
   private pedido:Observable<PedidoInterface>;
   public selectedpedido:PedidoInterface={
     id:null,

@@ -9,8 +9,10 @@
 
 
 <ng-content></ng-content>
+
 <mat-form-field>
-    <input matInput  maxlength="30" (keyup)="applyFilter($event.target.value)" placeholder="Buscar Nombre">
+  
+ <input matInput  maxlength="30" (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
   </mat-form-field>
 
   <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" >

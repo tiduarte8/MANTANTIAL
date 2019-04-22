@@ -135,7 +135,19 @@ h2{
         -moz-column-count:4;
         column-count:4;
     }
+    
+
+    .img2{
+        margin:0px;
+        width: 230px;
+        height: 150px;
+      padding-left: 40px;
+
+    }
+   
 }
+
+
 
 div{
     text-align: center;
@@ -277,7 +289,7 @@ p{
    width:60%;
    margin: 0 auto;
    padding: 10px;
-   height: 60%;
+   height: 80%;
    display:'block';
    
    position:relative;
