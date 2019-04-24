@@ -24,8 +24,7 @@ export class MispedidosComponent implements OnInit {
     public storage: AngularFireStorage,public dialog:MatDialog,public authService:AuthService){};
 
     openDialog(pedido){
-      this.dataApi.selectedpedido = pedido;
-      console.log(pedido);
+      this.dataApi.selectedpedido.id = pedido;
       const dialogConfig= new MatDialogConfig();
       dialogConfig.disableClose=true;
       dialogConfig.autoFocus=true;

@@ -6,6 +6,7 @@ import { viewAttached } from '@angular/core/src/render3/instructions';
 import { ElementFinder } from 'protractor';
 import {InterfazDetallePedido} from './../../../models/detallepedido';
 import {PedidoService} from './../../../servicios/serviciopedido/pedido.service';
+import {PedidoInterface} from './../../../models/pedido';
 
 
 
@@ -23,7 +24,7 @@ export class DetallepedidoComponent implements OnInit {
   constructor(public dataApi:PedidoService,
     public store: AngularFireStorage){};
 
-
+/*
   onFact(pedido:InterfazDetallePedido){
   this.dataApi.selectedDetallePedido=Object.assign({},pedido)
  
@@ -64,9 +65,9 @@ timer: 1500
 }
 
   }
-
+*/
   displayedColumns: string[] = ['position','nombre', 'imagen','precio','cant','subtotal'];
-  dataSource = new MatTableDataSource<InterfazDetallePedido>();
+  dataSource = new MatTableDataSource<PedidoInterface>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort:MatSort;
@@ -77,12 +78,10 @@ timer: 1500
 
   ngOnInit(){
     this.dataSource.paginator=this.paginator;
-   this.getListarDetallePedido();
+    this.getListarDetallePedido();
     this.dataSource.sort=this.sort;
   //  let estado= document.getElementById('estado')
   //   estado.style.color='green';
-   
-
   }
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -90,13 +89,19 @@ timer: 1500
 
   getListarDetallePedido(){
     const pedidoId = this.dataApi.selectedpedido.id;
-    this.dataApi.obtenerDetallePedido(pedidoId)
+    this.dataApi.obtenerDetalle(pedidoId)
     .subscribe(pedidos => {
-      console.log(pedidos);
-      this.dataSource.data = pedidos;
+      console.log('Pedido: ', pedidos);
+      this.dataSource.data = pedidos['detalle'] as PedidoInterface[];
     })
   }
-
-
-
+ 
+/*
+  getListarDetallePedido(){
+    this.dataApi.getAllPedido().subscribe(ListaPedido=>{
+ 
+      this.dataSource.data=ListaPedido;
+    });
+   }
+ */
 }

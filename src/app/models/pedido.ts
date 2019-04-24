@@ -1,3 +1,5 @@
+import { CarritoInterface } from './carrito';
+
 export interface PedidoInterface{
     id?:string;
     email?:string;
@@ -5,5 +7,6 @@ export interface PedidoInterface{
     Total?:number;
     estado?:string;
     direccion?:string;
+    detalle?:CarritoInterface[];
 
 }
