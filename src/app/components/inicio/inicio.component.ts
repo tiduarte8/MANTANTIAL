@@ -72,38 +72,58 @@ export class InicioComponent implements OnInit {
   
    if(auth().currentUser)
       {
- 
-    this.dataApi.getOneProducto(idProducto).subscribe(producto => {
-
-      this.carrito = producto;
-      delete this.carrito.id;
-      this.cantidad= this.carrito.cant=1;
-      this.subtotal=this.carrito.subtotal=(this.carrito.precio*this.cantidad);
-      this.carrito.email = auth().currentUser.email;
-     
-      this.storage.collection('carrito').add(this.carrito);
-      //localStorage.setItem("producto",JSON.stringify(this.productol));
-      //console.log("PRODUCTO",this.productol);
-      //this.obtener_LocalStorage();
-     
-    
-    
-      const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3000
-      });
-      
-      Toast.fire({
-        type: 'success',
-        title: 'Producto Agregado'
+          
+     this.storage.collection('carrito').get().toPromise().then((query) => {
+      let band = false;
+      query.forEach((doc) => {
+        console.log(doc.id, idProducto)
+        if(doc.id === idProducto && doc.data().email === auth().currentUser.email) {
+          console.log(doc.id,idProducto)
+          band = true;
+        }
       })
-   
-
-      
     
-    });
+      if(band === false) {
+        // agregar al carrito
+        this.dataApi.getOneProducto(idProducto).subscribe(producto => {
+       
+          this.carrito = producto;
+          delete this.carrito.id;
+          this.cantidad= this.carrito.cant=1;
+          this.subtotal=this.carrito.subtotal=(this.carrito.precio*this.cantidad);
+          this.carrito.email = auth().currentUser.email;
+         
+          this.storage.collection('carrito').doc(idProducto).set(this.carrito);
+          //localStorage.setItem("producto",JSON.stringify(this.productol));
+          //console.log("PRODUCTO",this.productol);
+          //this.obtener_LocalStorage();
+         
+        
+        
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+          });
+          
+          Toast.fire({
+            type: 'success',
+            title: 'Producto Agregado'
+          })
+       
+    
+          
+        
+        });
+      
+      }
+      else{
+        alert('Error duplicado')
+       
+      }
+    })
+ 
   }
   else{
     this.router.navigate(['login']);

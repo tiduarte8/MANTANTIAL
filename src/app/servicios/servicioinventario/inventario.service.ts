@@ -44,6 +44,10 @@ export class InventarioService {
      let idInventario=inventario.id;
      this.inventarioDoc=this.afs.doc<inventarioInterface>(`inventario/${idInventario}`);
      this.inventarioDoc.update(inventario);
+
+     /*this.afs.collection('').doc('').delete().then(() => {
+     })*/
+    
   }
   deleteInventario(idInventario:string):void{
      this.inventarioDoc=this.afs.doc<inventarioInterface>(`inventario/${idInventario}`);

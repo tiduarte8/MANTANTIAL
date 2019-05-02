@@ -100,6 +100,13 @@ map:number;
   
 
   ActCant(carrito:CarritoInterface){
+    if(carrito.cant<0){
+      carrito.cant=carrito.cant*-1;
+    }
+    if(carrito.cant===0){
+      carrito.cant=1;
+      
+    }
    this.selectedCarrito=Object.assign({},carrito);
   carrito.subtotal=carrito.precio*carrito.cant;
   

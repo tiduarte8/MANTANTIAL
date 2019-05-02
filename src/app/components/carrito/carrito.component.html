@@ -48,7 +48,7 @@
          border-radius: 10px; border-style: solid;border-spacing: 3px;
           border-color:rgba(19, 62, 179, 0.822)" src="{{carrit.urlImage}}"></td>
         <td #preciop>{{carrit.precio}} C$</td>
-        <td><input (change)="ActCant(carrit)" type="number" [(ngModel)]="carrit.cant"  pattern="^[0-9]+" style="text-align:right;width:50px;" name="cant" #cantidad  required></td>
+        <td><input (change)="ActCant(carrit)" type="number" [(ngModel)]="carrit.cant"  min="1"  pattern="^[0-9]+" style="text-align:right;width:50px;" name="cant" #cantidad  required></td>
       
        
      <td #subtotal>{{carrit.subtotal}} C$</td>
