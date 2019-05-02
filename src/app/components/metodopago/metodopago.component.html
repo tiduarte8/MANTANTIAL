@@ -1,41 +1,16 @@
-<head>
-  <!-- Add meta tags for mobile and IE -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-</head>
-
-<body>
-  <!-- Set up a container element for the button -->
-  <div id="paypal-button-container"></div>
- 
-
-  <!-- Include the PayPal JavaScript SDK -->
-  <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>
-
-  <script>
-      // Render the PayPal button into #paypal-button-container
-      paypal.Buttons({
-
-          // Set up the transaction
-          createOrder: function(data, actions) {
-              return actions.order.create({
-                  purchase_units: [{
-                      amount: {
-                          value: '0.01'
-                      }
-                  }]
-              });
-          },
-
-          // Finalize the transaction
-          onApprove: function(data, actions) {
-              return actions.order.capture().then(function(details) {
-                  // Show a success message to the buyer
-                  alert('Transaction completed by ' + details.payer.name.given_name + '!');
-              });
-          }
-
-
-      }).render('#paypal-button-container');
-  </script>
-</body>
+<h3>Hola {{email}},<br>no olvide que su nueva contraseña
+  debe tener<br> un mínimo de 6 caracteres y es  necesario que halla iniciado<br>
+  sesión recientemente.
+</h3>
+<form  (ngSubmit)="actualizarPass(formAct)" #formAct="ngForm" name="formAct" class="example-form">
+    <mat-form-field class="example-full-width">
+      <input [(ngModel)]="pass" minlenght="6" name="pass" type="password" required  matInput placeholder="Ingrese Contraseña nueva" >
+    </mat-form-field>
+  
+    <mat-form-field class="example-full-width">
+        <input [(ngModel)]="cpass" name="cpass" minlenght="6" type="password" required matInput placeholder="Confirme Contraseña nueva" >
+    </mat-form-field>
+    <button mat-raised-button type="submit" color="primary">Cambiar Contraseña</button>
+    
+    
+  </form>

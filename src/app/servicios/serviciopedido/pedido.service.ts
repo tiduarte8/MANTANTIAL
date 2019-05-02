@@ -86,13 +86,7 @@ obtenerDetalle(pedidoId) {
   this.pedidoCollection= this.afs.collection<PedidoInterface>('pedido');
   return this.pedidoCollection.doc(pedidoId).snapshotChanges()
   .pipe(map(changes => {
-    /*return changes.map(action => {
-      const data = action.payload.doc.data() as PedidoInterface;
-      data.id = action.payload.doc.id;
-      console.log(data)
-      return data;
-    });*/
-    const datos = changes.payload.data();
+   const datos = changes.payload.data();
     return datos;
   }));
 }

@@ -10,6 +10,8 @@ import {AngularFirestore} from '@angular/fire/firestore'
 import { auth } from 'firebase';
 
 
+
+
 @Component({
   selector: 'app-mynav',
   templateUrl: './mynav.component.html',
@@ -99,6 +101,7 @@ export class MynavComponent implements OnInit{
       }
     });
   }
+
 
   /*
   getCurrentUser2(){
