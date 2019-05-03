@@ -19,6 +19,8 @@ import {PedidoInterface} from './../../models/pedido';
 import {PedidoService} from './../../servicios/serviciopedido/pedido.service';
 import { forEach } from '@angular/router/src/utils/collection';
 import { map } from 'rxjs/operators';
+import { isNumber } from 'util';
+import { NumberSymbol } from '@angular/common';
 
 declare let paypal: any;
 

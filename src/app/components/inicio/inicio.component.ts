@@ -119,7 +119,17 @@ export class InicioComponent implements OnInit {
       
       }
       else{
-        alert('Error duplicado')
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000
+        });
+        
+        Toast.fire({
+          type: 'warning',
+          title: 'Este Producto ya está agregado al carrito'
+        })
        
       }
     })
