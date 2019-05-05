@@ -19,6 +19,7 @@ import { DataSource } from '@angular/cdk/table';
 import {AuthService} from './../../servicios/servicioauth/auth.service';
 import { database } from 'firebase';
 import Swal from 'sweetalert2';
+import {Router} from '@angular/router';
 
 
 
@@ -31,7 +32,7 @@ import Swal from 'sweetalert2';
 })
 export class InventarioComponent implements OnInit{
 
-  constructor(public dialog: MatDialog, private dataApi:InventarioService,
+  constructor(public route:Router,public dialog: MatDialog, private dataApi:InventarioService,
     private storage: AngularFireStorage,private authService:AuthService){};
 
   displayedColumns: string[] = ['position','nolote', 'fechadeingreso','cantidad','producto','actions'];
@@ -41,6 +42,18 @@ export class InventarioComponent implements OnInit{
   @ViewChild(MatSort) sort:MatSort;
 
   ngOnInit(){
+    console.log("rol",localStorage.getItem('rol'));
+  
+      if (localStorage.getItem('rol') === 'admin'){
+       
+       
+    
+      } 
+      else{
+        
+        this.route.navigate(['/']);
+        
+      }
 this.dataSource.paginator=this.paginator;
 this.getListInventario();
 this.dataSource.sort=this.sort;
@@ -187,6 +200,7 @@ export class NuevoingresoComponent implements OnInit{
      }
 
      ngOnInit(){
+      
          this.getListProductos();
      }
     

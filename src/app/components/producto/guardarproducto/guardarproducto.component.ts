@@ -44,6 +44,26 @@ export class GuardarproductoComponent implements OnInit{
 ngOnInit(){
 
 }
+/*
+verificarDatR(){
+  this.dataApi.getAllProductos().subscribe(productos=>{
+    let band=false;
+    productos.forEach((doc)=>{
+      console.log(doc.codigo)
+      
+      
+    })
+
+    if(band===false){
+      
+    }
+    else{
+      //existe
+    }
+
+  })
+}
+*/
 
 
 

@@ -88,7 +88,7 @@ export class MynavComponent implements OnInit{
          
         }else{
           this.isadmin = false;
-          localStorage.setItem("rol",'admin');
+          localStorage.setItem("rol",'cliente');
          
         }
         this.isLogged = true;

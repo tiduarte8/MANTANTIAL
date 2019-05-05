@@ -16,6 +16,7 @@ import {ContactoService} from './../../servicios/serviciocontacto/contacto.servi
 import { database } from 'firebase';
 import Swal from 'sweetalert2';
 import { contactoInterface } from 'src/app/models/contacto';
+import { Router } from '@angular/router';
 
 
 
@@ -26,7 +27,7 @@ import { contactoInterface } from 'src/app/models/contacto';
 })
 export class ContactoComponent implements OnInit {
 
-  constructor(public dialog: MatDialog, public contS:ContactoService){}
+  constructor(public route:Router,public dialog: MatDialog, public contS:ContactoService){}
 
   displayedColumns: string[] = ['nombre','correo','telefono','mensaje','fecha','actions'];
   dataSource = new MatTableDataSource<contactoInterface>();
@@ -34,6 +35,18 @@ export class ContactoComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit() {
+    console.log("rol",localStorage.getItem('rol'));
+  
+    if (localStorage.getItem('rol') === 'admin'){
+     
+     
+  
+    } 
+    else{
+      
+      this.route.navigate(['/']);
+      
+    }
     this.dataSource.paginator=this.paginator;
 this.getListContacto();
   }

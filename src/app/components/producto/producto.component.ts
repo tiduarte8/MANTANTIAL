@@ -14,7 +14,7 @@ import {AuthService} from './../../servicios/servicioauth/auth.service';
 import { database } from 'firebase';
 import Swal from 'sweetalert2';
 import {GuardarproductoComponent,ActualizarImagenComponent} from './guardarproducto/guardarproducto.component';
-
+import {Router} from '@angular/router'
 
 
 
@@ -30,7 +30,7 @@ import {GuardarproductoComponent,ActualizarImagenComponent} from './guardarprodu
 })
 export class ProductoComponent implements OnInit{
 
-  constructor(public dialog: MatDialog, public dataApi:DataApiService,
+  constructor(public route:Router,public dialog: MatDialog, public dataApi:DataApiService,
   public storage: AngularFireStorage,public authService:AuthService){}
   
 
@@ -122,6 +122,18 @@ public userUid: string=null;
 
 
   ngOnInit(){
+    console.log("rol",localStorage.getItem('rol'));
+  
+    if (localStorage.getItem('rol') === 'admin'){
+     
+     
+  
+    } 
+    else{
+      
+      this.route.navigate(['/']);
+      
+    }
     this.dataSource.paginator=this.paginator;
      this.getListProductos();
     

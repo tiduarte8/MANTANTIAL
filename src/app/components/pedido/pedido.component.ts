@@ -6,6 +6,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import {PedidoInterface} from './../../models/pedido';
 import Swal from 'sweetalert2';
 import {DetallepedidoComponent} from './detallepedido/detallepedido.component';
+import { Router } from '@angular/router';
 
 
 
@@ -20,7 +21,10 @@ export class PedidoComponent implements OnInit {
   color:string;
 
   constructor( private dataApi:PedidoService,
-    public storage: AngularFireStorage,public dialog:MatDialog){};
+    public storage: AngularFireStorage,public dialog:MatDialog,public route:Router){
+    
+    };
+    
 
     openDialog(pedido){
       this.dataApi.selectedpedido.id = pedido;
@@ -88,7 +92,23 @@ timer: 1500
     this.dataSource.sort=this.sort;
   //  let estado= document.getElementById('estado')
   //   estado.style.color='green';
+  console.log("rol",localStorage.getItem('rol'));
+  
+  if (localStorage.getItem('rol') === 'admin'){
    
+   
+
+  } 
+  else{
+    
+    this.route.navigate(['/']);
+    
+  }
+  
+  
+ 
+   
+ 
 
   }
   applyFilter(filterValue: string) {

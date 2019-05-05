@@ -15,6 +15,7 @@ import { DataSource } from '@angular/cdk/table';
 import {AuthService} from './../../servicios/servicioauth/auth.service';
 import { database } from 'firebase';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 
 
@@ -26,7 +27,7 @@ import Swal from 'sweetalert2';
 })
 export class SugerenciasComponent implements OnInit {
 
-  constructor(public dialog: MatDialog, public dataApi:SugerenciaserviceService,
+  constructor(public route:Router,public dialog: MatDialog, public dataApi:SugerenciaserviceService,
     public storage: AngularFireStorage,public authService:AuthService){}
 
 
@@ -36,6 +37,18 @@ export class SugerenciasComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit(){
+    console.log("rol",localStorage.getItem('rol'));
+  
+    if (localStorage.getItem('rol') === 'admin'){
+     
+     
+  
+    } 
+    else{
+      
+      this.route.navigate(['/']);
+      
+    }
 this.dataSource.paginator=this.paginator;
 this.getListSugerencias();
   }

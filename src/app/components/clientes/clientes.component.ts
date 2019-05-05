@@ -4,6 +4,7 @@ import {AuthService} from '../../servicios/servicioauth/auth.service';
 import {UsuarioInterface} from './../../models/usuario';
 import { AngularFirestore } from '@angular/fire/firestore';
 import {MatDialog,MatDialogConfig} from '@angular/material';
+import {Router} from '@angular/router'
 import Swal from 'sweetalert2';
 
 
@@ -18,7 +19,7 @@ import Swal from 'sweetalert2';
 })
 export class ClientesComponent implements OnInit{
 
-  constructor(public authService:AuthService,public data:AngularFirestore,public dialog: MatDialog){}
+  constructor(public route: Router,public authService:AuthService,public data:AngularFirestore,public dialog: MatDialog){}
 
 
 
@@ -34,6 +35,20 @@ export class ClientesComponent implements OnInit{
 
 
   ngOnInit(){
+
+    console.log("rol",localStorage.getItem('rol'));
+  
+    if (localStorage.getItem('rol') === 'admin'){
+     
+     
+  
+    } 
+    else{
+      
+      this.route.navigate(['/']);
+      
+    }
+
 this.dataSource.paginator=this.paginator;
 this.authService.isAuth().subscribe(usuario=>{
   if(usuario){
