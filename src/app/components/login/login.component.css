@@ -81,6 +81,7 @@
 .forgot-password{
   text-align: center;
   position: relative;
+  cursor: pointer;
 }
 
 .areg{

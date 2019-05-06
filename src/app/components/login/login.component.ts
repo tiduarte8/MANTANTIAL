@@ -6,6 +6,7 @@ import{Router} from '@angular/router';
 import {AuthService} from '../../servicios/servicioauth/auth.service';
 import {MatDialog,MatDialogConfig} from '@angular/material';
 import {RegistrarseComponent} from './../clientes/registrarse/registrarse.component'
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -68,9 +69,39 @@ export class LoginComponent implements OnInit {
     dialogConfig.height="720px"
     this.dialog.open(RegistrarseComponent,dialogConfig);
   }
+  recPass(){
+    var auth=this.afAuth.auth;
+    var EmailAdress=this.email;
+    auth.sendPasswordResetEmail (EmailAdress).then(mensaje=>{
+
+      
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+      }); 
+      Toast.fire({
+        type: 'success',
+        title: 'Se ha enviado un correo a tu cuenta. Por favor sigue los pasos indicados !!!'
+      })
+    },(err)=>{
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+      }); 
+      Toast.fire({
+        type: 'error',
+        title: 'Erro Email no válido !!!'
+      })
+
+     })
+  }
+  
 
 }
-
 
 
 
