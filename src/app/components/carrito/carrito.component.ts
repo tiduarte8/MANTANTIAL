@@ -19,8 +19,7 @@ import {PedidoInterface} from './../../models/pedido';
 import {PedidoService} from './../../servicios/serviciopedido/pedido.service';
 import { forEach } from '@angular/router/src/utils/collection';
 import { map } from 'rxjs/operators';
-import { isNumber } from 'util';
-import { NumberSymbol } from '@angular/common';
+
 
 declare let paypal: any;
 
@@ -38,7 +37,7 @@ export class CarritoComponent implements OnInit,AfterViewChecked {
   @ViewChild('preciop') preciop: ElementRef;
 
 
-  constructor(public store:AngularFirestore,public service:CarritoService,public sp:PedidoService, public authService:AuthService) { 
+  constructor(public store:AngularFirestore,public service:CarritoService,public sp:PedidoService, public authService:AuthService,) { 
   }
 
  
@@ -92,6 +91,7 @@ export class CarritoComponent implements OnInit,AfterViewChecked {
 
      }
    })
+ 
  //this.ActTotal(this.selectedCarrito);
  
  
@@ -100,6 +100,23 @@ export class CarritoComponent implements OnInit,AfterViewChecked {
 
 map:number;
   
+ EliminarCarrito(){
+  {
+          
+    this.store.collection('carrito',ref=>ref.where('email','==',auth().currentUser.email)).get().toPromise().then((query) => {
+     let band = false;
+     query.forEach((doc) => {
+       console.log(doc.id)
+       this.store.collection('carrito').doc(doc.id).delete();
+      
+     })
+    }
+   
+    
+    )}
+    
+ }
+ 
 
   ActCant(carrito:CarritoInterface){
     if(carrito.cant<0){
@@ -226,7 +243,8 @@ getCarrito(email:string){
        this.pedido.estado="pendiente";
       
        this.pedido.detalle=this.carrito;
-       this.store.collection<CarritoInterface>('pedido').add(this.pedido)
+       this.store.collection<CarritoInterface>('pedido').add(this.pedido);
+       this.EliminarCarrito();
      
 
    //this.store.collection('pedido').doc('KcCmZ6kyHvKN0n84uOf7').collection('detallepedido').add((this.carrito) );
