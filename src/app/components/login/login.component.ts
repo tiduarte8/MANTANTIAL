@@ -94,7 +94,7 @@ export class LoginComponent implements OnInit {
       }); 
       Toast.fire({
         type: 'error',
-        title: 'Erro Email no válido !!!'
+        title: 'Error!!! Email no válido.'
       })
 
      })
