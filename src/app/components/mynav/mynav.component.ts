@@ -94,7 +94,7 @@ export class MynavComponent implements OnInit{
         this.isLogged = true;
         
       }else{
-        console.log("NOT user logged");
+      //  console.log("NOT user logged");
         this.isLogged = false;
         this.isadmin=false;
         

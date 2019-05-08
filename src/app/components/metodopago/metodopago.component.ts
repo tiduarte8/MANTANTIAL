@@ -39,7 +39,7 @@ var user = this.afsAuth.auth.currentUser;
 
 
 user.updatePassword(this.pass).then(function() {
-  console.log('Actualizado');
+ // console.log('Actualizado');
   Swal.fire({
     type: 'success',
 title: 'Contraseña Actualizada Correctamente',
@@ -50,7 +50,7 @@ timer: 1500
   
   
 }).catch(function(error) {
-  console.log('Error:',error),
+  //console.log('Error:',error)
   Swal.fire({
     type: 'error',
 title: error.message,

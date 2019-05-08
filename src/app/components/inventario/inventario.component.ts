@@ -24,25 +24,26 @@ import {Router} from '@angular/router';
 
 
 
-
 @Component({
   selector: 'app-inventario',
   templateUrl: './inventario.component.html',
   styleUrls: ['./inventario.component.css']
 })
 export class InventarioComponent implements OnInit{
+  
 
   constructor(public route:Router,public dialog: MatDialog, private dataApi:InventarioService,
     private storage: AngularFireStorage,private authService:AuthService){};
 
-  displayedColumns: string[] = ['position','nolote', 'fechadeingreso','cantidad','producto','actions'];
+  displayedColumns: string[] = ['position','nolote', 'fechadeingreso','producto','cantidad','actions'];
   dataSource = new MatTableDataSource<inventarioInterface>();
+  public data:inventarioInterface;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort:MatSort;
 
   ngOnInit(){
-    console.log("rol",localStorage.getItem('rol'));
+  //  console.log("rol",localStorage.getItem('rol'));
   
       if (localStorage.getItem('rol') === 'admin'){
        
@@ -63,6 +64,8 @@ this.dataSource.sort=this.sort;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+
+
   openDialog() {
     const dialogConfig= new MatDialogConfig();
     dialogConfig.disableClose=true;
@@ -77,8 +80,15 @@ this.dataSource.sort=this.sort;
     this.dataApi.getAllInventario().subscribe(listaInventario=>{
  
       this.dataSource.data=listaInventario;
+     
+    
     });
    }
+
+   getTotalCost(){
+       return this.dataSource.data.map(t => t.cantidad).reduce((acc, value) => acc + value, 0);
+      }
+      
 
    onDeleteInventario(idInventario:string):void{
      console.log('Delete Registro',idInventario);
@@ -199,11 +209,18 @@ export class NuevoingresoComponent implements OnInit{
       });
      }
 
+    
+
+   
+
      ngOnInit(){
       
          this.getListProductos();
      }
+
+    
     
 
 }
+
 

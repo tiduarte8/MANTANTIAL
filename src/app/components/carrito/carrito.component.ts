@@ -106,7 +106,7 @@ map:number;
     this.store.collection('carrito',ref=>ref.where('email','==',auth().currentUser.email)).get().toPromise().then((query) => {
      let band = false;
      query.forEach((doc) => {
-       console.log(doc.id)
+    //   console.log(doc.id)
        this.store.collection('carrito').doc(doc.id).delete();
       
      })
@@ -130,7 +130,7 @@ map:number;
   carrito.subtotal=carrito.precio*carrito.cant;
   
   this.updatecantidad(carrito);
-  console.log('update',carrito);
+//  console.log('update',carrito);
 
   }
 
@@ -155,16 +155,16 @@ map:number;
  
 
 getCarrito(email:string){
-  console.log('getCarrito', email)
+ // console.log('getCarrito', email)
   this.service.getAllCarrito(email).subscribe(carrito=>{
-    console.log('CARRITO',carrito);
+  //  console.log('CARRITO',carrito);
     this.carrito=carrito});
    
 
 }
 
   onDeleteProductoCarrito(idProducto:string):void{
-    console.log('Delete Producto',idProducto);
+  //  console.log('Delete Producto',idProducto);
 
     Swal.fire({
      title: '¿Estás Seguro?',

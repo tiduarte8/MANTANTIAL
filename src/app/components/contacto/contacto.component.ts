@@ -35,7 +35,7 @@ export class ContactoComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit() {
-    console.log("rol",localStorage.getItem('rol'));
+  //  console.log("rol",localStorage.getItem('rol'));
   
     if (localStorage.getItem('rol') === 'admin'){
      
@@ -64,7 +64,7 @@ this.getListContacto();
    }
 
    onBorrarMensaje(idContacto:string):void{
-    console.log('Delete Producto',idContacto);
+   // console.log('Delete Producto',idContacto);
 
     Swal.fire({
      title: '¿Estás Seguro?',

@@ -91,7 +91,7 @@ timer: 1500
     const pedidoId = this.dataApi.selectedpedido.id;
     this.dataApi.obtenerDetalle(pedidoId)
     .subscribe(pedidos => {
-      console.log('Pedido: ', pedidos);
+   //   console.log('Pedido: ', pedidos);
       this.dataSource.data = pedidos['detalle'] as PedidoInterface[];
     })
   }

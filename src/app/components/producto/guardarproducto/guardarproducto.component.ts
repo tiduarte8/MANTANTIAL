@@ -85,7 +85,7 @@ verificarDatR(){
    console.log('url',task.snapshotChanges().pipe(
     finalize(()=>{this.urlImage=ref.getDownloadURL() ;
       this.urlImage.subscribe(url=>{this.urlImag = url});
-     console.log('URL',this.urlImag);
+    // console.log('URL',this.urlImag);
      
     })
    

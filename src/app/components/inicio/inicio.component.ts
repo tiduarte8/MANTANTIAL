@@ -76,9 +76,9 @@ export class InicioComponent implements OnInit {
      this.storage.collection('carrito').get().toPromise().then((query) => {
       let band = false;
       query.forEach((doc) => {
-        console.log(doc.id, idProducto)
+      //  console.log(doc.id, idProducto)
         if(doc.id === idProducto && doc.data().email === auth().currentUser.email) {
-          console.log(doc.id,idProducto)
+         // console.log(doc.id,idProducto)
           band = true;
         }
       })
@@ -166,7 +166,7 @@ export class InicioComponent implements OnInit {
 
   ngOnInit() {
     this.dataApi.getAllProductos().subscribe(productos=>{
-      console.log('producto',productos);
+    //  console.log('producto',productos);
       this.productos=productos;
       /*
       const idProducto = this.route.snapshot.params['id'];
@@ -214,7 +214,7 @@ export class Contactanos implements OnInit{
  
   onEnviar(formContacto:NgForm):void{
   
-    console.log('formContacto.value.id',formContacto.value);
+ //   console.log('formContacto.value.id',formContacto.value);
 
     if(formContacto.valid) {
       if (formContacto.value.id == null) {

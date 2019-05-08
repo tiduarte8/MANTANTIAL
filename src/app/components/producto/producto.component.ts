@@ -48,7 +48,7 @@ public userUid: string=null;
    }
 
    onDeleteProducto(idProducto:string):void{
-     console.log('Delete Producto',idProducto);
+   //  console.log('Delete Producto',idProducto);
 
      Swal.fire({
       title: '¿Estás Seguro?',
@@ -122,7 +122,7 @@ public userUid: string=null;
 
 
   ngOnInit(){
-    console.log("rol",localStorage.getItem('rol'));
+   // console.log("rol",localStorage.getItem('rol'));
   
     if (localStorage.getItem('rol') === 'admin'){
      

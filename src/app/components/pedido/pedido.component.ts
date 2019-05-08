@@ -28,7 +28,7 @@ export class PedidoComponent implements OnInit {
 
     openDialog(pedido){
       this.dataApi.selectedpedido.id = pedido;
-      console.log(pedido);
+    //  console.log(pedido);
       const dialogConfig= new MatDialogConfig();
       dialogConfig.disableClose=true;
       dialogConfig.autoFocus=true;
@@ -92,7 +92,7 @@ timer: 1500
     this.dataSource.sort=this.sort;
   //  let estado= document.getElementById('estado')
   //   estado.style.color='green';
-  console.log("rol",localStorage.getItem('rol'));
+  //console.log("rol",localStorage.getItem('rol'));
   
   if (localStorage.getItem('rol') === 'admin'){
    

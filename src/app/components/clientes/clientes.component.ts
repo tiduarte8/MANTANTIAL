@@ -36,7 +36,7 @@ export class ClientesComponent implements OnInit{
 
   ngOnInit(){
 
-    console.log("rol",localStorage.getItem('rol'));
+   // console.log("rol",localStorage.getItem('rol'));
   
     if (localStorage.getItem('rol') === 'admin'){
      
