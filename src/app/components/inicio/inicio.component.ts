@@ -29,6 +29,7 @@ import { DISABLED } from '@angular/forms/src/model';
 })
 
 export class InicioComponent implements OnInit {
+  
 
   constructor(
     public dialog: MatDialog,
@@ -46,30 +47,14 @@ export class InicioComponent implements OnInit {
    email:null
   };
 
-
-
-
-
-  
-
-
-  
+ 
   cantidad:number;
   subtotal:number; 
- 
-
 
   @ViewChild('click') click:ElementRef;
 
 
-
-  
-  
-
   getDetalle(idProducto: string) {
-     
-   
-  
    if(auth().currentUser)
       {
           
@@ -94,6 +79,10 @@ export class InicioComponent implements OnInit {
           this.carrito.email = auth().currentUser.email;
          
           this.storage.collection('carrito').doc(idProducto).set(this.carrito);
+          
+         
+         // localStorage.setItem('contador',this.contador.toString());
+        //  console.log(localStorage.getItem('contador'))
           //localStorage.setItem("producto",JSON.stringify(this.productol));
           //console.log("PRODUCTO",this.productol);
           //this.obtener_LocalStorage();

@@ -8,7 +8,8 @@ import {MatSelectModule,MatButtonModule,
         MatIconModule,
         MatListModule,
         MatMenuModule,
-        MatFormFieldModule,} from '@angular/material';
+        MatFormFieldModule,
+        MatBadgeModule,} from '@angular/material';
         import {MatTooltipModule} from '@angular/material/tooltip';
         import {MatPaginatorModule} from '@angular/material/paginator';
         import {MatInputModule} from '@angular/material/input';
@@ -88,6 +89,7 @@ import { MispedidosComponent } from './components/mispedidos/mispedidos.componen
   ],
   imports: [
     BrowserModule,
+    MatBadgeModule,
     BrowserAnimationsModule,
     MatButtonModule,MatInputModule,
      LayoutModule, MatToolbarModule,

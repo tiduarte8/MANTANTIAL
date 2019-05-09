@@ -75,9 +75,11 @@ export class CarritoComponent implements OnInit,AfterViewChecked {
   f= new Date();
   fecha=this.f.getDate()+"/"+(this.f.getMonth()+1)+"/"+this.f.getFullYear()+'  ('+this.f.getHours()+':'+this.f.getMinutes()+')';
 
-
+ 
+  
   ngOnInit() {
    
+  
    /* this.producto=JSON.parse(localStorage.getItem('producto'));
     console.log("PRODUCTO",this.producto);
    
@@ -88,9 +90,11 @@ export class CarritoComponent implements OnInit,AfterViewChecked {
     this.authService.isAuth().subscribe(usuario=>{
       if(usuario){
         this.getCarrito(usuario.email);
-
+        
      }
    })
+
+  
  
  //this.ActTotal(this.selectedCarrito);
  
@@ -157,9 +161,10 @@ map:number;
 getCarrito(email:string){
  // console.log('getCarrito', email)
   this.service.getAllCarrito(email).subscribe(carrito=>{
-  //  console.log('CARRITO',carrito);
-    this.carrito=carrito});
-   
+  //  console.log('CARRITO',carrito.length);
+    this.carrito=carrito
+
+  });
 
 }
 

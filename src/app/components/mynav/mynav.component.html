@@ -71,9 +71,9 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span class="spanclass"  >MANANTIAL DE VIDA</span>
-      <a *ngIf="isLogged" mat-list-item routerLink="/carrito"><mat-icon  matTooltip="Mi Carrito"
+      <a *ngIf="isLogged" mat-list-item routerLink="/carrito"><mat-icon matBadge="{{verContador()}}" matBadgeColor="warn"  matTooltip="Mi Carrito"
          aria-label="Button that displays a tooltip when focused or hovered over"
-          class="matc" >shopping_cart</mat-icon></a>
+          class="matc">shopping_cart</mat-icon></a>
       <a *ngIf="isLogged==false" mat-list-item routerLink="/login"><mat-icon matTooltip="Inicio de sesión" aria-label="Button that displays a tooltip when focused or hovered over" class="mati">account_circle</mat-icon></a>
       <a class="auser" *ngIf="isLogged" >{{usuario.email}}</a>
 

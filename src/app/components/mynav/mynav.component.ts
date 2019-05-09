@@ -8,6 +8,10 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {UsuarioInterface} from './../../models/usuario';
 import {AngularFirestore} from '@angular/fire/firestore'
 import { auth } from 'firebase';
+import {CarritoComponent} from './../carrito/carrito.component';
+import {CarritoService} from './../../servicios/serviciocarrito/carrito.service';
+import {CarritoInterface} from './../../models/carrito'
+
 
 
 
@@ -18,7 +22,9 @@ import { auth } from 'firebase';
   styleUrls: ['./mynav.component.css']
 })
 export class MynavComponent implements OnInit{
-
+  
+ public carrito:CarritoInterface[];
+  
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)
@@ -27,7 +33,11 @@ export class MynavComponent implements OnInit{
    
 
   constructor(public breakpointObserver: BreakpointObserver, public authService:AuthService, public afsAuth: AngularFireAuth,
-    public storage:AngularFirestore) {}
+    public storage:AngularFirestore,public carritoService:CarritoService) {
+    
+    }
+
+    
 
   usuario: UsuarioInterface ={
     
@@ -45,21 +55,53 @@ export class MynavComponent implements OnInit{
   
 
   ngOnInit(){
+    
    this.getCurrentUser();
  // this.getCurrentUser2();
-  
+
+
+
+
+
+    
   
    this.authService.isAuth().subscribe(usuario=>{
      if(usuario){
        this.usuario.pnombre=usuario.displayName;
        this.usuario.email=usuario.email;
        this.usuario.photoUrl=usuario.photoURL;
-       
-       
-  
+      // this.verContador(usuario.email);
+      this.carritoService.getAllCarrito(usuario.email).subscribe(carrito=>{
+        //  console.log('CARRITO',carrito.length);
+          this.carrito=carrito
+          localStorage.setItem('contador',(this.carrito.length).toString())
+          
+        });;
+      
     }
   })
+
   }
+
+verContador(){
+ 
+
+ if (localStorage.getItem('contador')!==null){
+  return parseInt(localStorage.getItem('contador'));
+ }
+ else{
+  
+   return 0;
+ }
+  
+  
+}
+
+
+
+
+
+
 /*
   getCurrentUser(){
     this.authService.isAuth().subscribe( auth=>{
@@ -125,6 +167,7 @@ export class MynavComponent implements OnInit{
   onLogout(){
     this.authService.logoutUser();
     localStorage.removeItem('rol');
+    localStorage.removeItem('contador');
   }
 
 }

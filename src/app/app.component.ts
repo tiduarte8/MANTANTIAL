@@ -4,6 +4,7 @@ import {filter} from 'rxjs/operators'
 
 declare var gtag;
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,7 +13,6 @@ declare var gtag;
 export class AppComponent {
   title = 'TITO ';
   constructor(public router:Router){
-
     const navEndEvents$ = this.router.events
 .pipe(
   filter(event => event instanceof NavigationEnd)
