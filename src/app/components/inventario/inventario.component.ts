@@ -8,18 +8,18 @@ import {DataApiService} from './../../servicios/servicioproducto/data-api.servic
 
 import {MatDialog,MatDialogConfig} from '@angular/material';
 import { AngularFireStorage } from '@angular/fire/storage';
-import {finalize} from 'rxjs/operators';
+import {finalize, timestamp} from 'rxjs/operators';
 import {Observable} from 'rxjs/internal/Observable';
 
 import {ProductoInterface} from './../../models/producto';
 import { NgForm } from '@angular/forms';
 
-import {AngularFireAuth} from '@angular/fire/auth';
-import { DataSource } from '@angular/cdk/table';
+
 import {AuthService} from './../../servicios/servicioauth/auth.service';
-import { database } from 'firebase';
+
 import Swal from 'sweetalert2';
 import {Router} from '@angular/router';
+
 
 
 
@@ -38,6 +38,8 @@ export class InventarioComponent implements OnInit{
   displayedColumns: string[] = ['position','nolote', 'fechadeingreso','producto','cantidad','actions'];
   dataSource = new MatTableDataSource<inventarioInterface>();
   public data:inventarioInterface;
+  
+
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort:MatSort;
@@ -61,7 +63,7 @@ this.dataSource.sort=this.sort;
   }
 
   applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.dataSource.filter = filterValue.trim().toLowerCase(); 
   }
 
 
@@ -76,17 +78,13 @@ this.dataSource.sort=this.sort;
   }
 
   getListInventario(){
-    
     this.dataApi.getAllInventario().subscribe(listaInventario=>{
- 
       this.dataSource.data=listaInventario;
-     
-    
     });
    }
 
-   getTotalCost(){
-       return this.dataSource.data.map(t => t.cantidad).reduce((acc, value) => acc + value, 0);
+   getTotalCost(){  
+      return this.dataSource.filteredData.map(t => t.cantidad).reduce((acc, value) => acc + value, 0);
       }
       
 
@@ -117,7 +115,7 @@ this.dataSource.sort=this.sort;
 
    
    onPreUpdateInventario(inventario:inventarioInterface){
-     console.log('update',inventario);
+    // console.log('update',inventario);
      const dialogConfig= new MatDialogConfig();
      dialogConfig.disableClose=true;
      dialogConfig.autoFocus=true;
@@ -126,9 +124,9 @@ this.dataSource.sort=this.sort;
      this.dialog.open(NuevoingresoComponent,dialogConfig);
      
     this.dataApi.selectedInventario = Object.assign({}, inventario);
-
+    this.dataApi.selectedInventario.fechadeingreso=new Date();
+   
     
-
     
    }
 

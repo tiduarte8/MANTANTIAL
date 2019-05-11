@@ -50,6 +50,8 @@ import { MetodopagoComponent } from './components/metodopago/metodopago.componen
 import { DetallepedidoComponent } from './components/pedido/detallepedido/detallepedido.component';
 import { MispedidosComponent } from './components/mispedidos/mispedidos.component';
 
+import { ChartsModule } from 'ng2-charts';
+
 
 
 
@@ -114,7 +116,8 @@ import { MispedidosComponent } from './components/mispedidos/mispedidos.componen
        AngularFireStorageModule,
        MatProgressBarModule,
        MatSortModule,
-       FlexLayoutModule
+       FlexLayoutModule,
+       ChartsModule
        
      
   ],
