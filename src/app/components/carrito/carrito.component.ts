@@ -19,6 +19,8 @@ import {PedidoInterface} from './../../models/pedido';
 import {PedidoService} from './../../servicios/serviciopedido/pedido.service';
 import { forEach } from '@angular/router/src/utils/collection';
 import { map } from 'rxjs/operators';
+import { isNumber } from 'util';
+import { NumberSymbol } from '@angular/common';
 
 
 declare let paypal: any;
@@ -123,18 +125,31 @@ map:number;
  
 
   ActCant(carrito:CarritoInterface){
-    if(carrito.cant<0){
-      carrito.cant=carrito.cant*-1;
-    }
-    if(carrito.cant===0){
-      carrito.cant=1;
+    
+    if(carrito.cant===0||carrito.cant<0){
+     
+      this.carritoDoc= this.store.doc(`carrito/${carrito.id}`);
+      this.carritoDoc.delete();
+     
       
     }
-   this.selectedCarrito=Object.assign({},carrito);
-  carrito.subtotal=carrito.precio*carrito.cant;
-  
-  this.updatecantidad(carrito);
-//  console.log('update',carrito);
+    else{
+      this.selectedCarrito=Object.assign({},carrito);
+      carrito.subtotal=carrito.precio*carrito.cant;
+      
+      this.updatecantidad(carrito);
+      if(carrito.cant===null){
+        this.carritoDoc= this.store.doc(`carrito/${carrito.id}`);
+      this.carritoDoc.delete();
+    
+
+      }
+    
+    //  console.log('update',carrito);
+    }
+
+   
+ 
 
   }
 
