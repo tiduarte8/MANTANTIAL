@@ -76,7 +76,7 @@ timer: 1500
 
   }
 
-  displayedColumns: string[] = ['position','correo', 'fecha','total', 'estado','actions'];
+  displayedColumns: string[] = ['position','correo','direccion', 'fecha','total', 'estado','actions'];
   dataSource = new MatTableDataSource<PedidoInterface>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

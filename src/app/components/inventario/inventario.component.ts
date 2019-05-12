@@ -124,8 +124,8 @@ this.dataSource.sort=this.sort;
      this.dialog.open(NuevoingresoComponent,dialogConfig);
      
     this.dataApi.selectedInventario = Object.assign({}, inventario);
-    this.dataApi.selectedInventario.fechadeingreso=new Date();
-   
+   // this.dataApi.selectedInventario.fechadeingreso=new Date();
+   console.log('Fechita',this.dataApi.selectedInventario.fechadeingreso);
     
     
    }
@@ -170,6 +170,7 @@ export class NuevoingresoComponent implements OnInit{
 
         } else {
           // Update
+          
           this.dataApi.updateInventario(formInventario.value);
           console.log(this.mensaje='Editado');
           Swal.fire({

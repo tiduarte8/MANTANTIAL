@@ -76,7 +76,7 @@ export class CarritoComponent implements OnInit,AfterViewChecked {
 
   f= new Date();
   fecha=this.f.getDate()+"/"+(this.f.getMonth()+1)+"/"+this.f.getFullYear()+'  ('+this.f.getHours()+':'+this.f.getMinutes()+')';
-
+  public direccion:string='';
  
   
   ngOnInit() {
@@ -255,13 +255,17 @@ getCarrito(email:string){
      });
    },
    onAuthorize: (data, actions,idpedido) => {
+
      return actions.payment.execute().then((payment) => {
+       if(this.direccion!==''){
+
+       
        //Do something when payment is successful.
        this.pedido.Total=this.ActTotal();
        this.pedido.email=auth().currentUser.email;
        this.pedido.fecha=new Date;
        this.pedido.estado="pendiente";
-      
+       this.pedido.direccion= this.direccion;
        this.pedido.detalle=this.carrito;
        this.store.collection<CarritoInterface>('pedido').add(this.pedido);
        this.EliminarCarrito();
@@ -269,15 +273,32 @@ getCarrito(email:string){
 
    //this.store.collection('pedido').doc('KcCmZ6kyHvKN0n84uOf7').collection('detallepedido').add((this.carrito) );
    
-
+   this.direccion='';
+   
        Swal.fire({
         type: 'success',
     title: 'Su pedido se ha realizado exitosamente!!!',
     showConfirmButton: false,
     timer: 1500
       })
+      
+    }
+    else{
+     
+      Swal.fire({
+        type: 'error',
+    title: 'Error, Ingrese una dirección válida!!!',
+    showConfirmButton: false,
+    timer: 1500,
+    
+      })
+    
+      
+    }
      })
-   }
+    }
+    
+   
  };
 
  ngAfterViewChecked(): void {
