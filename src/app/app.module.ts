@@ -51,6 +51,7 @@ import { DetallepedidoComponent } from './components/pedido/detallepedido/detall
 import { MispedidosComponent } from './components/mispedidos/mispedidos.component';
 
 import { ChartsModule } from 'ng2-charts';
+import {ReporteComponentProducto} from './components/reporte/reporte.component'
 
 
 
@@ -81,6 +82,7 @@ import { ChartsModule } from 'ng2-charts';
     MetodopagoComponent,
     DetallepedidoComponent,
     MispedidosComponent,
+    ReporteComponentProducto
    
     
   

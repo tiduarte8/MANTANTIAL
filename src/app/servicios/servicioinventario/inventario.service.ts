@@ -36,7 +36,8 @@ export class InventarioService {
 
   addInventario(inventario: inventarioInterface):void{
     delete inventario.id;
-    this.inventarioCollection.add(inventario);
+    var datosInv = JSON.parse(JSON.stringify(inventario));
+        this.inventarioCollection.add(datosInv);
    
     
   }

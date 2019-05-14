@@ -31,7 +31,7 @@
 
       <ng-container matColumnDef="fechadeingreso">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> FechaIngreso </th>
-          <td mat-cell *matCellDef="let element"> {{element.fechadeingreso}}<!--.toDate()| date: 'dd/MM/yyyy'--></td>
+          <td mat-cell *matCellDef="let element"> {{element.fechadeingreso | date: 'dd/MM/yyyy'}}<!--.toDate()| date: 'dd/MM/yyyy'--></td>
           <td mat-footer-cell *matFooterCellDef>  </td>
         </ng-container>
     

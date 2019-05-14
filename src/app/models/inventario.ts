@@ -1,6 +1,6 @@
 export interface inventarioInterface{
     id?:string;
-    fechadeingreso?:Date;
+    fechadeingreso?:any;
     cantidad?:number;
     nolote?:string;
     producto?:string;

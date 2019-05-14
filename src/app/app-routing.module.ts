@@ -18,6 +18,7 @@ import {AuthGuard} from './guards/auth.guard';
 import { MispedidosComponent } from './components/mispedidos/mispedidos.component';
 
 
+
 const routes: Routes =[
 
     {path:'',component:InicioComponent,pathMatch:'full'},
@@ -36,6 +37,7 @@ const routes: Routes =[
      {path:'carrito',component:CarritoComponent,canActivate:[AuthGuard]},
      {path:'contacto',component:ContactoComponent,canActivate:[AuthGuard]},
      {path:'pago',component:MetodopagoComponent,canActivate:[AuthGuard]},
+    
      
      {path:'**',redirectTo:'/',pathMatch:'full'},
 
