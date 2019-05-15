@@ -92,15 +92,17 @@ obtenerDetalle(pedidoId) {
 }
 
 getTotalPedidoLimit5(){
-  this.pedidoCollection= this.afs.collection('pedido',ref=>ref.where("Total",">",500));
+  this.pedidoCollection= this.afs.collection('pedido',ref=>ref.orderBy('Total','desc'));
   return this.listapedido=this.pedidoCollection.snapshotChanges().pipe
   (map(changes=>{
     return changes.map(action=>{
       const data = action.payload.doc.data() as PedidoInterface;
-      data.id= action.payload.doc.id;
+      data.id= action.payload.doc.id; 
       return data;
   });
 }));
 }
+
+
 
 }

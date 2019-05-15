@@ -23,7 +23,7 @@ export class ReporteComponent implements OnInit {
   public format:"yyyy-mm-dd";
   public nombresP=[];
   public totalVenta=[];
-  public TotalVentaFiltro=[];
+  
 
   public barChartOptions: ChartOptions = {
     responsive: true,
@@ -61,7 +61,7 @@ export class ReporteComponent implements OnInit {
 this.obtenerTotalV();
 //this.obtenerFecha();
 //this.getNombreProducto();  
-//this.getMayor(); 
+
     
   }
 
@@ -99,18 +99,7 @@ this.obtenerTotalV();
     })
   }
 
-  getMayor(){
-   this.dataapi.getTotalPedidoLimit5().subscribe(data=>{
-     this.TotalVentaFiltro=data;
-     console.log(data)
-     /*data.forEach((doc)=>{
-       doc.Total
-      this.TotalVentaFiltro.push(doc.Total);
-      console.log('TotalConFilrto:',this.TotalVentaFiltro)
-     })
-      */
-   })
-  }
+
 
  
 
@@ -171,6 +160,9 @@ export class ReporteComponentProducto implements OnInit {
   public nombresP=[];
   public totalVenta=[];
   public TotalVentaFiltro=[];
+  public VentasMasAltas=[];
+  public ClientesMasR=[];
+  public datosFiltrados=[];
 
   public barChartOptions: ChartOptions = {
     responsive: true,
@@ -180,19 +172,20 @@ export class ReporteComponentProducto implements OnInit {
       datalabels: {
         anchor: 'end',
         align: 'end',
+        
       }
     }
   };
 
   public barChartLabels: Label[] =
-  this.nombresP;
+  this.ClientesMasR;
  public barChartType: ChartType = 'bar';
  public barChartLegend = true;
  public barChartPlugins = [pluginDataLabels];
 
  public number:number=100;
  public barChartData: ChartDataSets[] = [
-   { data: this.totalVenta, label: 'Productos',backgroundColor:['#3E4AC6','#57B1D5','#57C7D5','#427090','#64BEC2'],fill:false },
+   { data: this.VentasMasAltas, label:'Productos',backgroundColor:['#3E4AC6','#57B1D5','#57C7D5','#427090','#64BEC2'],fill:false },
  ];
 
   constructor(public dataapi:PedidoService,public dataproducto:DataApiService,public router:Router) { }
@@ -202,6 +195,8 @@ export class ReporteComponentProducto implements OnInit {
 this.obtenerTotalV();
 //this.obtenerFecha();
 this.getNombreProducto(); 
+this.  getMayor();
+this.getClientesRent();
 
 //this.getMayor(); 
     
@@ -229,4 +224,33 @@ this.getNombreProducto();
     
     })
   }
+  
+  getClientesRent(){
+
+    this.dataapi.getTotalPedidoLimit5().subscribe(data=>{
+      data.forEach((doc)=>{
+        this.ClientesMasR.push(doc.email);
+      // console.log('NombreCliente',this.ClientesMasR);
+    
+      })
+    })
+
+  }
+
+  getMayor(){
+    this.dataapi.getTotalPedidoLimit5().subscribe(data=>{
+     data.forEach((doc)=>{
+      this.VentasMasAltas.push(doc.Total)
+      console.log(this.VentasMasAltas)
+      return console.log('TOTAL', this.VentasMasAltas.map(t=>t).reduce((acc, value) => acc + value, 0));
+
+     })
+     
+     
+    })
+   }
+
+
+
+
 }
