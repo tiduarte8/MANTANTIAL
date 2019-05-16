@@ -125,7 +125,7 @@ this.dataSource.sort=this.sort;
      
     this.dataApi.selectedInventario = Object.assign({}, inventario);
    // this.dataApi.selectedInventario.fechadeingreso=new Date();
-   console.log('Fechita',this.dataApi.selectedInventario.fechadeingreso);
+   
     
     
    }
@@ -153,13 +153,13 @@ export class NuevoingresoComponent implements OnInit{
     onSaveInventario(formInventario:NgForm):void{
      
       console.log('formInventario.value.id',formInventario.value.id);
- 
+    
       if(formInventario.valid) {
         if (formInventario.value.id == null) {
           // New 
-          
+        
           this.dataApi.addInventario(formInventario.value),
-         
+          
           console.log(this.mensaje='Guardado');
           Swal.fire({
             type: 'success',

@@ -287,9 +287,9 @@ getCarrito(email:string){
      
       Swal.fire({
         type: 'error',
-    title: 'Error, Ingrese una dirección válida!!!',
+    title: 'Error, Ingrese una dirección de envío válida!!!',
     showConfirmButton: false,
-    timer: 1500,
+    timer: 2000,
     
       })
     

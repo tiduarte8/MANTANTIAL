@@ -43,12 +43,11 @@
       <mat-label>Seleccione Producto</mat-label>
       <mat-select required  [(ngModel)]="this.dataApi.selectedInventario.producto" name="producto"  >
           <mat-option  *ngFor="let producto of productos" [value]="producto.nombre">
-              
               {{producto.nombre}}
           </mat-option>
         </mat-select>
   </mat-form-field>
-  
+
 
   <br>
   <br>

@@ -100,6 +100,19 @@ export class AuthService {
   }));
 }
 
+obtenerAllUsuario(){
+  this.usuarioCollection=this.afs.collection<UsuarioInterface>('usuarios', ref => ref.where("tipousuario", "==", 'cliente'));
+  return this.usuarios=this.usuarioCollection.snapshotChanges().pipe
+  (map(changes=>{
+    return changes.map(action=>{
+      const data = action.payload.doc.data() as UsuarioInterface;
+      data.id= action.payload.doc.id;
+      return data;
+  });
+}));
+}
+
+
   
   updateUsuario(usuario: UsuarioInterface):void{
      let idUsuario=usuario.id;

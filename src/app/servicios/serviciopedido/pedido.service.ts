@@ -103,6 +103,16 @@ getTotalPedidoLimit5(){
 }));
 }
 
-
+getTotalPedidoLimit5V(){
+  this.pedidoCollection= this.afs.collection('pedido',ref=>ref.limit(5));
+  return this.listapedido=this.pedidoCollection.snapshotChanges().pipe
+  (map(changes=>{
+    return changes.map(action=>{
+      const data = action.payload.doc.data() as PedidoInterface;
+      data.id= action.payload.doc.id; 
+      return data;
+  });
+}));
+}
 
 }

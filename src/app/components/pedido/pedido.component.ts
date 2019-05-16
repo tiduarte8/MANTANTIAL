@@ -125,6 +125,10 @@ timer: 1500
     });
    }
 
+   getTotalCost(){
+    return this.dataSource.filteredData.map(t => t.Total).reduce((acc, value) => acc + value, 0);
+   }
+
 
 
 }

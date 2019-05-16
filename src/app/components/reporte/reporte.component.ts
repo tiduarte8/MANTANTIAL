@@ -7,6 +7,10 @@ import {PedidoInterface} from './../../models/pedido';
 import {DataApiService} from './../../servicios/servicioproducto/data-api.service'
 import  * as moment from 'moment/moment';
 import {Router} from '@angular/router'
+import { AngularFirestore } from '@angular/fire/firestore';
+
+import {UsuarioInterface} from './../../models/usuario';
+import {AuthService} from './../../servicios/servicioauth/auth.service'
 
 
 
@@ -23,6 +27,7 @@ export class ReporteComponent implements OnInit {
   public format:"yyyy-mm-dd";
   public nombresP=[];
   public totalVenta=[];
+  public VentasFiltradas=[];
   
 
   public barChartOptions: ChartOptions = {
@@ -66,7 +71,7 @@ this.obtenerTotalV();
   }
 
   obtenerTotalV(){
-    this.dataapi.getAllPedido().subscribe(data=>{
+    this.dataapi.getTotalPedidoLimit5V().subscribe(data=>{
       data.forEach((doc)=>{
       this.totalVenta.push(doc.Total);
     
@@ -162,7 +167,12 @@ export class ReporteComponentProducto implements OnInit {
   public TotalVentaFiltro=[];
   public VentasMasAltas=[];
   public ClientesMasR=[];
+  public ClientesMasRFiltrado=[];
+  public clientesMas=[]
   public datosFiltrados=[];
+  public ventasFitradas=[];
+  public CorreoE:string;
+  public listaClientes=[];
 
   public barChartOptions: ChartOptions = {
     responsive: true,
@@ -185,18 +195,27 @@ export class ReporteComponentProducto implements OnInit {
 
  public number:number=100;
  public barChartData: ChartDataSets[] = [
-   { data: this.VentasMasAltas, label:'Productos',backgroundColor:['#3E4AC6','#57B1D5','#57C7D5','#427090','#64BEC2'],fill:false },
+   { data: this.VentasMasAltas, label:'Productos',backgroundColor:['#1787F6','#57B1D5','#57C7D5','#427090','#64BEC2','#57C7D5','#427090','#64BEC2','#2C5C88','#5489BA','#1787F6','#535DE3','#5453B9','#3E728A','#63AED0'],fill:false },
  ];
 
-  constructor(public dataapi:PedidoService,public dataproducto:DataApiService,public router:Router) { }
+  constructor(public dataapi:PedidoService,public dataproducto:DataApiService,public router:Router,public authservice:AuthService) { }
 
   ngOnInit() {
-    
-this.obtenerTotalV();
+   
+ 
+ 
+
 //this.obtenerFecha();
-this.getNombreProducto(); 
-this.  getMayor();
 this.getClientesRent();
+this.getNombreProducto(); 
+this.getMayor();
+
+
+
+
+
+
+
 
 //this.getMayor(); 
     
@@ -209,48 +228,96 @@ this.getClientesRent();
       data.forEach((doc)=>{
         doc.nombre
           this.nombresP.push(doc.nombre);
-         // console.log('NombreP',this.nombresP)
-      })
-    })
-  }
 
-  obtenerTotalV(){
-    this.dataapi.getAllPedido().subscribe(data=>{
-      data.forEach((doc)=>{
-      this.totalVenta.push(doc.Total);
-    //  console.log('TotalV:',this.totalVenta);
-  
+          
+   
+         // console.log('NombreP',this.nombresP)
+        
       })
-    
     })
+
   }
+  
+
+
+/* 
+getClientes(){
+   
+    return this.authservice.obtenerAllUsuario().subscribe(clientes=>{
+      clientes.forEach((doc)=>{
+        this.listaClientes.push(doc.email);
+     });
+
+    
+     
+     
+    
+    });
+  }
+ */
   
   getClientesRent(){
 
-    this.dataapi.getTotalPedidoLimit5().subscribe(data=>{
-      data.forEach((doc)=>{
-        this.ClientesMasR.push(doc.email);
-      // console.log('NombreCliente',this.ClientesMasR);
-    
+      this.dataapi.getTotalPedidoLimit5().subscribe(data=>{
+        data.forEach((doc)=>{
+          
+      
+          this.ClientesMasR.push(doc.email)
+       //   console.log('Datos',this.ClientesMasR)
+         
+
+        })
+        
+   
+       // this.datosFiltrados = Array.from(new Set(this.ClientesMasR));
+      /// console.log('Unicos',this.datosFiltrados)
       })
-    })
+    
+     
 
   }
 
   getMayor(){
+ 
     this.dataapi.getTotalPedidoLimit5().subscribe(data=>{
      data.forEach((doc)=>{
-      this.VentasMasAltas.push(doc.Total)
-      console.log(this.VentasMasAltas)
-      return console.log('TOTAL', this.VentasMasAltas.map(t=>t).reduce((acc, value) => acc + value, 0));
-
+      this.VentasMasAltas.push(doc.Total);
      })
-     
-     
+    
     })
+
+    
+    
+   }
+/*
+   quitarDuple(){
+    var rawtData = [
+      { date: "2015-01-03", "pv": 50, "ac": 100, "ev": 50 },
+      { date: "2015-01-01", "pv": 100, "ac": 200, "ev": 200 },
+      { date: "2015-01-02", "pv": 200, "ac": 100, "ev": 150 },
+      { date: "2015-01-03", "pv": 300, "ac": 400, "ev": 200 },
+      { date: "2015-01-03", "pv": 50, "ac": 50, "ev": 200 },
+      { date: "2015-01-02", "pv": 200, "ac": 100, "ev": 50 },
+      { date: "2015-01-01", "pv": 50, "ac": 100, "ev": 50 },
+      { date: "2015-01-03", "pv": 10, "ac": 60, "ev": 50 },
+      { date: "2015-01-01", "pv": 70, "ac": 50, "ev": 50 },
+      { date: "2015-01-03", "pv": 400, "ac": 350, "ev": 300 }
+  ];
+  
+  var groupBy = function (miarray, prop) {
+      return miarray.reduce(function(groups, item) {
+          var val = item[prop];
+          groups[val] = groups[val] || {date: item.date, pv: 0, ac: 0,ev: 0};
+          groups[val].pv += item.pv;
+          groups[val].ac += item.ac;
+          groups[val].ev += item.ev;
+          return groups;
+      }, {});
+  }
+  
+  console.log(groupBy(rawtData,'date'));
    }
 
-
-
+  */
 
 }

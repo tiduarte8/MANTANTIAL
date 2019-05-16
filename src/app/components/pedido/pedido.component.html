@@ -11,27 +11,32 @@
     <ng-container matColumnDef="position">
       <th mat-header-cell *matHeaderCellDef> No. </th>
       <td mat-cell *matCellDef="let element;index as i"> {{i+1}} </td>
+      <td mat-footer-cell *matFooterCellDef> <strong>Total</strong> </td>
     </ng-container>
 
     <ng-container matColumnDef="correo">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Correo </th>
         <td mat-cell *matCellDef="let element">{{element.email}} </td>
+        <td mat-footer-cell *matFooterCellDef>  </td>
       </ng-container>
 
       <ng-container matColumnDef="direccion">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Dirección </th>
         <td mat-cell *matCellDef="let element">{{element.direccion}} </td>
+        <td mat-footer-cell *matFooterCellDef>  </td>
       </ng-container>
   
     <!-- Name Column -->
     <ng-container matColumnDef="fecha">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
       <td mat-cell *matCellDef="let element"> {{element.fecha.toDate() | date:'yyyy/MM/dd h:mm:ss a'}} </td>
+      <td mat-footer-cell *matFooterCellDef>  </td>
     </ng-container>
 
     <ng-container matColumnDef="total">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Total </th>
         <td mat-cell *matCellDef="let element"> {{element.Total}} C$ </td>
+        <td mat-footer-cell *matFooterCellDef><strong style="font-size: 16px">{{getTotalCost()}}</strong> </td>
       </ng-container>
      <!-- Name Column 
      <ng-container matColumnDef="apellidos">
@@ -69,7 +74,7 @@
           <b style="color:green;">Entregado</b>
         </ng-template>
           </td>
-        
+          <td mat-footer-cell *matFooterCellDef>  </td>
         </ng-container>
         
 <!--
@@ -91,6 +96,7 @@
                 <button mat-icon-button color="primary" (click)="onFact(row)" matTooltip="Facturar" aria-label="Button that displays a tooltip when focused or hovered over"><mat-icon>autorenew</mat-icon></button>
                 <button mat-icon-button color="primary"  matTooltip="Ver detalles" aria-label="Button that displays a tooltip when focused or hovered over" (click)="openDialog(row.id)"><mat-icon>assignment</mat-icon></button>
             </td>
+            <td mat-footer-cell *matFooterCellDef>  </td>
           </ng-container>
   
     <!-- Symbol Column -->
@@ -98,6 +104,7 @@
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
   </table>
   <mat-paginator class="matpa" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 
