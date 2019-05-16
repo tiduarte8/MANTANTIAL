@@ -327,123 +327,41 @@ export class ReporteComponentProducto implements OnInit {
   constructor(public dataapi:PedidoService,public dataproducto:DataApiService,public router:Router,public authservice:AuthService) { }
 
   ngOnInit() {
-   
- 
- 
 
-//this.obtenerFecha();
 this.getClientesRent();
-this.getNombreProducto(); 
-this.getMayor();
 
-
-
-
-
-
-
-
-//this.getMayor(); 
     
   }
 
- 
-
-  getNombreProducto(){
-    this.dataproducto.getAllProductos().subscribe(data=>{
-      data.forEach((doc)=>{
-        doc.nombre
-          this.nombresP.push(doc.nombre);
-
-          
-   
-         // console.log('NombreP',this.nombresP)
-        
-      })
-    })
-
-  }
-  
-
-
-/* 
-getClientes(){
-   
-    return this.authservice.obtenerAllUsuario().subscribe(clientes=>{
-      clientes.forEach((doc)=>{
-        this.listaClientes.push(doc.email);
-     });
-
-    
-     
-     
-    
-    });
-  }
- */
   
   getClientesRent(){
 
       this.dataapi.getTotalPedidoLimit5().subscribe(data=>{
         data.forEach((doc)=>{
+
+          const index = this.ClientesMasR.findIndex(email => email === doc.email)
           
-      
-          this.ClientesMasR.push(doc.email)
-       //   console.log('Datos',this.ClientesMasR)
-         
+          if(index === -1) {
+            this.ClientesMasR.push(doc.email)
+            this.VentasMasAltas.push(doc.Total)
+          }
+          else {
+            this.VentasMasAltas[index] = this.VentasMasAltas[index] + doc.Total
+          }
+    
 
         })
         
-   
-       // this.datosFiltrados = Array.from(new Set(this.ClientesMasR));
-      /// console.log('Unicos',this.datosFiltrados)
+
       })
     
      
 
   }
 
-  getMayor(){
- 
-    this.dataapi.getTotalPedidoLimit5().subscribe(data=>{
-     data.forEach((doc)=>{
-      this.VentasMasAltas.push(doc.Total);
-     })
-    
-    })
 
-    
-    
-   }
-/*
-   quitarDuple(){
-    var rawtData = [
-      { date: "2015-01-03", "pv": 50, "ac": 100, "ev": 50 },
-      { date: "2015-01-01", "pv": 100, "ac": 200, "ev": 200 },
-      { date: "2015-01-02", "pv": 200, "ac": 100, "ev": 150 },
-      { date: "2015-01-03", "pv": 300, "ac": 400, "ev": 200 },
-      { date: "2015-01-03", "pv": 50, "ac": 50, "ev": 200 },
-      { date: "2015-01-02", "pv": 200, "ac": 100, "ev": 50 },
-      { date: "2015-01-01", "pv": 50, "ac": 100, "ev": 50 },
-      { date: "2015-01-03", "pv": 10, "ac": 60, "ev": 50 },
-      { date: "2015-01-01", "pv": 70, "ac": 50, "ev": 50 },
-      { date: "2015-01-03", "pv": 400, "ac": 350, "ev": 300 }
-  ];
-  
-  var groupBy = function (miarray, prop) {
-      return miarray.reduce(function(groups, item) {
-          var val = item[prop];
-          groups[val] = groups[val] || {date: item.date, pv: 0, ac: 0,ev: 0};
-          groups[val].pv += item.pv;
-          groups[val].ac += item.ac;
-          groups[val].ev += item.ev;
-          return groups;
-      }, {});
-  }
-  
-  console.log(groupBy(rawtData,'date'));
-   }
 
-  */
+
+  
 
 }
