@@ -19,6 +19,7 @@ import {AuthService} from './../../servicios/servicioauth/auth.service';
 
 import Swal from 'sweetalert2';
 import {Router} from '@angular/router';
+import {ExportarService} from './../../servicios/servicioexportar/exportar.service';
 
 
 
@@ -33,7 +34,7 @@ export class InventarioComponent implements OnInit{
   
 
   constructor(public route:Router,public dialog: MatDialog, private dataApi:InventarioService,
-    private storage: AngularFireStorage,private authService:AuthService){};
+    private storage: AngularFireStorage,public excelservice:ExportarService){};
 
   displayedColumns: string[] = ['position','nolote', 'fechadeingreso','producto','cantidad','actions'];
   dataSource = new MatTableDataSource<inventarioInterface>();
@@ -130,6 +131,16 @@ this.dataSource.sort=this.sort;
     
    }
 
+   exportAsXLSX():void{
+    // var datosData = JSON.parse(JSON.stringify(this.dataSource.data));
+    
+      this.excelservice.exportToExcle(this.dataSource.data,'my_export');
+    }
+ 
+    exportAsXLSXFilter():void{
+     this.excelservice.exportToExcle(this.dataSource.filteredData,'my_export');
+    }
+
    
 
 }
@@ -216,6 +227,8 @@ export class NuevoingresoComponent implements OnInit{
       
          this.getListProductos();
      }
+
+    
 
     
     

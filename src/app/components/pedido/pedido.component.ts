@@ -7,6 +7,7 @@ import {PedidoInterface} from './../../models/pedido';
 import Swal from 'sweetalert2';
 import {DetallepedidoComponent} from './detallepedido/detallepedido.component';
 import { Router } from '@angular/router';
+import {ExportarService} from './../../servicios/servicioexportar/exportar.service';
 
 
 
@@ -21,7 +22,10 @@ export class PedidoComponent implements OnInit {
   color:string;
 
   constructor( private dataApi:PedidoService,
-    public storage: AngularFireStorage,public dialog:MatDialog,public route:Router){
+    public storage: AngularFireStorage,
+    public dialog:MatDialog,
+    public route:Router,
+    public excelservice:ExportarService){
     
     };
     
@@ -127,6 +131,16 @@ timer: 1500
 
    getTotalCost(){
     return this.dataSource.filteredData.map(t => t.Total).reduce((acc, value) => acc + value, 0);
+   }
+
+   exportAsXLSX():void{
+   // var datosData = JSON.parse(JSON.stringify(this.dataSource.data));
+   
+     this.excelservice.exportToExcle(this.dataSource.data,'my_export');
+   }
+
+   exportAsXLSXFilter():void{
+    this.excelservice.exportToExcle(this.dataSource.filteredData,'my_export');
    }
 
 
