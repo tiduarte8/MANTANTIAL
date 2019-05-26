@@ -119,8 +119,8 @@ obtenerAllUsuario(){
      this.usuarioDoc=this.afs.doc<UsuarioInterface>(`usuarios/${idUsuario}`);
      this.usuarioDoc.update(usuario);
   }
-  deleteUsuario(idInventario:string):void{
-     this.usuarioDoc=this.afs.doc<UsuarioInterface>(`usuarios/${idInventario}`);
+  deleteUsuario(idUsuario:string):void{
+     this.usuarioDoc=this.afs.doc<UsuarioInterface>(`usuarios/${idUsuario}`);
      this.usuarioDoc.delete();
   }
 

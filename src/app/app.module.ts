@@ -9,7 +9,7 @@ import {MatSelectModule,MatButtonModule,
         MatListModule,
         MatMenuModule,
         MatFormFieldModule,
-        MatBadgeModule,} from '@angular/material';
+        MatBadgeModule,MatPaginatorIntl} from '@angular/material';
         import {MatTooltipModule} from '@angular/material/tooltip';
         import {MatPaginatorModule} from '@angular/material/paginator';
         import {MatInputModule} from '@angular/material/input';
@@ -53,6 +53,7 @@ import { MispedidosComponent } from './components/mispedidos/mispedidos.componen
 import { ChartsModule } from 'ng2-charts';
 import {ReporteComponentProducto} from './components/reporte/reporte.component';
 import {ExportarService} from './servicios/servicioexportar/exportar.service';
+import {getDutchPaginatorIntl} from './traductor'
 
 
 
@@ -141,7 +142,10 @@ import {ExportarService} from './servicios/servicioexportar/exportar.service';
   ],
 
 
-  providers: [AngularFireAuth,AngularFirestore, {provide: FirestoreSettingsToken, useValue: {}},ExportarService],
+  providers: [AngularFireAuth,AngularFirestore,
+     {provide: FirestoreSettingsToken, useValue: {}},
+     ExportarService,{ provide: MatPaginatorIntl,
+       useValue: getDutchPaginatorIntl() }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

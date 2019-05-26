@@ -92,6 +92,5 @@ onInicioRedirect(){
   this.router.navigate(['inicio']);
 }
 
-
-
+  
 }

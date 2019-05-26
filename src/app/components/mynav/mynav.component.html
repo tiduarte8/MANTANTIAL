@@ -83,6 +83,7 @@
       
        <mat-menu #menu="matMenu">
         <button routerLink="/pago" mat-menu-item >Cambiar Contraseña</button>
+        <button (click)="onEliminarMiCuenta()" *ngIf="isadmin === false && isLogged" mat-menu-item >Eliminar mi Cuenta</button>
         <button mat-menu-item routerLink="/login" (click)="onLogout()">Salir</button>
       </mat-menu>
       </a>

@@ -2,6 +2,7 @@
   debe tener<br> un mínimo de 6 caracteres y es  necesario que halla iniciado<br>
   sesión recientemente.
 </h3>
+
 <form  (ngSubmit)="actualizarPass(formAct)" #formAct="ngForm" name="formAct" class="example-form">
     <mat-form-field class="example-full-width">
       <input [(ngModel)]="pass" minlenght="6" name="pass" type="password" required  matInput placeholder="Ingrese Contraseña nueva" >

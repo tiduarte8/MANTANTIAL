@@ -6,6 +6,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import {MatDialog,MatDialogConfig} from '@angular/material';
 import {Router} from '@angular/router'
 import Swal from 'sweetalert2';
+import{AngularFireAuth} from '@angular/fire/auth';
+import { userInfo } from 'os';
 
 
 
@@ -19,12 +21,12 @@ import Swal from 'sweetalert2';
 })
 export class ClientesComponent implements OnInit{
 
-  constructor(public route: Router,public authService:AuthService,public data:AngularFirestore,public dialog: MatDialog){}
+  constructor(public afauth: AngularFireAuth,public route: Router,public authService:AuthService,public data:AngularFirestore,public dialog: MatDialog){}
 
 
 
 
-  displayedColumns: string[] = ['position', 'pnombre', 'papellido','direccion','email','ntelefono','ncedula'];
+  displayedColumns: string[] = ['position', 'pnombre', 'papellido','direccion','email','ntelefono','ncedula','actions'];
   dataSource = new MatTableDataSource<UsuarioInterface>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -72,7 +74,7 @@ this.dataSource.sort=this.sort;
     });
    }
 
-   /*
+   
    onDeleteUsuario(idUsuario:string):void{
     console.log('Delete Registro',idUsuario);
 
@@ -86,7 +88,12 @@ this.dataSource.sort=this.sort;
      confirmButtonText: 'Si, elimnarlo!'
    }).then((result) => {
      if (result.value) {
-       this.authService.deleteUsuario(idUsuario);
+     //  this.authService.deleteUsuario(idUsuario);
+      this.afauth.user.subscribe(usuario=>{
+        usuario.email
+        console.log('User',usuario.email)
+      }) 
+     
        Swal.fire({
          type: 'success',
      title: 'El registro se ha eliminado !!!',
@@ -96,7 +103,7 @@ this.dataSource.sort=this.sort;
      }
    })
   
-  }*/
+  }
 
 
 }
