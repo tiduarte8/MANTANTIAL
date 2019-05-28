@@ -13,7 +13,7 @@ import {MatSelectModule,MatButtonModule,
         import {MatTooltipModule} from '@angular/material/tooltip';
         import {MatPaginatorModule} from '@angular/material/paginator';
         import {MatInputModule} from '@angular/material/input';
-import { MynavComponent } from './components/mynav/mynav.component';
+import { MynavComponent,DialogOverviewExampleDialog} from './components/mynav/mynav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { LoginComponent } from './components/login/login.component';
 import {MatTableModule} from '@angular/material/table';
@@ -51,9 +51,10 @@ import { DetallepedidoComponent } from './components/pedido/detallepedido/detall
 import { MispedidosComponent } from './components/mispedidos/mispedidos.component';
 
 import { ChartsModule } from 'ng2-charts';
-import {ReporteComponentProducto} from './components/reporte/reporte.component';
+import {ReporteComponentProducto,DetalleReporte} from './components/reporte/reporte.component';
 import {ExportarService} from './servicios/servicioexportar/exportar.service';
 import {getDutchPaginatorIntl} from './traductor'
+
 
 
 
@@ -84,7 +85,9 @@ import {getDutchPaginatorIntl} from './traductor'
     MetodopagoComponent,
     DetallepedidoComponent,
     MispedidosComponent,
-    ReporteComponentProducto
+    ReporteComponentProducto,
+    DetalleReporte,
+    DialogOverviewExampleDialog
    
     
   
@@ -139,13 +142,15 @@ import {getDutchPaginatorIntl} from './traductor'
     GuardarproductoComponent,
     PedidoComponent,
     DetallepedidoComponent,
+    DetalleReporte, ReporteComponentProducto,DialogOverviewExampleDialog
   ],
+
 
 
   providers: [AngularFireAuth,AngularFirestore,
      {provide: FirestoreSettingsToken, useValue: {}},
      ExportarService,{ provide: MatPaginatorIntl,
        useValue: getDutchPaginatorIntl() }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

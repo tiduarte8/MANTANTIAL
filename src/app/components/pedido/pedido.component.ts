@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit,ViewChild, ElementRef, Injectable } from '@angular/core';
 import{MatTableDataSource,MatPaginator,MatSort} from '@angular/material';
 import {PedidoService} from './../../servicios/serviciopedido/pedido.service';
 import {MatDialog,MatDialogConfig} from '@angular/material';
@@ -17,6 +17,7 @@ import {ExportarService} from './../../servicios/servicioexportar/exportar.servi
   templateUrl: './pedido.component.html',
   styleUrls: ['./pedido.component.css']
 })
+
 export class PedidoComponent implements OnInit {
 
   color:string;
@@ -53,7 +54,8 @@ export class PedidoComponent implements OnInit {
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
-    confirmButtonText: 'Si, facturarlo!'
+    confirmButtonText: 'Si, facturarlo!',
+    cancelButtonText:'Cancelar'
   }).then((result) => {
     if (result.value) {
       this.dataApi.selectedpedido.estado='entregado';
@@ -136,11 +138,11 @@ timer: 1500
    exportAsXLSX():void{
    // var datosData = JSON.parse(JSON.stringify(this.dataSource.data));
    
-     this.excelservice.exportToExcle(this.dataSource.data,'my_export');
+     this.excelservice.exportToExcle(this.dataSource.data,'pedido');
    }
 
    exportAsXLSXFilter():void{
-    this.excelservice.exportToExcle(this.dataSource.filteredData,'my_export');
+    this.excelservice.exportToExcle(this.dataSource.filteredData,'pedido_filtrado');
    }
 
 

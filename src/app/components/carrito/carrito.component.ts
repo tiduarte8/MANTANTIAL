@@ -193,7 +193,8 @@ getCarrito(email:string){
      showCancelButton: true,
      confirmButtonColor: '#3085d6',
      cancelButtonColor: '#d33',
-     confirmButtonText: 'Si, elimnarlo!'
+     confirmButtonText: 'Si, elimnarlo!',
+     cancelButtonText:'Cancelar'
    }).then((result) => {
      if (result.value) {
 

@@ -1,0 +1,20 @@
+<mat-card>
+    <h1 style="color:navy; text-align:center; font-family:Arial, Helvetica, sans-serif" >Eliminar Mi Cuenta</h1>
+  </mat-card> 
+<h1 mat-dialog-title>Hola {{this.email}}, Si deseas eliminar tu cuenta debemos confirmar que sea tuya.</h1>
+<div mat-dialog-content>
+  <p>Por favor ingrese su contraseña</p>
+  <mat-form-field style="width:100%">
+    <input [(ngModel)]="pass"   name="pass" class="inputlog"  required matInput placeholder="Contraseña" maxlength="50"  [type]="hide ? 'text' : 'password'">
+    <mat-icon matSuffix (click)="hide = !hide"> {{hide ? 'visibility_on' : 'visibility_off'}}</mat-icon>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="onNoClick()" cdkFocusInitial>Cancelar</button>
+  
+  <button style="margin-left: 130px" mat-raised-button color="warn"  (click)="onLoguear()" >Eliminar</button>
+  <label  style="color:red">{{mensaje}}<br></label>
+  <label  style="color:green">{{mensaje2}}<br></label>
+
+  
+</div>

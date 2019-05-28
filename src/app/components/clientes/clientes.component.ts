@@ -26,7 +26,7 @@ export class ClientesComponent implements OnInit{
 
 
 
-  displayedColumns: string[] = ['position', 'pnombre', 'papellido','direccion','email','ntelefono','ncedula','actions'];
+  displayedColumns: string[] = ['position', 'pnombre', 'papellido','direccion','email','ntelefono','ncedula'];
   dataSource = new MatTableDataSource<UsuarioInterface>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -75,35 +75,7 @@ this.dataSource.sort=this.sort;
    }
 
    
-   onDeleteUsuario(idUsuario:string):void{
-    console.log('Delete Registro',idUsuario);
-
-    Swal.fire({
-     title: '¿Estás Seguro?',
-     text: "Esta acción no se puede detener!",
-     type: 'warning',
-     showCancelButton: true,
-     confirmButtonColor: '#3085d6',
-     cancelButtonColor: '#d33',
-     confirmButtonText: 'Si, elimnarlo!'
-   }).then((result) => {
-     if (result.value) {
-     //  this.authService.deleteUsuario(idUsuario);
-      this.afauth.user.subscribe(usuario=>{
-        usuario.email
-        console.log('User',usuario.email)
-      }) 
-     
-       Swal.fire({
-         type: 'success',
-     title: 'El registro se ha eliminado !!!',
-     showConfirmButton: false,
-     timer: 1500
-       })
-     }
-   })
   
-  }
 
 
 }

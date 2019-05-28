@@ -13,6 +13,7 @@ import {CarritoService} from './../../servicios/serviciocarrito/carrito.service'
 import {CarritoInterface} from './../../models/carrito'
 import Swal from 'sweetalert2';
 import{Router} from '@angular/router';
+import { MatDialog, MatDialogRef } from '@angular/material';
 
 
 
@@ -34,8 +35,13 @@ export class MynavComponent implements OnInit{
 
    
 
-  constructor(public breakpointObserver: BreakpointObserver, public authService:AuthService, public afsAuth: AngularFireAuth,
-    public storage:AngularFirestore,public carritoService:CarritoService, public route: Router) {
+  constructor(public breakpointObserver: BreakpointObserver,
+    public authService:AuthService,
+    public afsAuth: AngularFireAuth,
+    public storage:AngularFirestore,
+    public carritoService:CarritoService,
+    public route: Router,
+    public dialog: MatDialog) {
     
     }
 
@@ -164,54 +170,7 @@ verContador(){
   })
   }*/
 
-  onEliminarMiCuenta(){
-    var user = auth().currentUser;
-    var userId = user.uid; 
 
-
-    Swal.fire({
-      title: '¿Estás Seguro?',
-      text: "Esta acción no se puede detener!",
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, elimnar mi cuenta!'
-    }).then((result) => {
-      if (result.value) {
-        user.delete().then(mensaje=> {
-  // User deleted.
-   Swal.fire({
-    type: 'success',
-title: 'Tu cuenta se ha eliminado !!!',
-showConfirmButton: false,
-timer: 1500
-  }).then(borrar =>{
-    let usuario= this.storage.doc(`usuarios/${userId}`)
-  usuario.delete()
-  localStorage.removeItem('rol')
-  localStorage.removeItem('contador')
-   this.route.navigate(['/login'])
-  }).catch(err=>{alert(err)})
-
-       }).catch(error=> {
-  // An error happened.
-
-  Swal.fire({
-    type: 'error',
-title: 'Error al eliminar, vuelva a iniciar sesión !!!',
-showConfirmButton: false,
-timer: 1500
-  })
-       });;
-      
-       
-      }
-      
-    })
-
-
-  }
 
   onLogout(){
     this.authService.logoutUser();
@@ -219,4 +178,83 @@ timer: 1500
     localStorage.removeItem('contador');
   }
 
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+      width: '350px',
+      
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Cerrando');
+      
+    });
+  }
+
 }
+
+@Component({
+  selector: 'modalBorrarCuenta',
+  templateUrl: './modalBorrarCuenta.html',
+})
+export class DialogOverviewExampleDialog implements OnInit{
+
+  public email:string;
+  public pass:string;
+  public mensaje:string;
+  public mensaje2:string;
+  public hide:boolean;
+
+  constructor(public route:Router,
+    public storage:AngularFirestore,
+    public authService:AuthService,
+    public dialogRef:MatDialogRef<DialogOverviewExampleDialog>){}
+  ngOnInit(){
+     this.email=auth().currentUser.email;
+  }
+
+  onLoguear(){
+    this.email=auth().currentUser.email;
+
+    if(this.email!=''||this.pass!=''){
+      this.authService.loginEmailUser(this.email,this.pass)
+   .then ( (res)=>{
+    this.mensaje2="Credencial correcta"
+    var user = auth().currentUser;
+    var userId = user.uid; 
+    user.delete().then(data=>{
+      Swal.fire({
+        type: 'success',
+    title: 'Tu cuenta se ha eliminado !!!',
+    showConfirmButton: false,
+    timer: 1500
+      }).then(borrar =>{
+        let usuario= this.storage.doc(`usuarios/${userId}`)
+      usuario.delete()
+      localStorage.removeItem('rol')
+      localStorage.removeItem('contador')
+       this.route.navigate(['/login'])
+        this.dialogRef.close() 
+      }).catch(err=>{ Swal.fire({
+        type: 'warning',
+    title: 'Vuelva a iniciar sesión para eliminar su cuenta!!!',
+    showConfirmButton: false,
+    timer: 1500
+      })})
+    })
+
+   }).catch(err => this.mensaje="Error, e-mail o contraseña incorrecta");
+    }
+
+    else{
+      this.mensaje="Rellene los campos";
+    }
+
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+}
+
+

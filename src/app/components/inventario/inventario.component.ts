@@ -99,7 +99,8 @@ this.dataSource.sort=this.sort;
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, elimnarlo!'
+      confirmButtonText: 'Si, elimnarlo!',
+      cancelButtonText:'Cancelar'
     }).then((result) => {
       if (result.value) {
         this.dataApi.deleteInventario(idInventario);
@@ -134,11 +135,11 @@ this.dataSource.sort=this.sort;
    exportAsXLSX():void{
     // var datosData = JSON.parse(JSON.stringify(this.dataSource.data));
     
-      this.excelservice.exportToExcle(this.dataSource.data,'my_export');
+      this.excelservice.exportToExcle(this.dataSource.data,'inventario');
     }
  
     exportAsXLSXFilter():void{
-     this.excelservice.exportToExcle(this.dataSource.filteredData,'my_export');
+     this.excelservice.exportToExcle(this.dataSource.filteredData,'inventario_filtrado');
     }
 
    

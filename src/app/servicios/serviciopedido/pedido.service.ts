@@ -111,8 +111,25 @@ getTotalPedidoLimit5V(){
       const data = action.payload.doc.data() as PedidoInterface;
       data.id= action.payload.doc.id; 
       return data;
+     
   });
 }));
 }
+
+getPedidoId(label:string){
+  this.pedidoCollection=this.afs.collection<PedidoInterface>('pedido',ref=>ref.where('email','==',label))
+  return this.listapedido=this.pedidoCollection.snapshotChanges().pipe
+  (map(changes=>{
+    return changes.map(action=>{
+      const data = action.payload.doc.data() as PedidoInterface;
+      data.id= action.payload.doc.id; 
+      return data;
+     
+  });
+}));
+}
+
+
+
 
 }

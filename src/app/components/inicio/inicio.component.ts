@@ -217,7 +217,8 @@ export class Contactanos implements OnInit{
           showCancelButton: true,
           confirmButtonColor: '#3085d6',
           cancelButtonColor: '#d33',
-          confirmButtonText: 'Si, enviar mensaje!'
+          confirmButtonText: 'Si, enviar mensaje!',
+          cancelButtonText:'Cancelar'
 
         }).then((result) => {
          
